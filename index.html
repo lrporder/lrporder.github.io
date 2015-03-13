@@ -285,11 +285,11 @@
     <div class="Question ownLine">Uitvoering</div>
     <div class="Answer ownLineA">
         <input type="radio" name="Uitvoering" value="Acceptgiros" id="SK-Acceptgiros" title="Vink dit aan als u acceptgiro's wilt bestellen" onChange="$('.SKsjabloonKeus').find('input').prop('checked', false).prop('disabled', this.checked);" required >
-        <label for="SK-Acceptgiros">Acceptgiro's</label>
+        <label for="SK-Acceptgiros">Acceptgiro's zonder brief erboven</label>
     </div>
     <div class="Answer ownLineA">
         <input type="radio" name="Uitvoering" value="Combiformulieren" id="SK-Combiformulieren" title="Vink dit aan als u combiformulieren wilt bestellen" onChange="processCombi(this.checked, 'SKsjabloonKeus')" > 
-        <label for="SK-Combiformulieren">Combiformulieren, met als brief:</label>
+        <label for="SK-Combiformulieren">Brieven met aangehechte acceptgiro (Combiformulieren), met als brief:</label>
     </div>
     <div class="SKsjabloonKeus" style="margin-left: 2em; clear: both;">
         <div class="Answer ownlineA">
@@ -313,6 +313,7 @@
             </div>
         </div>
     </div>
+    
     <script>
         function validateSKBedrag(){
         if(document.getElementById("SK-bedrag-anders").checked){
@@ -335,7 +336,7 @@
         <label for="SK-bedrag-geen">Géén bedrag</label>
         <span class="Vraagteken">?</span>
         <div id="HelpSKGeenBedrag" class="Help">
-            <p>Als u geen bedrag laat afdrukken, kunnen later ook geen herinneringen worden aangemaakt. Zonder bedrag kan immers geen betalingsachterstand berekend worden.<p>
+            <p>Als u geen bedrag laat afdrukken, kunnen later ook geen herinneringen worden aangemaakt. Zonder bedrag kan immers geen betalingsachterstand berekend worden. Let erop dat in de standaard brieftekst gevraagd wordt om tien euro.<p>
         </div>
     </div>
     <div class="Answer ownLineA">
