@@ -284,16 +284,16 @@
     <p>Kies hier of u alleen acceptgiro's wenst of een combiformulier (brief met aangehechte acceptgiro). Bij een keuze voor combiformulieren kunt u aangeven of u de standaard brieftekst wilt laten afdrukken of een aangepaste tekst. De standaardbrief vindt u <a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/Solidariteitskas/Documents/SolidariteitskasCombolaVoorbeeldVb.pdf">hier</a>.</p>
     <div class="Question ownLine">Uitvoering</div>
     <div class="Answer ownLineA">
-        <input type="radio" name="Uitvoering" value="Acceptgiros" id="SK-Acceptgiros" title="Vink dit aan als u acceptgiro's wilt bestellen" onChange="$('.SKsjabloonKeus').find('input').prop('checked', false).prop('disabled', this.checked);" >
+        <input type="radio" name="Uitvoering" value="Acceptgiros" id="SK-Acceptgiros" title="Vink dit aan als u acceptgiro's wilt bestellen" onChange="$('.SKsjabloonKeus').find('input').prop('checked', false).prop('disabled', this.checked);" required >
         <label for="SK-Acceptgiros">Acceptgiro's</label>
     </div>
     <div class="Answer ownLineA">
-        <input type="radio" name="Uitvoering" value="Combiformulieren" id="SK-Combiformulieren" title="Vink dit aan als u combiformulieren wilt bestellen" onChange="processCombi(this.checked, 'SKsjabloonKeus')" checked> 
+        <input type="radio" name="Uitvoering" value="Combiformulieren" id="SK-Combiformulieren" title="Vink dit aan als u combiformulieren wilt bestellen" onChange="processCombi(this.checked, 'SKsjabloonKeus')" > 
         <label for="SK-Combiformulieren">Combiformulieren, met als brief:</label>
     </div>
     <div class="SKsjabloonKeus" style="margin-left: 2em; clear: both;">
         <div class="Answer ownlineA">
-            <input type="radio" name="UitvoeringBrieftekst" id="SKStBrief" value="Standaard" checked>
+            <input type="radio" name="UitvoeringBrieftekst" id="SKStBrief" value="Standaard" >
             <label for="SKStBrief">Standaardbrief</label>
         </div>
         <div class="Answer ownLineA">
@@ -475,7 +475,7 @@
     </span>
     <span class="Vraagteken">?</span>
     <div id="HelpFondsnr" class="Help">
-        <p>Het fondsnummer vindt u terug in LRP via het menu Bijdragenadministratie > Fondsen & acties, in de eerste kolom van het overzicht. Tenzij er sprake is geweest van fusie kunt u hetzelfde fonds als vorig jaar gebruiken. Let op: Maakt u gebruik van wijkfondsen en een verzamelfonds dan zult u per wijkfonds een bestelling moeten doen. Het opgeven van het fondsnummer is niet verplicht, maar wel aanbevolen. Zeker als u bijvoorbeeld in LRP meerdere fondsen hebt staan met de "kerkbalans" of "kerkelijke bijdrage" in de naam, is verwarring bepaald niet uitgesloten.</p>
+        <p>Het fondsnummer vindt u terug in LRP via het menu Bijdragenadministratie > Fondsen & acties, in de eerste kolom van het overzicht. Tenzij er sprake is geweest van fusie kunt u hetzelfde fonds als vorig jaar gebruiken. Let op: Maakt u gebruik van wijkfondsen en een verzamelfonds dan zult u per wijkfonds een bestelling moeten doen. Het opgeven van het fondsnummer is niet verplicht, maar wel aanbevolen. Zeker als u bijvoorbeeld in LRP meerdere fondsen hebt staan met vergelijkbare namen, is verwarring bepaald niet uitgesloten.</p>
     </div>
 
     <span class="Question">Aanschrijving</span>
