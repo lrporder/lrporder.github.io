@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="LRP-bestelling.css" />
     <style>
     </style>
+
     <!-- jquery 2.x supports >= IE9 only -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
@@ -16,6 +17,9 @@
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <script src="LRP-bestelling.js"></script>
+    
+    <!-- from https://raw.githubusercontent.com/MrRio/jsPDF/master/dist/jspdf.min.js -->
+    <script src="jspdf.min.js"></script>
 </head>
 
 <!-- BODY -->
@@ -37,6 +41,7 @@
     <li class="NavLink">Help</li>
     <li class="NavLink">Contact</li>
     <li class="NavLink">Links</li>
+    <li class="NavLink" style="float: right; font-size: 0; width: 10px; height: 10px;">Test</li>
 </ul>
 <!--<ul class="Quicklinks">
     <li onclick="$('fieldset:visible').hide();$('fieldset#Start').show()">Start</li>
@@ -1508,6 +1513,12 @@ Telefoon: 078 639 3666</p>
         <li><a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/eindejaarscollecte/Paginas/Default.aspx">Eindejaarscollecte 2014</a>
         <li><a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/eindejaarscollecte/Paginas/Downloads.aspx">Voorbeeldproducten</a>
     </ul>
+</fieldset>
+<!--=====================
+    FIELDSET TEST 
+======================-->
+<fieldset id="Test" class="noNext">
+<legend>Test</legend>
 </fieldset>
 </body>
 </html>
