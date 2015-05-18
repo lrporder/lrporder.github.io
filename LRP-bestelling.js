@@ -51,6 +51,8 @@
     function showOrder(actie){
         if(actie == "below"){
             var eol = '<br>'; // regeleinde om in browser te tonen
+        } else if(actie == "return"){
+            var eol = '\n'; // regeleinde om te returnen
         } else {
             var eol = '%0D%0A'; // regeleinde om via mailto in mail te plakken
         };
@@ -86,6 +88,8 @@
 //            $('.bestellingstekst').html('<textarea cols="80" rows="10" readonly onclick="this.focus(); this.select()">' + results + '</textarea>');
             $('.bestellingstekst').html('<div id="editable" contentEditable onclick="$(this).selectText()">' + results + '</div>');
             $('.bestellingstekst').show();
+        } else if(actie == "return"){
+            return results;
         } else {
             window.location = "mailto:lrp-order@pkn.nl?subject=Bestelling%20" + FinActie + "&body=" + results;
         };
