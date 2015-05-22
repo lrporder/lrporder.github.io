@@ -52,7 +52,12 @@
         if(actie == "below"){
             var eol = '<br>'; // regeleinde om in browser te tonen
         } else if(actie == "return"){
-            var eol = '\n'; // regeleinde om te returnen
+            // jspdf geeft geen regeleindes na \r of \n of <br>, dus dan elke regel eindigen met </div><div>
+            // het worden allemaal divjes, die gaan wél op een regel. 
+            // bij output zorgen dat eerst <div> wordt meegegeven vóór results
+            var returntag = '<div>'
+            var closereturntag = '</div>'
+            var eol = closereturntag + returntag; // regeleinde om te returnen
         } else {
             var eol = '%0D%0A'; // regeleinde om via mailto in mail te plakken
         };
@@ -89,7 +94,7 @@
             $('.bestellingstekst').html('<div id="editable" contentEditable onclick="$(this).selectText()">' + results + '</div>');
             $('.bestellingstekst').show();
         } else if(actie == "return"){
-            return results;
+            return returntag + results + closereturntag;
         } else {
             window.location = "mailto:lrp-order@pkn.nl?subject=Bestelling%20" + FinActie + "&body=" + results;
         };
