@@ -663,22 +663,22 @@ INRICHTING LRP SOLIDARITEITSKAS
     }
     </script>
     <div class="Answer ownLineA" id="SK-SelNr">
-        <input type="radio" name="Actie_Selectie" value="SelectieNr" id="SK-SelectieNr" title="Vink dit aan als in LRP al een correcte selectie gereed staat en vul het selectienummer in" onChange="validateSKSelectie(this.id);">
+        <input type="radio" name="ActieSelectie" value="SelectieNr" id="SK-SelectieNr" title="Vink dit aan als in LRP al een correcte selectie gereed staat en vul het selectienummer in" onChange="validateSKSelectie(this.id);">
         <label id="labelAtSKSelNr" for="SK-SelectieNr">Selectienummer<span class="BLDLA">s</span>:&nbsp;</label>
         <br class="BLDLA">
-        <input type="number" name="Actie_Selectienummer" id="SK-SelectieNummer" title="Vul het selectienummer uit LRP in" onclick="document.getElementById('SK-SelectieNr').checked = true;" value="" style="margin-left: 2em;"/><span class="BLDLA">&nbsp;belijdende leden</span>
+        <input type="number" name="ActieSelectienummer" id="SK-SelectieNummer" title="Vul het selectienummer uit LRP in" onclick="document.getElementById('SK-SelectieNr').checked = true;" value="" style="margin-left: 2em;"/><span class="BLDLA">&nbsp;belijdende leden</span>
         <div class="BLDLA" style="margin-top: 0.2em;">
-            <input type="number" name="Actie_Selectie_DL" id="SK-SelectieDL" title="Vul het selectienummer voor doopleden in" onclick="document.getElementById('SK-SelectieNrs').checked = true;" value="" style="margin-left: 2em; clear: left;">
+            <input type="number" name="ActieSelectie_DL" id="SK-SelectieDL" title="Vul het selectienummer voor doopleden in" onclick="document.getElementById('SK-SelectieNrs').checked = true;" value="" style="margin-left: 2em; clear: left;">
             <span>&nbsp;doopleden</span>
         </div><!-- clear left ivm chrome uitlijning inputs -->
     </div>
     
     <div class="Answer ownLineA" id="SK-BL" onClick="validateSKSelectie(this.id)">
-        <input type="radio" name="Actie_Selectie" value="Belijdende_Leden" id="SK-Sel-BL">
+        <input type="radio" name="ActieSelectie" value="Belijdende_Leden" id="SK-Sel-BL">
         <label for="SK-Sel-BL">Alléén belijdende leden&nbsp;</label>
     </div>
     <div class="Answer ownLineA" id="SK-BL-DL" onClick="validateSKSelectie(this.id)">
-        <input type="radio" name="Actie_Selectie" value="Belijdende_en_Doopleden" id="SK-Sel-BL-DL">
+        <input type="radio" name="ActieSelectie" value="Belijdende_en_Doopleden" id="SK-Sel-BL-DL">
         <label for="SK-Sel-BL-DL">Belijdende én doopleden vanaf leeftijd:&nbsp;</label>
         <input type="number" name="Selectie_Leeftijd" id="SK-Slct2Age" size="2" min="16" max="30" placeholder="21" value="">
     </div>
