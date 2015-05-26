@@ -417,6 +417,8 @@
                 $(this).attr('data-message', 'Corrigeer dit onderdeel a.u.b.');
             }});
         
+        $('.blankoption').prop('disabled', true);
+        
         // update kostenindicatie
         // elke input/select onchange? mist evt default ingestelde dingen met kosten? onblur moet wachten tot je volgende selecteert
         // array bouwen met id en kosten? dan toevoegen en weghalen wellicht makkelijker
