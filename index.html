@@ -1087,6 +1087,7 @@ AKB
     
     function toggledAKBacc(check){
         if(check){
+            $('#AKB').prop('checked', check);
             $('#AKB-accept-env-CvK').prop('checked', check);
             $('.AKB-acc').find('input,select').each( function(){
                 $(this).prop('disabled', false);
@@ -1103,6 +1104,7 @@ AKB
     function toggledAKBher(check){
         $('#AKB-herinneringen-env-CvK').prop('checked', check);
         if(check){
+            $('#AKB').prop('checked', check);
             $('.AKB-her').show();
             $('.AKB-her').find('input,select').each( function(){
                 $(this).prop('disabled', false);
@@ -1139,6 +1141,7 @@ AKB
 	<span class="Vraagteken">?</span>
 	<div id="HelpAkbIncasso" class="Help">
 		<p>Net als bij acceptgiro’s kunt u ook de maandelijkse incasso-opdrachten door het LRP-Team laten uitvoeren. Hiervoor dient u te beschikken over een incassocontract met uw bank. Met dit contract bevestigt u dat het LRP-Team gemachtigd is om deze incasso-opdrachten voor u te versturen. Let op: Liet u nog niet eerder door ons incasso-opdrachten uitvoeren, dan hebben wij een kopie nodig van het incassocontract waarop ook het incassant-ID staat vermeld.</p>
+        <p>Wanneer u deze optie niet kunt aanvinken, hebt u bij het onderdeel 'Toezeggingsformulier' niet aangegeven dat de optie automatische incasso moet worden aangeboden aan uw gemeenteleden. Ga desgewenst terug om dat te herstellen.</p>
 	</div>
     
     <span class="SubAnswer">
