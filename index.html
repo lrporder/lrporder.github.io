@@ -43,7 +43,7 @@
     <li class="NavLink">Links</li>
     <li class="NavLink" style="float: right; font-size: 0; width: 10px; height: 10px;">Test</li>
 </ul>
-<!--<ul class="Quicklinks">
+<ul class="Quicklinks" style="display: none;">
     <li onclick="$('fieldset:visible').hide();$('fieldset#Start').show()">Start</li>
     <li onclick="$('fieldset:visible').hide();$('fieldset#Gemeente').show()">Gemeente</li>
     <li onclick="$('fieldset:visible').hide();$('fieldset#LRP-inrichting').show()">LRP-inrichting</li>
@@ -53,7 +53,7 @@
     <li onclick="$('fieldset:visible').hide();$('fieldset#AKB-fieldset').show()">Maandelijkse verwerking</li>
     <li onclick="$('fieldset:visible').hide();$('fieldset#Personalia').show()">Personalia</li>
     <li onclick="$('fieldset:visible').hide();$('fieldset#Afronding').show()">Afronding</li>
-</ul>-->
+</ul>
 
 <!--<div class="Kosten">
     <span>Kostenindicatie</span><br>
@@ -1523,6 +1523,7 @@ Telefoon: 078 639 3666</p>
 <p>U bent per ongeluk op een pagina voor test-doeleinden beland. Ga terug.</p>
     <!--<button onclick="alert(showOrder('returnpdf'));">Test</button>-->
     <p><button onclick="createOrderPdf()">Test</button></p>
+    <p><button onclick="$('.Quicklinks').toggle('800')">Toggle Shortcuts</button></p>
 </fieldset>
 </body>
 </html>
