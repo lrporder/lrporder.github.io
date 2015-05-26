@@ -51,7 +51,7 @@
     function showOrder(actie){
         if(actie == "below"){
             var eol = '<br>'; // regeleinde om in browser te tonen
-        } else if(actie == "return"){
+        } else if(actie == "returnpdf"){
             // jspdf geeft geen regeleindes na \r of \n of <br>, dus dan elke regel eindigen met </div><div>
             // het worden allemaal divjes, die gaan wél op een regel. 
             // bij output zorgen dat eerst <div> wordt meegegeven vóór results
@@ -87,13 +87,13 @@
                 results += this.name + ": " + this.value + eol;
             }
         });
-        results += "UserAgent: " + navigator.userAgent + eol;
+        results += eol + "UserAgent: " + navigator.userAgent + eol;
         if(actie == "below"){
             $('.bestellingstekst').hide();
 //            $('.bestellingstekst').html('<textarea cols="80" rows="10" readonly onclick="this.focus(); this.select()">' + results + '</textarea>');
             $('.bestellingstekst').html('<div id="editable" contentEditable onclick="$(this).selectText()">' + results + '</div>');
             $('.bestellingstekst').show();
-        } else if(actie == "return"){
+        } else if(actie == "returnpdf"){
             return returntag + results + closereturntag;
         } else {
             window.location = "mailto:lrp-order@pkn.nl?subject=Bestelling%20" + FinActie + "&body=" + results;
@@ -423,3 +423,36 @@
         // string bouwen van array elements = join(), of convert array to string = toString()
         // var myArray = { key1: 100, key2: 200 }; for(ZZ
     });
+
+    function createOrderPdf() {
+        var doc = new jsPDF('p', 'cm', 'letter');
+        var source = showOrder('returnpdf');
+
+        var specialElementHandlers = {
+            '#editor': function(element, renderer){
+                return true;
+            }
+        };
+        
+        margins = {
+            top: 2.5,
+            bottom: 2.5,
+            left: 2.0,
+            width: 18 
+        };
+        
+        doc.setFontSize(12);
+        
+        doc.fromHTML(
+            source,
+            margins.left,
+            margins.top,
+            {
+                'width': margins.width,
+                'elementHandlers': specialElementHandlers
+            }
+        
+        );
+        //doc.output('dataurlnewwindow');
+        doc.save('Bestelling.pdf');
+    };    

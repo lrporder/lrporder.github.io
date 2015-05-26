@@ -1417,11 +1417,12 @@ AFRONDING
 -->
 <fieldset id="Afronding" class="lastFieldset AKB EJC SK Adhoc">
 <legend>Bestellen</legend>
-    <span> Hieronder wordt uw bestelling getoond. U kunt deze kopiëren naar een e-mail aan lrp-order@protestantsekerk.nl. U kunt ook de knop 'Bestelling mailen' gebruiken. In uw standaard mailprogramma wordt dan meteen een mail opgesteld. Deze functionaliteit is afhankelijk van een aantal instellingen op uw pc. Als het niet lukt, stel dan zelf uw e-mail op door de bestelling in een e-mail te plakken. U ontvangt vervolgens binnen drie werkdagen een ontvangstbevestiging van uw bestelling!</span>
+    <span> Hieronder wordt uw bestelling getoond. U kunt deze kopiëren naar een e-mail aan lrp-order@protestantsekerk.nl. U kunt ook de knop 'Bestelling mailen' gebruiken. In uw standaard mailprogramma wordt dan meteen een mail opgesteld. Deze functionaliteit is afhankelijk van een aantal instellingen op uw pc. Als het niet lukt, gebruik dan de knop 'Bestelling downloaden' en stel zelf de mail op met de bestelling in de bijlage. U ontvangt nadat u de bestelling hebt gemaild binnen drie werkdagen een ontvangstbevestiging van uw bestelling!</span>
     <span class="Vraagteken" style="float: none;">?</span>
     <div class="Help">Om de bestelling in een mail te plakken: klik in de bestelling, zodat de tekst geselecteerd wordt. Kopieer de tekst naar het klembord (CTRL+C), stel een mail op aan lrp-order@protestantsekerk.nl en plak de bestelling in de mail (CTRL+V).</div> <br>
     <div class="bestellingstekst"></div>
     <span class="submitButton" onClick="showOrder('mail')">BESTELLING MAILEN</span>
+    <span class="submitButton" onclick="createOrderPdf()">BESTELLING DOWNLOADEN</span>
 </fieldset>
 
 <!--=========================
@@ -1519,6 +1520,9 @@ Telefoon: 078 639 3666</p>
 ======================-->
 <fieldset id="Test" class="noNext">
 <legend>Test</legend>
+<p>U bent per ongeluk op een pagina voor test-doeleinden beland. Ga terug.</p>
+    <!--<button onclick="alert(showOrder('returnpdf'));">Test</button>-->
+    <p><button onclick="createOrderPdf()">Test</button></p>
 </fieldset>
 </body>
 </html>
