@@ -55,8 +55,9 @@
             // jspdf geeft geen regeleindes na \r of \n of <br>, dus dan elke regel eindigen met </div><div>
             // het worden allemaal divjes, die gaan wél op een regel. 
             // bij output zorgen dat eerst <div> wordt meegegeven vóór results
-            var returntag = '<div>'
-            var closereturntag = '</div>'
+            // TODO: lange bestellingen worden in pdf afgekapt, daarom ';' als delimiter en alles op één regel
+            var returntag = ''
+            var closereturntag = ';'
             var eol = closereturntag + returntag; // regeleinde om te returnen
         } else {
             var eol = '%0D%0A'; // regeleinde om via mailto in mail te plakken
@@ -90,7 +91,6 @@
         results += eol + "UserAgent: " + navigator.userAgent + eol;
         if(actie == "below"){
             $('.bestellingstekst').hide();
-//            $('.bestellingstekst').html('<textarea cols="80" rows="10" readonly onclick="this.focus(); this.select()">' + results + '</textarea>');
             $('.bestellingstekst').html('<div id="editable" contentEditable onclick="$(this).selectText()">' + results + '</div>');
             $('.bestellingstekst').show();
         } else if(actie == "returnpdf"){
@@ -427,7 +427,7 @@
     });
 
     function createOrderPdf() {
-        var doc = new jsPDF('p', 'cm', 'letter');
+        var doc = new jsPDF('1', 'cm', 'a4');
         var source = showOrder('returnpdf');
 
         var specialElementHandlers = {
@@ -437,13 +437,12 @@
         };
         
         margins = {
-            top: 2.5,
-            bottom: 2.5,
-            left: 2.0,
+            top: 1.0,
+            left: 1.0,
             width: 18 
         };
         
-        doc.setFontSize(12);
+        doc.setFontSize(10);
         
         doc.fromHTML(
             source,
@@ -453,8 +452,7 @@
                 'width': margins.width,
                 'elementHandlers': specialElementHandlers
             }
-        
         );
         //doc.output('dataurlnewwindow');
         doc.save('Bestelling.pdf');
-    };    
+    };
