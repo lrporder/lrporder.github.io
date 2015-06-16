@@ -191,7 +191,7 @@
         if(reknr == ""){
             $('#' + div_to_show).hide();
         } else {
-        var asURL = 'https://docs.google.com/tq?tqx=out:html&tq=select+B+where+';
+        var asURL = 'https://docs.google.com/spreadsheets/d/1v_QbMMICp8xu8izhAd1E1f84QAdkQv61iQDfOvaWPO8/gviz/tq?tqx=out:html&tq=select+B+where+';
         if(isNaN(reknr)){
             asURL += 'E';
             var reknrstr = '"' + reknr + '"'
@@ -199,10 +199,9 @@
             asURL += 'A';
             var reknrstr = reknr
         };
-        // IT IS STRICTLY FORBIDDEN TO COPY AND USE THIS KEY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        asURL += '%3D' + reknrstr + '+LABEL+B+"Acceptgirocontract:"&key=0AvoDv2WLUGGrdEc5NzEzbnpkMndlS3pwbkJVbVR4eEE&gid=25';
-        // IT IS STRICTLY FORBIDDEN TO COPY AND USE THIS KEY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         
+        asURL += '%3D' + reknrstr + '+LABEL+B+"Acceptgirocontract:"';
+                
         $.get(asURL, function(data){
                 $('#' + div_to_show).hide(); // evt. eerder getoonde foutmelding verbergen
                 $('#' + div_error).html( data );
