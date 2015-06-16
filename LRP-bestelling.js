@@ -50,7 +50,7 @@
 
     function showOrder(actie){
         if(actie == "below"){
-            var eol = '<br>'; // regeleinde om in browser te tonen
+            var eol = '</p><p style="padding: 0; margin: 0;">'; // regeleinde om in browser te tonen
         } else if(actie == "returnpdf"){
             // jspdf geeft geen regeleindes na \r of \n of <br>, dus dan elke regel eindigen met </div><div>
             // het worden allemaal divjes, die gaan wél op een regel. 
@@ -427,7 +427,8 @@
 
     function createOrderPdf() {
         var doc = new jsPDF('p', 'cm', 'a4'); // orientation ([p]ortait or [l]andscape), unit (pt/mm/cm/in), format (a3/a4/a5/letter/legal)
-        var source = showOrder('returnpdf');
+        //var source = showOrder('returnpdf');
+		var source = $('.bestellingstekst')[0];
 
         var specialElementHandlers = {
 			// element of #id kan aparte behandeling krijgen; true = overslaan
@@ -438,9 +439,10 @@
         
         margins = {
             top: 1.0,
-            left: 1.0,
-            width: 18,
-			bottom: 1.0 // om een of andere reden effectloos
+            bottom: 1.0, // om een of andere reden effectloos
+			left: 1.0,
+            width: 18
+			
         };
         
         doc.setFontSize(8); // size = int points
