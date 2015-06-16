@@ -56,8 +56,8 @@
             // het worden allemaal divjes, die gaan wél op een regel. 
             // bij output zorgen dat eerst <div> wordt meegegeven vóór results
             // TODO: lange bestellingen worden in pdf afgekapt, daarom ';' als delimiter en alles op één regel
-            var returntag = ''
-            var closereturntag = ';'
+            var returntag = '<div>'
+            var closereturntag = '</div>'
             var eol = closereturntag + returntag; // regeleinde om te returnen
         } else {
             var eol = '%0D%0A'; // regeleinde om via mailto in mail te plakken
@@ -426,11 +426,12 @@
     });
 
     function createOrderPdf() {
-        var doc = new jsPDF('1', 'cm', 'a4');
+        var doc = new jsPDF('p', 'cm', 'a4'); // orientation ([p]ortait or [l]andscape), unit (pt/mm/cm/in), format (a3/a4/a5/letter/legal)
         var source = showOrder('returnpdf');
 
         var specialElementHandlers = {
-            '#editor': function(element, renderer){
+			// element of #id kan aparte behandeling krijgen; true = overslaan
+            '#overslaan': function(element, renderer){
                 return true;
             }
         };
@@ -438,10 +439,11 @@
         margins = {
             top: 1.0,
             left: 1.0,
-            width: 18 
+            width: 18,
+			bottom: 1.0 // om een of andere reden effectloos
         };
         
-        doc.setFontSize(10);
+        doc.setFontSize(8); // size = int points
         
         doc.fromHTML(
             source,
@@ -450,8 +452,13 @@
             {
                 'width': margins.width,
                 'elementHandlers': specialElementHandlers
-            }
+            },
+			function(dispose) {
+				// dispose: object with X, Y of the last line add to the PDF
+				// this allow the insertion of new lines after html
+				doc.save('Bestelling.pdf');
+			},
+			margins
         );
-        //doc.output('dataurlnewwindow');
-        doc.save('Bestelling.pdf');
+        
     };
