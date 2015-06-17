@@ -186,33 +186,36 @@
         }
     };
     
+    function validateAS(reknr){
+        var ASrekeningenEncr = bf.decrypt(encryptedData);
+        return $.inArray(reknr, ASrekeningenEncr.split(',')) > -1;
+        // true means it's in te list
+    };
+    
     function checkAS(reknr, div_to_show, div_error){
-        // alert('reknr is ' + reknr + '\ndiv-to-show is' + div_to_show + '\ndiv-error is ' + div_error);
         if(reknr == ""){
             $('#' + div_to_show).hide();
         } else {
-        var asURL = 'https://docs.google.com/spreadsheets/d/1v_QbMMICp8xu8izhAd1E1f84QAdkQv61iQDfOvaWPO8/gviz/tq?tqx=out:html&tq=select+B+where+';
-        if(isNaN(reknr)){
-            asURL += 'E';
-            var reknrstr = '"' + reknr + '"'
-        } else {
-            asURL += 'A';
-            var reknrstr = reknr
-        };
-        
-        asURL += '%3D' + reknrstr + '+LABEL+B+"Acceptgirocontract:"';
-                
-        $.get(asURL, function(data){
-                $('#' + div_to_show).hide(); // evt. eerder getoonde foutmelding verbergen
-                $('#' + div_error).html( data );
-                var contract = $('#' + div_error + ' tr:eq(1) td').text();
-                if(contract !== "Ja"){
-                    $('#' + div_to_show).show();
-                    }
-                });
-        
-        // $('#checkAS').prop('src', asURL);
+            if(!validateAS(reknr)) {
+                $('#' + div_to_show).show();
+            } else {
+                $('#' + div_to_show).hide();
+            }
         }
+    };
+    
+    function echoBFencrypted(text){
+        var encryptedTxt = bf.encrypt(text);
+        $('.encrDiv').hide();
+        $('.encrDiv').html('<div id="encrDiv" contentEditable onclick="$(this).selectText()">' + encryptedTxt + '</div>');
+        $('.encrDiv').show();
+    };
+    
+    function echoBFdecrypted(){
+        var decryptedTxt = bf.decrypt(encryptedData);
+        $('.decrDiv').hide();
+        $('.decrDiv').html('<div id="encrDiv" contentEditable onclick="$(this).selectText()">' + decryptedTxt + '</div>');
+        $('.decrDiv').show();
     };
     
     // aan te roepen bij onchange van checkbox: als checked, dan target enable vice versa:
