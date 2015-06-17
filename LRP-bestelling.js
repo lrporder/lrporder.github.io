@@ -391,22 +391,28 @@
             processBetaalwijze(ac, ai, id, ov);
         });
         
+        // AKB-vragen disabelen zodat standaard aangevinkte zaken niet meekomen in bestelling; pas activeren zodra AKB aangevinkt (zie script aldaar)
+        $('.AKB-acc,.AKB-her').find('input,select').each( function(){
+            $(this).prop('disabled', true);
+        });
+        
         // afhankelijk van wat is ingevuld AKB-acc en AKB-her tonen, staat standaard uit, maar als aangevinkt en pagina wordt ververst, wordt style hidden opgepakt
         if($('#AkbAcceptgiro').prop('checked')){
             $('.AKB-acc').show();
+            $('.AKB-acc').find('input,select').each( function(){
+                $(this).removeAttr('disabled');
+            });
         } else {
             $('.AKB-acc').hide();
         }
         if($('#AkbHerinnering').prop('checked')){
             $('.AKB-her').show();
+            $('.AKB-her').find('input,select').each( function(){
+                $(this).removeAttr('disabled');
+            });
         } else {
             $('.AKB-her').hide();
         }
-        
-        // AKB-vragen disabelen zodat standaard aangevinkte zaken niet meekomen in bestelling; pas activeren zodra AKB aangevinkt (zie script aldaar)
-        $('.AKB-acc,.AKB-her').find('input,select').each( function(){
-            $(this).prop('disabled', true);
-        });
         
         // in fieldset Help elke kop zijn antwoord laten showen
         $('fieldset#Help').find('H4').on( "click", function(){
