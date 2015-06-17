@@ -391,27 +391,29 @@
             processBetaalwijze(ac, ai, id, ov);
         });
         
-        // AKB-vragen disabelen zodat standaard aangevinkte zaken niet meekomen in bestelling; pas activeren zodra AKB aangevinkt (zie script aldaar)
-        $('.AKB-acc,.AKB-her').find('input,select').each( function(){
-            $(this).prop('disabled', true);
-        });
-        
-        // afhankelijk van wat is ingevuld AKB-acc en AKB-her tonen, staat standaard uit, maar als aangevinkt en pagina wordt ververst, wordt style hidden opgepakt
+        // AKB-vragen disabelen zodat standaard aangevinkte zaken niet meekomen in bestelling; pas activeren zodra AKB aangevinkt en pagina wordt ververst
         if($('#AkbAcceptgiro').prop('checked')){
             $('.AKB-acc').show();
             $('.AKB-acc').find('input,select').each( function(){
-                $(this).removeAttr('disabled');
+                $(this).removeProp('disabled');
             });
         } else {
             $('.AKB-acc').hide();
+            $('.AKB-acc').find('input,select').each( function(){
+                $(this).prop('disabled', true);
+            });
         }
+        
         if($('#AkbHerinnering').prop('checked')){
             $('.AKB-her').show();
             $('.AKB-her').find('input,select').each( function(){
-                $(this).removeAttr('disabled');
+                $(this).removeProp('disabled');
             });
         } else {
             $('.AKB-her').hide();
+            $('.AKB-her').find('input,select').each( function(){
+                $(this).prop('disabled', true);
+            });
         }
         
         // in fieldset Help elke kop zijn antwoord laten showen

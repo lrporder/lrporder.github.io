@@ -1096,7 +1096,7 @@ AKB
             $('#AKB').prop('checked', check);
             $('#AKB-accept-env-CvK').prop('checked', check);
             $('.AKB-acc').find('input,select').each( function(){
-                $(this).prop('disabled', false);
+                $(this).removeProp('disabled');
             });
             $('.AKB-acc').show();
         } else {
@@ -1113,7 +1113,7 @@ AKB
             $('#AKB').prop('checked', check);
             $('.AKB-her').show();
             $('.AKB-her').find('input,select').each( function(){
-                $(this).prop('disabled', false);
+                $(this).removeProp('disabled');
             });
         } else {
             $('.AKB-her').hide();
@@ -1164,8 +1164,8 @@ AKB
         function processAKBaccVerzendwijze(wijze){
             if(wijze == "AfleverAdres"){
                 $('.AKBaccAAshow').show();
-                document.getElementById('AKB-accept-env-open').removeAttribute('disabled');
-                document.getElementById('AKB-accept-env-GEEN').removeAttribute('disabled');
+                $('#AKB-accept-env-open').removeProp('disabled');
+                $('#AKB-accept-env-GEEN').removeProp('disabled');
             } else if(wijze == "PortBetaald"){
                 $('.AKBaccAAshow').hide();
                 $('.AKBaccAAopts').prop('disabled', true);
@@ -1210,7 +1210,7 @@ AKB
                     $('#AKB-acc-PostPlaats').val($('#PostPlaats').val());
                     $('.AKB-acc-afleveradres').find('input').prop('disabled', true);
                 } else {
-                    $('.AKB-acc-afleveradres').find('input').val("").prop('disabled', false);
+                    $('.AKB-acc-afleveradres').find('input').val("").removeProp('disabled');
                 }
             }
         </script>
@@ -1243,8 +1243,8 @@ AKB
         function processAKBherVerzendwijze(wijze){
             if(wijze == "AfleverAdres"){
                 $('.AKBherAAshow').show();
-                document.getElementById('AKB-herinneringen-env-open').removeAttribute('disabled');
-                document.getElementById('AKB-herinneringen-env-GEEN').removeAttribute('disabled');
+                $('#AKB-herinneringen-env-open').removeProp('disabled');
+                $('#AKB-herinneringen-env-GEEN').removeProp('disabled');
             } else if(wijze == "PortBetaald"){
                 $('.AKBherAAshow').hide();
                 $('.AKBherAAopts').prop('disabled', true);
@@ -1292,7 +1292,7 @@ AKB
                         $('#AKB-her-PostPlaats').val($('#AKB-acc-PostPlaats').val());
                         $('.AKB-her-afleveradres').find('input').prop('disabled', true);
                     } else {
-                        $('.AKB-her-afleveradres').find('input').val("").prop('disabled', false);
+                        $('.AKB-her-afleveradres').find('input').val("").removeProp('disabled');
                     }
                 }
             </script>
