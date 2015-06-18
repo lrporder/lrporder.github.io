@@ -320,8 +320,14 @@ hr {
     clear:          left;
 }
 
+.goBack:active {    /* gelijk aan input */
+    border:         1px solid #E98C00;
+    box-shadow:     0 0 4px #E98C00;
+}
+    
 .goNext {
     float:          right;
+    font-family:    Verdana,"DejaVu Sans",sans-serif !important; /* override browser settings for input */
 }
 
 .navButton:hover{
