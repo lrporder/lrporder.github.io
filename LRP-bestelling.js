@@ -1,4 +1,4 @@
-    // if fieldset was already .hasRequired, do nothing, else: add star and class
+﻿    // if fieldset was already .hasRequired, do nothing, else: add star and class
     $.fn.addReq2Fs = function(target) {
 	    if(target.is('.hasRequired')) {
 	        return true;
