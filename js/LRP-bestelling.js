@@ -232,6 +232,8 @@
         // if javascript enabled this will hide error message
         $('.noScriptWarning').hide();
 
+        $('#UitvoeringEJC').load('html/Uitvoering-EJC.html');
+        
         // alle externe links openen in nieuwe tab
         $('a[href^="http"]').attr('target','_blank');
         
