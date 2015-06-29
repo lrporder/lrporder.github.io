@@ -234,7 +234,7 @@
 
         
         // load html
-        $('#UitvoeringEJC').load('https://github.com/lrporder/lrporder.github.io/tree/master/html/Uitvoering-EJC.html');
+        $('#UitvoeringEJC').load('https://github.com/lrporder/lrporder.github.io/tree/master/html/2-EJC.html');
         
         // alle externe links openen in nieuwe tab
         $('a[href^="http"]').attr('target','_blank');
