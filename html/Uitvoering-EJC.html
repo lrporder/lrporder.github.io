@@ -1,0 +1,42 @@
+    <div>
+    <legend>Uitvoering</legend>
+    <p>Kies hier of u alleen acceptgiro's wenst (later eventueel aangevuld met bijlagen) of een combiformulier (brief met aangehechte acceptgiro). Bij een keuze voor combiformulieren kunt u aangeven of u de standaard brieftekst wilt laten afdrukken of een aangepaste tekst. De standaardbrief vindt u <a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/eindejaarscollecte/Documents/Website%20Brief%20voor%20gemeenteleden_opzet%202014_def.doc">hier</a>.</p>
+    <div class="Question ownLine">Uitvoering</div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="Uitvoering" value="Acceptgiros" id="Acceptgiros" title="Vink dit aan als u acceptgiro's wilt bestellen" onChange="$('.sjabloonKeus').find('input').prop('checked', false).prop('disabled', this.checked);" >
+        <label for="Acceptgiros">Acceptgiro's</label>
+    </div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="Uitvoering" value="Combiformulieren" id="Combiformulieren" title="Vink dit aan als u combiformulieren wilt bestellen" onChange="processCombi(this.checked, 'sjabloonKeus')" checked > 
+        <label for="Combiformulieren">Combiformulieren, met als brief:</label>
+    </div>
+    <div class="sjabloonKeus" style="margin-left: 2em; clear: both;">
+        <div class="Answer ownlineA">
+            <input type="radio" name="Sjabloon" id="StBrief" value="Standaard" checked>
+            <label for="StBrief">Standaardbrief</label>
+        </div>
+        <div class="Answer ownLineA">
+            <input type="radio" name="Sjabloon" id="GemBrief" value="GemeenteSjabloon">
+            <label for="GemBrief">Eigen sjabloon</label>
+            <span class="Vraagteken">?</span>
+            <div id="HelpSjabloon" class="Help">
+                <p>De bijdragenadministrateur kan het sjabloon in LRP koppelen in het fondsjaar, tabblad "Selectie".</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="Question ownLine">Looplijst toevoegen?</div>
+    <div class="Answer ownLineA">
+	<input type="checkbox" id="Looplijst-EJC" name="Looplijst" value="Ja" title="Vink dit aan als u een looplijst wilt ontvangen." >
+	<label for="Looplijst-EJC">Ja, ik bestel ook een looplijst</label>
+        <span class="Vraagteken">?</span>
+        <div class="Help" id="HelpLooplijst-EJC">
+            <p>De looplijst is op dezelfde wijze gesorteerd als de combiformulieren. Een looplijst kan helpen bij het bezorgen. U kunt één exemplaar bestellen. Deze kunt u naar wens kopi&euml;ren. Ook is in het fonds in LRP de looplijst te downloaden door de bijdrageadministrateur. Op verzoek kan deze ook worden doorgemaild.</p>
+        </div>
+    </div>
+    
+    <div class="Question ownLine">Eventuele opmerkingen</div>
+    <div class="Answer ownlineA">
+        <textarea name="OpmBetaalwijze" id="OpmBetaalwijze-EJC" cols="84" rows="6"></textarea>
+    </div>
+    </div>
