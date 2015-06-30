@@ -353,11 +353,11 @@
     <div class="Question ownLine">Uitvoering</div>
     <div class="Answer ownLineA">
         <input type="radio" name="Uitvoering" value="Acceptgiros" id="AcceptgirosAdhoc" title="Vink dit aan als u acceptgiro's wilt bestellen" onChange="$('.sjabloonKeusAdhoc').find('input').prop('checked', false).prop('disabled', this.checked);" >
-        <label for="AcceptgirosAdhoc">Acceptgiro's</label>
+        <label for="Acceptgiros">Acceptgiro's</label>
     </div>
     <div class="Answer ownLineA">
         <input type="radio" name="Uitvoering" value="Combiformulieren" id="CombiformulierenAdhoc" title="Vink dit aan als u combiformulieren wilt bestellen" onChange="processCombi(this.checked, 'sjabloonKeusAdhoc')" checked> 
-        <label for="CombiformulierenAdhoc">Combiformulieren, met als brief:</label>
+        <label for="Combiformulieren">Combiformulieren, met als brief:</label>
     </div>
     <div class="sjabloonKeusAdhoc" style="margin-left: 2em; clear: both;">
         <div class="Answer ownlineA">
@@ -1497,13 +1497,13 @@ Telefoon: 078 639 3666</p>
     <script>
         var bf = new Blowfish('LRPteamUltimateBFkey');
     </script>
-    <div>
+    <p>
         <textarea name="BF-text" id="BFtext" cols="84" rows="6"></textarea>
         <button onclick="$(echoBFencrypted($('#BFtext').val()));">Encrypt</button>
         <button onclick="$(echoBFdecrypted($('#BFtext').val()));">Decrypt</button>
         <div class="encrDiv"></div>
         <div class="decrDiv"></div>
-    </div>
+    </p>
 </fieldset>
 </body>
 </html>
