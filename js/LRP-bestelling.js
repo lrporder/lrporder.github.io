@@ -228,9 +228,53 @@
         }
     };
     
-    function wrapFormAddButtons(){
+    $(document).ready(function() {
+        // if javascript enabled this will hide error message
+        $('.noScriptWarning').hide();
+
+        // alle externe links openen in nieuwe tab
+        $('a[href^="http"]').attr('target','_blank');
+        
+        // alle vraagtekens voorzien van title
+        $('.Vraagteken').attr('title','Klik om info te openen/sluiten');
+        
+        // alle helptekst voorzien van knop "Sluiten"
+        $('.Help').append('<hr><span class="Sluiten">sluiten</span>');
+        $('.Sluiten').on ("click", function() {
+            $(this).parent('div').slideToggle();
+        }); // end sluitknop
+
+        // alle knoppen hun div laten toggelen
+        $('.Help').hide();
+        $('.toggleDiv, .Vraagteken').on( "click", function() {
+            $(this).next('div').slideToggle();
+        }); // end toggle
+        			
+        // wrap Q&A in div class QandA en visualize required
+        $('*[required]').parent('.Answer').prev('.Question').append('<span class="star" title="Dit is een verplicht veld"> *</span>');
+        $('*[required]').closest('fieldset').append('<div class="starcomment"><span class="star">*</span><span> Dit is een verplicht veld</span></div>');
+
+        // waarom moet dit nou weer; radio is anders op het oog wel checked, maar niet als zodanig te gebruiken
+        $('fieldset#Start').find('input').each( function() {
+            $(this).attr('checked', false);
+        });
+        
+        // NavLinks functie: opslaan positie in bestelling; tonen fieldset;
+        $('.NavLink').on( "click", function() {
+            $('#errorBox').hide();
+            var currFs = $('fieldset:visible');
+            if(currFs.attr('class') != "noNext") { // niet positie opslaan buiten bestelling, anders kun je nooit terug
+                currentFieldsetId = currFs.attr('id');
+            }
+				var linkedFieldsetId = $(this).text();
+				// huidige fieldset hiden
+				currFs.fadeToggle(400, function(e) {
+				// betreffende fieldset showen
+					$('#' + linkedFieldsetId).fadeToggle(400)});
+			});
+
         $('fieldset').not('.noNext')
-        .wrapInner('<form>');
+            .wrapInner('<form>');
 
         // adds an effect called "wall" to the validator
         $.tools.validator.addEffect("wall", function(errors, event) {
@@ -330,61 +374,7 @@
                     $(backFs).fadeToggle(400)});
             }
         });
-    };
-    
-    $(document).ready(function() {
-        // if javascript enabled this will hide error message
-        $('.noScriptWarning').hide();
 
-        // alle externe links openen in nieuwe tab
-        $('a[href^="http"]').attr('target','_blank');
-        
-        // alle vraagtekens voorzien van title
-        $('.Vraagteken').attr('title','Klik om info te openen/sluiten');
-        
-        // alle helptekst voorzien van knop "Sluiten"
-        $('.Help').append('<hr><span class="Sluiten">sluiten</span>');
-        $('.Sluiten').on ("click", function() {
-            $(this).parent('div').slideToggle();
-        }); // end sluitknop
-
-        // alle knoppen hun div laten toggelen
-        $('.Help').hide();
-        $('.toggleDiv, .Vraagteken').on( "click", function() {
-            $(this).next('div').slideToggle();
-        }); // end toggle
-        			
-        // wrap Q&A in div class QandA en visualize required
-        $('*[required]').parent('.Answer').prev('.Question').append('<span class="star" title="Dit is een verplicht veld"> *</span>');
-        $('*[required]').closest('fieldset').append('<div class="starcomment"><span class="star">*</span><span> Dit is een verplicht veld</span></div>');
-
-        // waarom moet dit nou weer; radio is anders op het oog wel checked, maar niet als zodanig te gebruiken
-        $('fieldset#Start').find('input').each( function() {
-            $(this).attr('checked', false);
-        });
-        
-        // NavLinks functie: opslaan positie in bestelling; tonen fieldset;
-        $('.NavLink').on( "click", function() {
-            $('#errorBox').hide();
-            var currFs = $('fieldset:visible');
-            if(currFs.attr('class') != "noNext") { // niet positie opslaan buiten bestelling, anders kun je nooit terug
-                currentFieldsetId = currFs.attr('id');
-            }
-				var linkedFieldsetId = $(this).text();
-				// huidige fieldset hiden
-				currFs.fadeToggle(400, function(e) {
-				// betreffende fieldset showen
-					$('#' + linkedFieldsetId).fadeToggle(400)});
-			});
-        
-        // first load htmls, then wrap in forms etc
-        
-        $.when(
-            $('#UitvoeringEJC').load('html/Uitvoering-EJC.html')
-        ).done(
-            wrapFormAddButtons()
-        );
-        
         // vanwege IE alles met onChange ook onClick="radioclick" meegeven
         $('form').find('input').each( function() {
             if($(this).attr('onChange') && $(this).attr('type') !== "text"){
