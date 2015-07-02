@@ -1,4 +1,18 @@
-﻿    // if fieldset was already .hasRequired, do nothing, else: add star and class
+﻿    // read url parameters
+    var urlParams;
+    (window.onpopstate = function () {
+        var match,
+            pl     = /\+/g,  // Regex for replacing addition symbol with a space
+            search = /([^&=]+)=?([^&]*)/g,
+            decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+            query  = window.location.search.substring(1);
+
+        urlParams = {};
+        while (match = search.exec(query))
+            urlParams[decode(match[1])] = decode(match[2]);
+    })();
+
+    // if fieldset was already .hasRequired, do nothing, else: add star and class
     $.fn.addReq2Fs = function(target) {
 	    if(target.is('.hasRequired')) {
 	        return true;
@@ -22,12 +36,13 @@
    
  
     // bij iedere form: als goed ingevuld, naar volgende, dat is volgende fieldset met class=type bestelling
-    function processActieNaam(actie){
+    function processActieNaam(){
         $('form').bind("onSuccess", function(e, inputs) {
             if (e.originalEvent.type == 'submit') {
                 var actie = $('[name="ActieNaam"]:checked').attr('data-fsclass');
                 var thisFs = $('fieldset:visible');
                 var nextFs = $(thisFs).nextAll('fieldset').filter('.' + actie).first();
+                //alert('actie: ' + actie + '\nnextFs: ' + $(nextFs).prop('id'));
                 $(thisFs).fadeToggle(400, function() {
                 $(nextFs).fadeToggle(400)});
                 $('#errorBox').hide();
@@ -228,9 +243,23 @@
         }
     };
     
+    //============================
+    //   DOCUMENT READY
+    //============================
+    
     $(document).ready(function() {
+        //===========================
+        //   IMPORTANT TO DO FIRST
+        //===========================
+        
         // if javascript enabled this will hide error message
         $('.noScriptWarning').hide();
+        
+        $('.Help').hide();
+        
+        //===========================
+        //   BUILD DOM
+        //===========================
 
         // alle externe links openen in nieuwe tab
         $('a[href^="http"]').attr('target','_blank');
@@ -240,24 +269,25 @@
         
         // alle helptekst voorzien van knop "Sluiten"
         $('.Help').append('<hr><span class="Sluiten">sluiten</span>');
-        $('.Sluiten').on ("click", function() {
-            $(this).parent('div').slideToggle();
-        }); // end sluitknop
-
-        // alle knoppen hun div laten toggelen
-        $('.Help').hide();
-        $('.toggleDiv, .Vraagteken').on( "click", function() {
-            $(this).next('div').slideToggle();
-        }); // end toggle
-        			
+        
         // wrap Q&A in div class QandA en visualize required
         $('*[required]').parent('.Answer').prev('.Question').append('<span class="star" title="Dit is een verplicht veld"> *</span>');
         $('*[required]').closest('fieldset').append('<div class="starcomment"><span class="star">*</span><span> Dit is een verplicht veld</span></div>');
+        
+        // wrap fieldsets in forms
+        $('fieldset').not('.noNext')
+            .wrapInner('<form>');
 
-        // waarom moet dit nou weer; radio is anders op het oog wel checked, maar niet als zodanig te gebruiken
-        $('fieldset#Start').find('input').each( function() {
-            $(this).attr('checked', false);
+        //===========================
+        //   ADD EVENT LISTENERS
+        //===========================
+        $('.Sluiten').on ("click", function() {
+            $(this).parent('div').slideToggle();
         });
+        
+        $('.toggleDiv, .Vraagteken').on( "click", function() {
+            $(this).next('div').slideToggle();
+        }); // end toggle
         
         // NavLinks functie: opslaan positie in bestelling; tonen fieldset;
         $('.NavLink').on( "click", function() {
@@ -272,10 +302,47 @@
 				// betreffende fieldset showen
 					$('#' + linkedFieldsetId).fadeToggle(400)});
 			});
+  
+        $('input:radio[name="ActieNaam"]').on( "click", function(){
+            $('form').unbind('onSuccess'); // anders problemen als je teruggaat en actie wijzigt
+            processActieNaam(); // helpt dit???
+        });        
+        
+        // in fieldset Help elke kop zijn antwoord laten showen
+        $('fieldset#Help').find('H4').on( "click", function(){
+            $(this).next('div').slideToggle();
+        });
+        
+        //===========================
+        //   USE URL PARAMETERS
+        //===========================
+                
+        // read urlParams
+        if("test" in urlParams){
+            $('.Quicklinks').show();
+            var allUrlParams = ""
+            for (var key in urlParams) {
+                var val = urlParams[key];
+                allUrlParams += key+": "+val+"\n";
+            }
+            alert(allUrlParams);
+        };
+        
+        // als bestelling via kerkbalans.nl: Start anders en route class VKB
+        if(urlParams['VKB'] == "ja"){
+            $('#Start').removeClass('Start');
+            $('#Gemeente').addClass('Start');
+            //$('#ActieNaamKerkbalans').attr('checked', true)
+            $('#ActieNaamKerkbalans').prop('checked', true)
+                .attr('data-fsclass', 'VKB');
+            $('#ActieNaamKerkbalansLabel').trigger('click'); // JAWEL, je moet label clicken
+            processActieNaam();
+        };
 
-        $('fieldset').not('.noNext')
-            .wrapInner('<form>');
-
+        //=============================
+        //   FORM VALIDATION
+        //=============================
+        
         // adds an effect called "wall" to the validator
         $.tools.validator.addEffect("wall", function(errors, event) {
  
@@ -343,14 +410,20 @@
  
             });
         });
-  
-        $('input:radio[name="ActieNaam"]').on( "click", function(){
-            $('form').unbind('onSuccess'); // anders problemen als je teruggaat en actie wijzigt
-            processActieNaam($(this).val()); 
-        });        
 
+        // error-message in Nederlands mits nog niet meegegeven
+        $('form').find('input,select').each( function() {
+            if(! $(this).attr('data-message')){
+                $(this).attr('data-message', 'Corrigeer dit onderdeel a.u.b.');
+            }
+        });
+
+        //===========================
+        //   GOED BEGINNEN (na URL PARAMS)
+        //===========================
+        
         // alle fieldsets behalve de eerste hiden en knoppen next/back toevoegen
-        $('fieldset').not("#Start").hide()
+        $('fieldset').not(".Start").hide()
             .find('form')
             .append('<span class="goBack navButton">&#171;&nbsp;&nbsp;Terug</span>');
         $('.noNext').append('<span class="goBack navButton">&#171;&nbsp;&nbsp;Terug</span>');
@@ -360,7 +433,7 @@
             .append('<input type="submit" class="goNext navButton" value="Verder&nbsp;&nbsp;&#187;">');
         
         // back button functioneel maken, binnen bestelling vorige tonen, anders laatst geopende tonen
-        $('.goBack').on( "click", function(e) {
+        $('.goBack').on( "click", function() {
             $('#errorBox').hide();
             var thisFs = $(this).closest('fieldset');
             var backFsClass = $('[name="ActieNaam"]:checked').attr('data-fsclass');
@@ -375,6 +448,11 @@
             }
         });
 
+        
+        //===========================
+        //   SETTINGS
+        //===========================
+        
         // vanwege IE alles met onChange ook onClick="radioclick" meegeven
         $('form').find('input').each( function() {
             if($(this).attr('onChange') && $(this).attr('type') !== "text"){
@@ -416,18 +494,15 @@
             });
         }
         
-        // in fieldset Help elke kop zijn antwoord laten showen
-        $('fieldset#Help').find('H4').on( "click", function(){
-            $(this).next('div').slideToggle();
-        });
-
-        // error-message in Nederlands mits nog niet meegegeven
-        $('form').find('input,select').each( function() {
-            if(! $(this).attr('data-message')){
-                $(this).attr('data-message', 'Corrigeer dit onderdeel a.u.b.');
-            }});
-        
+        // in selects kopjes niet-selecteerbaar maken
         $('.blankoption').prop('disabled', true);
+        
+
+        // waarom moet dit nou weer; radio is anders op het oog wel checked, maar niet als zodanig te gebruiken
+        //$('fieldset#Start').find('input').each( function() {
+        //    $(this).attr('checked', false);
+        //});
+
         
         // update kostenindicatie
         // elke input/select onchange? mist evt default ingestelde dingen met kosten? onblur moet wachten tot je volgende selecteert

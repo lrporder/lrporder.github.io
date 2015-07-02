@@ -68,7 +68,7 @@
 <!--===========================
     FIELDSET START
 ==========================-->
-<fieldset id="Start" class="AKB EJC SK Adhoc"><legend>LRP-Bestelformulier</legend>
+<fieldset id="Start" class="Start AKB EJC SK Adhoc"><legend>LRP-Bestelformulier</legend>
 <input type="hidden" value="Kerkbalans" id="Actie">
 <div class="noScriptWarning">
     <H4>WAARSCHUWING</H4><p>Het gebruik van scripts in uw browser is uitgeschakeld. Het heeft géén zin om door te gaan, voordat u scripts hebt ingeschakeld en de pagina hebt ververst. 
@@ -85,7 +85,7 @@
     <div class="Question ownLine">Actie waarop uw bestelling betrekking heeft</div>
     <div class="Answer oneLineA">
         <input type="radio" name="ActieNaam" value="Kerkbalans" id="ActieNaamKerkbalans" title="Vink dit aan als u materialen m.b.t. de actie Kerkbalans wilt bestelling" data-fsclass="AKB" required data-message="U moet iets kiezen" >
-        <label for="ActieNaamKerkbalans">Kerkbalans (bestelbaar vanaf begin september)</label>
+        <label id="ActieNaamKerkbalansLabel" for="ActieNaamKerkbalans">Kerkbalans (bestelbaar vanaf begin september)</label>
     </div>
     <div class="Answer ownLineA">
         <input type="radio" name="ActieNaam" value="Eindejaarscollecte" id="ActieNaamEJC" title="Vink dit aan als u materialen m.b.t. de eindejaarscollecte wilt bestellen" data-fsclass="EJC">
@@ -123,7 +123,7 @@
 <!--=========================
     FIELDSET GEMEENTE
 ==========================-->
-<fieldset id="Gemeente" class="AKB EJC SK Adhoc"><legend>Gemeente</legend>
+<fieldset id="Gemeente" class="AKB EJC SK Adhoc VKB"><legend>Gemeente</legend>
     <p class="toggleDiv"><span class="Uitroepteken">!</span> <span class="Uitroep">Pas gefuseerd? Klik hier!</span></p>
     <div class="Belangrijk">
         <H4>Recent gefuseerd?</H4>
@@ -162,7 +162,7 @@
     AKB TOEZEGGINGSFORMULIER
 ==========================-->
 
-<fieldset id="Toezeggingsformulier" class="AKB"><legend>Toezeggingsformulier</legend>
+<fieldset id="Toezeggingsformulier" class="AKB VKB"><legend>Toezeggingsformulier</legend>
     <p>Bij dit onderdeel kunt u aangeven hoe het toezeggingsformulier eruit moet komen te zien. Het bestellen van (extra) losse acceptgiro's is in het kader van de actie Kerkbalans zo uitzonderlijk dat dit niet in de reguliere bestelprocedure is opgenomen. Het is uiteraard wel mogelijk. Neem contact op met de orderadministratie, of noteer uw wensen in het blok voor opmerkingen onderaan dit onderdeel.</p> 
 
     <div class="Question ownLine">Koptekst</div>
@@ -463,7 +463,7 @@
     INRICHTING LRP: AKB EJC Adhoc
 ======================-->
 
-<fieldset id="LRP-inrichting" class="AKB EJC Adhoc"><legend>Inrichting LRP</legend>
+<fieldset id="LRP-inrichting" class="AKB EJC Adhoc VKB"><legend>Inrichting LRP</legend>
     <span class="Question">Rekeningnummer</span>
     <span class="Answer">
         <input type="text" name="ActieRekNr" pattern='N?L?\d{0,2}[A-Z]{0,4}\d{4,10}' title="Vul uw rekeningnummer in (IBAN mag, hoeft niet)" required onChange="checkAS(this.value, 'errorCheckAS', 'checkAS');" />
@@ -697,7 +697,7 @@ INRICHTING LRP SOLIDARITEITSKAS
 NABEWERKING
 =====================
 -->
-<fieldset id="Nabewerking" class="AKB EJC SK Adhoc">
+<fieldset id="Nabewerking" class="AKB EJC SK Adhoc VKB">
 <legend class="MyLegend">Nabewerking en verzending</legend>
 
 <!-- VERZENDWIJZE -->
@@ -873,7 +873,7 @@ NABEWERKING
 <!--======================= 
     AKB Bijlagen 
 ========================-->
-<fieldset id="AKB-bijlagen" class="AKB">
+<fieldset id="AKB-bijlagen" class="AKB VKB">
 <legend class="MyLegend">Door LRP-team bij te voegen</legend>
 <div id="Bijlagen">
     <div class="Question ownLine">Door het LRP-team bij te voegen materialen (optioneel, meerdere opties mogelijk)</div>
@@ -1063,7 +1063,7 @@ EJC Bijlagen
 AKB
 =====================
 -->
-<fieldset id="AKB-fieldset" class="AKB">
+<fieldset id="AKB-fieldset" class="AKB VKB">
 <legend>Maandelijkse verwerking (AKB)</legend>
     <p>Als u alleen toezeggingsformulieren wilde bestellen bent u bijna klaar. Klik dan op 'Verder'. Er is nog een aantal diensten dat u af kunt nemen, zoals de maandelijkse verwerking (AKB). Als u hiervoor kiest krijgt u een aantal aanvullende vragen.</p>
     
@@ -1395,7 +1395,7 @@ AKB
 PERSONALIA
 =====================
 -->
-<fieldset id="Personalia" class="AKB EJC SK Adhoc">
+<fieldset id="Personalia" class="AKB EJC SK Adhoc VKB">
 <legend>Contactgegevens</legend>
         <span class="Question">Naam</span>
         <span class="Answer">
@@ -1424,7 +1424,7 @@ PERSONALIA
 AFRONDING
 ======================
 -->
-<fieldset id="Afronding" class="lastFieldset AKB EJC SK Adhoc">
+<fieldset id="Afronding" class="lastFieldset AKB EJC SK Adhoc VKB">
 <legend>Bestellen</legend>
     <span> Hieronder wordt uw bestelling getoond. U kunt deze kopiëren naar een e-mail aan lrp-order@protestantsekerk.nl. U kunt ook de knop 'Bestelling mailen' gebruiken. In uw standaard mailprogramma wordt dan meteen een mail opgesteld. Deze functionaliteit is afhankelijk van een aantal instellingen op uw pc. Als het niet lukt, gebruik dan de knop 'Bestelling downloaden' en stel zelf de mail op met de bestelling in de bijlage. U ontvangt nadat u de bestelling hebt gemaild binnen drie werkdagen een ontvangstbevestiging van uw bestelling!</span>
     <span class="Vraagteken" style="float: none;">?</span>
