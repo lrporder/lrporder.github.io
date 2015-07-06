@@ -257,6 +257,10 @@
         
         $('.Help').hide();
         
+        // acties uitschakelen totdat het bestelbaar is
+        $('input#ActieNaamKerkbalans').prop('disabled', true);
+        $('input#ActieNaamEJC').prop('disabled', true);
+        
         //===========================
         //   BUILD DOM
         //===========================
@@ -320,6 +324,10 @@
         // read urlParams
         if("test" in urlParams){
             $('.Quicklinks').show();
+            
+            // alle acties bestelbaar voor test
+            $('input[name="ActieNaam"]').prop('disabled', false);
+            
             var allUrlParams = ""
             for (var key in urlParams) {
                 var val = urlParams[key];
@@ -493,6 +501,9 @@
                 $(this).prop('disabled', true);
             });
         }
+        
+        // bij refresh zorgen dat je verder kunt
+        $('input[name="ActieNaam"]:checked').trigger('click');
         
         // in selects kopjes niet-selecteerbaar maken
         $('.blankoption').prop('disabled', true);
