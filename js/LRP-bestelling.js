@@ -47,14 +47,9 @@
                 $(nextFs).fadeToggle(400)});
                 $('#errorBox').hide();
             }
-            // indien AKB, andere enveloppen aanbieden
-            if (actie == "AKB") {
-                // enable C5-VKB en Venter-VKB
-                $('option[value="C5-VKB"]').prop('disabled', false);
-                $('option[value="Venster-VKB"]').prop('disabled', false);
-            } else {
+            // indien AKB, blijft C5-VKB mogelijk, maar wel afstemmen
+            if (actie !== "AKB") {
                 $('option[value="C5-VKB"]').prop('disabled', true);
-                $('option[value="Venster-VKB"]').prop('disabled', true);
             }
             
             $('.bestellingstekst').find('textarea').prop('value', ''); // voorkomt append in textarea, whytf het niet vervangt weet ik niet
@@ -103,6 +98,7 @@
                 results += this.name + ": " + this.value + eol;
             }
         });
+        results += $('#BesteldViaKBnl').html() + eol;
         results += eol + "UserAgent: " + navigator.userAgent + eol;
         if(actie == "below"){
             $('.bestellingstekst').hide();
@@ -337,7 +333,7 @@
         };
         
         // als bestelling via kerkbalans.nl: Start anders en route class VKB
-        if(urlParams['VKB'] == "ja"){
+        if(urlParams['V']){
             $('#Start').removeClass('Start');
             $('#Gemeente').addClass('Start');
             //$('#ActieNaamKerkbalans').attr('checked', true)
@@ -345,8 +341,35 @@
                 .attr('data-fsclass', 'VKB');
             $('#ActieNaamKerkbalansLabel').trigger('click'); // JAWEL, je moet label clicken
             processActieNaam();
+            
+            $('#BijlaAntwEnvVKB').prop('disabled', true);
+            $('#BijlaFolderVKB').prop('disabled', true);
+            
+            if(urlParams['V'] == "true"){
+                var ItemsViaKBnl = "Besteld via kerkbalans.nl:";
+                if(urlParams['E'] == "true"){
+                    $('select#Env').val('C5-VKB').prop('disabled', true);
+                    ItemsViaKBnl += " Enveloppen,";
+                } else {
+                    $('select#Env option[value="C5-VKB"]').prop('disabled', true);
+                };
+                
+                if(urlParams['A'] == "true"){
+                    $('#BijlaAntwEnvVKB').prop('checked', true);
+                    ItemsViaKBnl += " Antwoordenveloppen";
+                };
+                
+                if(urlParams['F'] == "true"){
+                    $('#BijlaFolderVKB').prop('checked', true);
+                    ItemsViaKBnl += ", Folders";
+                };
+                
+                $('.ViaKBnl').html('<p>U kunt nu uw bestelling bij het LRP-team ten behoeve van de actie Kerkbalans plaatsen. Gegevens van uw bestelling via www.kerkbalans.nl zijn zo veel mogelijk verwerkt.</p><p id="BesteldViaKBnl">' + ItemsViaKBnl + '</p>');
+            };
+            $('.ViaKBnl').show();
+            
         };
-
+        
         //=============================
         //   FORM VALIDATION
         //=============================
