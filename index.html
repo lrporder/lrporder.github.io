@@ -107,7 +107,7 @@
 <fieldset id="KB-Opmerkingen" class="AKB"><legend>Vooraf bij het bestellen t.b.v. de actie Kerkbalans</legend>
     <!-- input nodig omdat formvalidatie anders verdergaan blokkeert -->
     <input type="hidden" value="void" id="leeg">
-    <p style="font-weight: bold;">Als u uw bestelling bij het LRP-team wilt combineren met folders, enveloppen en/of antwoordenveloppen van de VKB (kerkbalans.nl), begin dan <a href="">hier</a> met uw bestelling. U wordt vanzelf teruggeleid naar de vragen van het LRP-team.</>
+    <p style="font-weight: bold;">Als u uw bestelling bij het LRP-team wilt laten combineren met folders, enveloppen en/of antwoordenveloppen van kerkbalans.nl (de VKB), begin dan <a href="http://www.kerkbalans.nl">hier</a> met uw bestelling. Na uw bestelling daar ontvangt u een mail met een link waarmee u uw bestelling bij het LRP-team kunt vervolgen. Deze route voorkomt misverstanden en vertraging in de levering.</p>
     <p>Als u geen toezeggingsformulieren wilt bestellen, maar alléén (een deel van) de maandelijkse verwerking, zoals acceptgiro's of incasso's, dan is dit formulier niet voor u. Neem contact op met de orderadministratie. In dit geval is persoonlijk contact het handigst.<p>
     <p>Blanco acceptgiro's mogen niet worden geleverd. Ook blanco toezeggingsformulieren kunnen niet worden besteld. Wel is <a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/Actiekerkbalans/Documents/Blanco_Toezeggingsformulier.docx">hier</a> een model te downloaden dat u voor eigen gebruik kunt aanpassen. Als u later voor specifieke personen alsnog een toezeggingsformulier wilt maken, kunt u deze ook vooringevuld in LRP genereren.</p>
     <p class="toggleDiv"><span class="Vraagteken">?</span><span class="Uitroep">&nbsp;Aanvullende toezeggingsformulieren maken in LRP?</span></p>
@@ -734,12 +734,18 @@ NABEWERKING
         <option value="Venster-PPS">Vensterenvelop op te maken via PKN Printstudio</option>
         <option class="blankoption" value="">Enveloppen C5-formaat (162 x 229 mm):</option>
         <option value="C5-Eigen">U levert zelf C5-enveloppen aan LRP-team</option>
-        <option value="C5-VKB">C5-envelop geleverd door de VKB</option>
-        <option value="C5-PPS">C5-envelop op te maken via PKN Printstudio of door LRP-team</option>
+        <option value="C5-VKB">Kerkbalans-envelop via Kerkbalans.nl</option>
+        <option value="C5-LRP">PKN-envelop via LRP-team</option>
+        <option value="C5-PPS">C5-envelop eigen opmaak via LRP-team</option>
         <option class="blankoption" value="">Anders:</option>
         <option class="AAopts" value="Geen" id="optionEnvGeen">Geen envelop nodig</option>
+        <option value="Onbekend">Onbekend (er wordt contact opgenomen)</option>
     </select>
     </span>
+    <span class="Vraagteken">?</span>
+        <div id="HelpOrderEnveloppen" class="Help"><p>Als u producten wilt laten bijvoegen die u hebt besteld via Kerkbalans.nl (antwoordenveloppen en/of folders), dan is het niet mogelijk om enveloppen op acceptgiro-formaat te bestellen. De Kerkbalans-producten zijn vanaf 2015 allemaal gericht op C5-formaat.<br>
+        Als u via Kerkbalans.nl enveloppen hebt besteld, is deze keuze hier reeds voor u aangegeven en kunt u dat niet aanpassen. Voor een wijziging van uw bestelling via kerkbalans.nl kunt u contact opnemen met Team Kerkbalans (zie Contact bovenaan dit formulier).<br>
+        Als u er niet uit komt, kies dan voor 'Onbekend'. Er wordt contact opgenomen.</p></div>
     <div class="AAshow envOpen">
         <span class="Question"></span>
         <span class="Answer">
@@ -1427,12 +1433,13 @@ AFRONDING
 -->
 <fieldset id="Afronding" class="lastFieldset AKB EJC SK Adhoc VKB">
 <legend>Bestellen</legend>
-    <span> Hieronder wordt uw bestelling getoond. U kunt deze kopiëren naar een e-mail aan lrp-order@protestantsekerk.nl. U kunt ook de knop 'Bestelling mailen' gebruiken. In uw standaard mailprogramma wordt dan meteen een mail opgesteld. Deze functionaliteit is afhankelijk van een aantal instellingen op uw pc. Als het niet lukt, gebruik dan de knop 'Bestelling downloaden' en stel zelf de mail op met de bestelling in de bijlage. U ontvangt nadat u de bestelling hebt gemaild binnen drie werkdagen een ontvangstbevestiging van uw bestelling!</span>
+    <p> U bent bijna klaar. Hieronder wordt uw bestelinformatie getoond. U kunt deze kopiëren naar een e-mail aan lrp-order@protestantsekerk.nl. U kunt ook de knop 'Bestelling mailen' gebruiken. In uw standaard mailprogramma wordt dan meteen een mail opgesteld. Deze functionaliteit is afhankelijk van een aantal instellingen op uw pc. Als er niets gebeurt, gebruik dan de knop 'Bestelling downloaden' en stel zelf de mail op met de bestelling in de bijlage.</p>
     <span class="Vraagteken" style="float: none;">?</span>
     <div class="Help">Om de bestelling in een mail te plakken: klik in de bestelling, zodat de tekst geselecteerd wordt. Kopieer de tekst naar het klembord (CTRL+C), stel een mail op aan lrp-order@protestantsekerk.nl en plak de bestelling in de mail (CTRL+V).</div> <br>
     <div class="bestellingstekst"></div>
     <span class="submitButton" onClick="showOrder('mail')">BESTELLING MAILEN</span>
     <span class="submitButton" onclick="createOrderPdf()">BESTELLING DOWNLOADEN</span>
+    <p style="font-weight: bold">Bestelling gemaild? U ontvangt binnen drie werkdagen een ontvangstbevestiging!</p>
 </fieldset>
 
 <!--=========================
@@ -1484,15 +1491,15 @@ Telefoon: 030 880 1777 (optie 2 in het menu) (bereikbaar ma t/m vr 9:00-17:00)</
 Telefoon: de LRP-helpdesk kan u doorverbinden (bereikbaar ma t/m do 9:00-15:00)</p>
 
 <H4>Webwinkel PKN</H4>
-<p>Voor het bestellen van handleidingen, vensterenveloppen en folders Solidariteitskas</p>
+<p>Voor het bestellen van LRP-handleidingen, vensterenveloppen en folders Solidariteitskas</p>
 <p>Internet: <a href="https://webwinkel.pkn.nl/">https://webwinkel.pkn.nl/</a><br>
 Telefoon: 030 880 1880</p>
 
-<H4>VKB (Vereniging Kerkrentmeesterlijk Beheer)</H4>
+<H4>Team Kerkbalans</H4>
 <p>Voor materiaal rondom de actie Kerkbalans (enveloppen, folders, promotiemateriaal)<p>
-<p>Internet: <a href="http://www.kerkrentmeester.nl">http://www.kerkrentmeester.nl</a><br>
-Email: <a href="mailto:info@kerkrentmeester.nl">info@kerkrentmeester.nl</a><br>
-Telefoon: 078 639 3666</p>
+<p>Internet: <a href="http://www.kerkbalans.nl">http://www.kerkbalans.nl</a><br>
+Email: <a href="mailto:info@kerkbalans.nl">info@kerkbalans.nl</a><br>
+Telefoon: 078 639 3669</p>
 </fieldset>
 
 <!--=====================

@@ -98,7 +98,8 @@
                 results += this.name + ": " + this.value + eol;
             }
         });
-        results += $('#BesteldViaKBnl').html() + eol;
+        results += $('#BesteldViaKBnl').html() + eol; // Bestelde producten via kerkbalans.nl
+        results += 'Bestelnummer: ' + urlParams['M'] + eol; // Magentonummer via kerkbalans.nl
         results += eol + "UserAgent: " + navigator.userAgent + eol;
         if(actie == "below"){
             $('.bestellingstekst').hide();
@@ -347,6 +348,10 @@
             
             if(urlParams['V'] == "true"){
                 var ItemsViaKBnl = "Besteld via kerkbalans.nl:";
+                $('select#Env option[value="Venster-CvK"]').prop('disabled', true);
+                $('select#Env option[value="Venster-blanco"]').prop('disabled', true);
+                $('select#Env option[value="Venster-Eigen"]').prop('disabled', true);
+                $('select#Env option[value="Venster-PPS"]').prop('disabled', true);
                 if(urlParams['E'] == "true"){
                     $('select#Env').val('C5-VKB').prop('disabled', true);
                     ItemsViaKBnl += " Enveloppen,";
