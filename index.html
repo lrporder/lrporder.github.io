@@ -159,7 +159,6 @@
     </div>
 </fieldset>
 
-
 <!--=========================
     AKB TOEZEGGINGSFORMULIER
 ==========================-->
@@ -169,14 +168,14 @@
 
     <div class="Question ownLine">Toezeggingsformulier (sjabloon)</div>
     <div class="Answer ownLineA">
-        <input type="radio" name="Sjabloon" value="Standaard" id="ToezBronsjabloon" title="Vink dit aan als u van het standaard toezeggingsformulier gebruik wilt maken" onChange="$('.LaatsteToezegging').find('input').prop('disabled', false);" checked>
+        <input type="radio" name="KB-Sjabloon" value="Standaard" id="ToezBronsjabloon" title="Vink dit aan als u van het standaard toezeggingsformulier gebruik wilt maken" onChange="$('.LaatsteToezegging').find('input').prop('disabled', false);" checked>
         <label for="ToezBronsjabloon">Standaard toezeggingsformulier gebruiken</label>
     </div>
     <div class="Answer ownLineA">
-        <input type="radio" name="Sjabloon" value="Gemeentesjabloon" id="ToezGemeentesjabloon" title="Vink dit aan als u een eigen sjabloon in LRP hebt opgesteld en gekoppeld aan het fonds" onChange="$('.LaatsteToezegging').find('input').prop('disabled', true);" >
+        <input type="radio" name="KB-Sjabloon" value="Gemeentesjabloon" id="ToezGemeentesjabloon" title="Vink dit aan als u een eigen sjabloon in LRP hebt opgesteld en gekoppeld aan het fonds" onChange="$('.LaatsteToezegging').find('input').prop('disabled', true);">
         <label for="ToezGemeentesjabloon">Eigen sjabloon staat klaar of wordt afgestemd met LRP-team</label>
         <span class="Vraagteken">?</span>
-        <div id="HelpSjabloon" class="Help">
+        <div id="HelpKB-Sjabloon" class="Help">
             <p>U kunt kiezen tussen een eigen tekst op de toezeggingsbrief (gemeentesjabloon) of de standaard brief zoals deze is opgesteld door het LRP-Team. De toezeggingsbrief is zo compact dat normaalgesproken alleen de koptekst in aanmerking komt voor een gewijzigde invulling via een gemeentesjabloon. Voor de standaard tekst vinkt u "Bovenstaande gebruiken" aan.  Wanneer u een eigen tekst wenst te gebruiken, vinkt u het vakje “eigen sjabloon” aan. Hierbij is het van belang dat u in LRP zelf het gewenste gemeentesjabloon aan het fonds koppelt of laat koppelen. De bijdragenadministrateur kan dat doen in het fondsjaar 2015, tabblad “Selectie”. Voorbeelden van de standaard toezeggingsbrieven vindt u <a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/Actiekerkbalans/Paginas/Downloads.aspx">hier</a>.</p>
         </div>
     </div>
@@ -224,7 +223,7 @@
     </div>
     
     <div class="Question ownLine">Nieuw: Afstemming rond aan te bieden termijnen</div>
-    <p class="Toelichting">Vanwege het uitfaseren van de acceptgiro, of vanwege het niet kunnen incasseren in januari, stellen gemeenten soms prijs op het per betaalwijze kunnen aangeven van verschillende termijnen. Bijv. voor acceptgiro alleen januari, of voor incasso juist alle maanden behalve januari.Daarvoor is een sjabloon ontworpen. In overleg met het LRP-team kunt u hiervan gebruik maken."</p>
+    <p class="Toelichting">Vanwege het uitfaseren van de acceptgiro, of vanwege het niet kunnen incasseren in januari, stellen gemeenten soms prijs op het per betaalwijze kunnen aangeven van verschillende termijnen. Bijv. voor acceptgiro alleen januari, of voor incasso juist alle maanden behalve januari.Daarvoor is een sjabloon ontworpen. In overleg met het LRP-team kunt u hiervan gebruik maken.</p>
     <div class="Answer ownLineA">
         <input type="checkbox" name="TermijnenPerBetaalwijze" value="Ja" id="TermijnenPerBetaalwijze">
         <label for="TermijnenPerBetaalwijze">Ja, wij hebben hiervoor belangstelling (het LRP-team neemt contact op)</label>
@@ -264,14 +263,14 @@
     </div>
     <div class="sjabloonKeus" style="margin-left: 2em; clear: both;">
         <div class="Answer ownlineA">
-            <input type="radio" name="Sjabloon" id="StBrief" value="Standaard" checked>
+            <input type="radio" name="EJC-Sjabloon" id="StBrief" value="Standaard" checked>
             <label for="StBrief">Standaardbrief</label>
         </div>
         <div class="Answer ownLineA">
-            <input type="radio" name="Sjabloon" id="GemBrief" value="GemeenteSjabloon">
+            <input type="radio" name="EJC=Sjabloon" id="GemBrief" value="GemeenteSjabloon">
             <label for="GemBrief">Eigen sjabloon</label>
             <span class="Vraagteken">?</span>
-            <div id="HelpSjabloon" class="Help">
+            <div id="HelpEJC-Sjabloon" class="Help">
                 <p>De bijdragenadministrateur kan het sjabloon in LRP koppelen in het fondsjaar, tabblad "Selectie".</p>
             </div>
         </div>
