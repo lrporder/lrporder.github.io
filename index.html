@@ -107,7 +107,7 @@
 <fieldset id="KB-Opmerkingen" class="AKB"><legend>Vooraf bij het bestellen t.b.v. de actie Kerkbalans</legend>
     <!-- input nodig omdat formvalidatie anders verdergaan blokkeert -->
     <input type="hidden" value="void" id="leeg">
-    <p style="font-weight: bold;">Als u uw bestelling bij het LRP-team wilt laten combineren met folders, enveloppen en/of antwoordenveloppen van kerkbalans.nl (de VKB), begin dan <a href="http://www.kerkbalans.nl">hier</a> met uw bestelling. Na uw bestelling daar ontvangt u een mail met een link waarmee u uw bestelling bij het LRP-team kunt vervolgen. Deze route voorkomt misverstanden en vertraging in de levering.</p>
+    <p style="font-weight: bold;">Als u uw bestelling bij het LRP-team wilt laten combineren met folders, enveloppen en/of antwoordenveloppen van kerkbalans.nl (de VKB), begin dan <a href="http://www.kerkbalans.nl">daar</a> met uw bestelling. Na uw bestelling daar ontvangt u een mail met een link waarmee u uw bestelling bij het LRP-team kunt vervolgen. Deze route voorkomt misverstanden en vertraging in de levering.</p>
     <p>Als u geen toezeggingsformulieren wilt bestellen, maar alléén (een deel van) de maandelijkse verwerking, zoals acceptgiro's of incasso's, dan is dit formulier niet voor u. Neem contact op met de orderadministratie. In dit geval is persoonlijk contact het handigst.<p>
     <p>Blanco acceptgiro's mogen niet worden geleverd. Ook blanco toezeggingsformulieren kunnen niet worden besteld. Wel is <a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/Actiekerkbalans/Documents/Blanco_Toezeggingsformulier.docx">hier</a> een model te downloaden dat u voor eigen gebruik kunt aanpassen. Als u later voor specifieke personen alsnog een toezeggingsformulier wilt maken, kunt u deze ook vooringevuld in LRP genereren.</p>
     <p class="toggleDiv"><span class="Vraagteken">?</span><span class="Uitroep">&nbsp;Aanvullende toezeggingsformulieren maken in LRP?</span></p>
@@ -167,20 +167,16 @@
 <fieldset id="Toezeggingsformulier" class="AKB VKB"><legend>Toezeggingsformulier</legend>
     <p>Bij dit onderdeel kunt u aangeven hoe het toezeggingsformulier eruit moet komen te zien. Het bestellen van (extra) losse acceptgiro's is in het kader van de actie Kerkbalans zo uitzonderlijk dat dit niet in de reguliere bestelprocedure is opgenomen. Het is uiteraard wel mogelijk. Neem contact op met de orderadministratie, of noteer uw wensen in het blok voor opmerkingen onderaan dit onderdeel.</p> 
 
-    <div class="Question ownLine">Koptekst</div>
-    <div class="Koptekst">
-        <span>TOEZEGGING KERKELIJKE BIJDRAGE 2015</span><br>
-        <span><em>Mijn kerk in balans</em></span>
+    <div class="Question ownLine">Toezeggingsformulier (sjabloon)</div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="Sjabloon" value="Standaard" id="ToezBronsjabloon" title="Vink dit aan als u van het standaard toezeggingsformulier gebruik wilt maken" onChange="$('.LaatsteToezegging').find('input').prop('disabled', false);" checked>
+        <label for="ToezBronsjabloon">Standaard toezeggingsformulier gebruiken</label>
     </div>
     <div class="Answer ownLineA">
-        <input type="radio" name="Koptekst" value="Standaard" id="KoptekstBronsjabloon" title="Vink dit aan als u van bovenstaande standaard koptekst gebruik wilt maken" checked onChange="$('.LaatsteToezegging').slideToggle().find('input').prop('disabled', false);">
-        <label for="KoptekstBronsjabloon">Bovenstaande gebruiken</label>
-    </div>
-    <div class="Answer ownLineA">
-        <input type="radio" name="Koptekst" value="Gemeentesjabloon" id="KoptekstGemeentesjabloon" title="Vink dit aan als u een eigen sjabloon in LRP hebt opgesteld en gekoppeld aan het fonds" onChange="$('.LaatsteToezegging').slideToggle().find('input').prop('disabled', true);" >
-        <label for="KoptekstGemeentesjabloon">Eigen sjabloon is gekoppeld aan het fonds</label>
+        <input type="radio" name="Sjabloon" value="Gemeentesjabloon" id="ToezGemeentesjabloon" title="Vink dit aan als u een eigen sjabloon in LRP hebt opgesteld en gekoppeld aan het fonds" onChange="$('.LaatsteToezegging').find('input').prop('disabled', true);" >
+        <label for="ToezGemeentesjabloon">Eigen sjabloon staat klaar of wordt afgestemd met LRP-team</label>
         <span class="Vraagteken">?</span>
-        <div id="HelpKoptekst" class="Help">
+        <div id="HelpSjabloon" class="Help">
             <p>U kunt kiezen tussen een eigen tekst op de toezeggingsbrief (gemeentesjabloon) of de standaard brief zoals deze is opgesteld door het LRP-Team. De toezeggingsbrief is zo compact dat normaalgesproken alleen de koptekst in aanmerking komt voor een gewijzigde invulling via een gemeentesjabloon. Voor de standaard tekst vinkt u "Bovenstaande gebruiken" aan.  Wanneer u een eigen tekst wenst te gebruiken, vinkt u het vakje “eigen sjabloon” aan. Hierbij is het van belang dat u in LRP zelf het gewenste gemeentesjabloon aan het fonds koppelt of laat koppelen. De bijdragenadministrateur kan dat doen in het fondsjaar 2015, tabblad “Selectie”. Voorbeelden van de standaard toezeggingsbrieven vindt u <a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/Actiekerkbalans/Paginas/Downloads.aspx">hier</a>.</p>
         </div>
     </div>
@@ -225,6 +221,13 @@
     <div class="Answer ownLineA">
         <input type="checkbox" name="Betaalwijze" value="iDEAL" id="BetaalwijzeIdeal">
         <label for="BetaalwijzeIdeal">iDEAL</label>
+    </div>
+    
+    <div class="Question ownLine">Nieuw: Afstemming rond aan te bieden termijnen</div>
+    <p class="Toelichting">Vanwege het uitfaseren van de acceptgiro, of vanwege het niet kunnen incasseren in januari, stellen gemeenten soms prijs op het per betaalwijze kunnen aangeven van verschillende termijnen. Bijv. voor acceptgiro alleen januari, of voor incasso juist alle maanden behalve januari.Daarvoor is een sjabloon ontworpen. In overleg met het LRP-team kunt u hiervan gebruik maken."</p>
+    <div class="Answer ownLineA">
+        <input type="checkbox" name="TermijnenPerBetaalwijze" value="Ja" id="TermijnenPerBetaalwijze">
+        <label for="TermijnenPerBetaalwijze">Ja, wij hebben hiervoor belangstelling (het LRP-team neemt contact op)</label>
     </div>
     
     <div class="Question ownLine">Looplijst toevoegen?</div>
@@ -733,10 +736,10 @@ NABEWERKING
         <option value="Venster-Eigen">U levert zelf enveloppen aan LRP-team</option>
         <option value="Venster-PPS">Vensterenvelop op te maken via PKN Printstudio</option>
         <option class="blankoption" value="">Enveloppen C5-formaat (162 x 229 mm):</option>
-        <option value="C5-Eigen">U levert zelf C5-enveloppen aan LRP-team</option>
         <option value="C5-VKB">Kerkbalans-envelop via Kerkbalans.nl</option>
         <option value="C5-LRP">PKN-envelop via LRP-team</option>
-        <option value="C5-PPS">C5-envelop eigen opmaak via LRP-team</option>
+        <option value="C5-PPS">Envelop eigen opmaak via LRP-team</option>
+        <option value="C5-Eigen">U levert zelf C5-enveloppen aan LRP-team</option>
         <option class="blankoption" value="">Anders:</option>
         <option class="AAopts" value="Geen" id="optionEnvGeen">Geen envelop nodig</option>
         <option value="Onbekend">Onbekend (er wordt contact opgenomen)</option>
@@ -1457,11 +1460,11 @@ AFRONDING
     </p></div>
     
     <H4 class="HelpItem">Wat is PKN-Printstudio?</H4>
-    <div class="HelpDiv"><p>De PKN printstudio levert u printproducten op maat. Hier kunt u uw brieven en enveloppen opmaken met gegevens uit uw eigen gemeente of in de huisstijl van uw gemeente.  Zo kunt u enveloppen voorzien van een logo en retouradres, eigen ontworpen briefpapier toevoegen aan een bestelling, of een door de PKN ontworpen bijsluiter voorzien van uw eigen gegevens. Zodra u aangeeft dat u een bestelling bij het LRP-team wilt combineren met een product uit de PKN-Printstudio ontvangt u van ons een link waarmee u in de PKN-Printstudio kunt inloggen om uw product op te maken. U kunt ook een account aanvragen op www.pknprintstudio.nl, maar dan moet u bij uw bestelling daar er goed voor zorgen dat u het juiste ordernummer van uw bestelling bij het LRP-team opgeeft. Zie <a href="http://www.pknprintstudio.nl">www.pknprintstudio.nl</a> voor meer informatie.<p></div>
+    <div class="HelpDiv"><p>De PKN printstudio levert u printproducten op maat. Hier kunt u uw brieven en enveloppen opmaken met gegevens uit uw eigen gemeente of in de huisstijl van uw gemeente.  Zo kunt u enveloppen voorzien van een logo en retouradres, eigen ontworpen briefpapier toevoegen aan een bestelling, of een door de PKN ontworpen bijsluiter voorzien van uw eigen gegevens. Zodra u aangeeft dat u een bestelling bij het LRP-team wilt combineren met een product uit de PKN-Printstudio ontvangt u van ons een link waarmee u in de PKN-Printstudio kunt inloggen om uw product op te maken. U kunt dat overigens ook het LPR-team laten doen, als u maar de logo's e.d. doormailt. U kunt ook een account aanvragen op www.pknprintstudio.nl, maar dan moet u bij uw bestelling daar er goed voor zorgen dat u het juiste ordernummer van uw bestelling bij het LRP-team opgeeft. Zie <a href="http://www.pknprintstudio.nl">www.pknprintstudio.nl</a> voor meer informatie.<p></div>
     
-    <H4 class="HelpItem">Hoe werkt dat met pakbonnen en materiaal van de VKB?</H4>
+    <H4 class="HelpItem">Hoe werkt dat met pakbonnen en materiaal van kerkbalans.nl / de VKB?</H4>
     <div class="HelpDiv"><p>
-    Als u zelf producten aanlevert via de post, of de VKB dat laat doen, ontvangt u een pakbon. Deze pakbon kunt u afdrukken en bij uw producten voegen, zodat de drukker weet bij welke bestelling ze horen. De drukker kan uw producten dan combineren met de toezeggingsformulieren / acceptgiro's uit LRP. Als u wel de VKB producten laat leveren, maar zelf niets aanlevert, dan ontvangt u toch ook een pakbon. Daar hoeft u dan niets mee te doen. De VKB ontvangt ook een pakbon voor uw bestelling. Als u de VKB producten laat leveren, kondigt u dat aan in uw bestelling bij het LRP-team. U moet nog wel zelf de bestelling bij de VKB plaatsen. 
+    Als u zelf producten aanlevert via de post, of de VKB dat laat doen, ontvangt u een pakbon. Deze pakbon kunt u afdrukken en bij uw producten voegen, zodat de drukker weet bij welke bestelling ze horen. De drukker kan uw producten dan combineren met de toezeggingsformulieren / acceptgiro's uit LRP. Als u wel de VKB producten laat leveren, maar zelf niets aanlevert, dan ontvangt u toch ook een pakbon. Daar hoeft u dan niets mee te doen. De VKB ontvangt ook een pakbon voor uw bestelling.  
     </p></div>
     
     <H4 class="HelpItem">Hoe werkt dat met subselecties en doelgroepsgewijs aanschrijven en kan het LRP-team dit voor mij inrichten?</H4>
@@ -1522,13 +1525,13 @@ Telefoon: 078 639 3669</p>
     </ul>
     <H4>Kerkbalans</H4>
     <ul>
-        <li><a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/Actiekerkbalans/Paginas/Default.aspx">Actie Kerkbalans 2015</a>
+        <li><a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/Actiekerkbalans/Paginas/Default.aspx">Actie Kerkbalans</a>
         <li><a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/Actiekerkbalans/Paginas/Downloads.aspx">Voorbeeldproducten</a>
         <li><a href="http://www.pknprintstudio.nl">PKN PrintStudio</a>
     </ul>
     <H4>Eindejaarscollecte</H4>
     <ul>
-        <li><a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/eindejaarscollecte/Paginas/Default.aspx">Eindejaarscollecte 2014</a>
+        <li><a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/eindejaarscollecte/Paginas/Default.aspx">Eindejaarscollecte</a>
         <li><a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/eindejaarscollecte/Paginas/Downloads.aspx">Voorbeeldproducten</a>
     </ul>
 </fieldset>

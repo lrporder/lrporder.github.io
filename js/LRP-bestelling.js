@@ -98,8 +98,11 @@
                 results += this.name + ": " + this.value + eol;
             }
         });
-        results += $('#BesteldViaKBnl').html() + eol; // Bestelde producten via kerkbalans.nl
-        results += 'Bestelnummer: ' + urlParams['M'] + eol; // Magentonummer via kerkbalans.nl
+        if("M" in urlParams){
+            results += $('#BesteldViaKBnl').html() + eol; // Bestelde producten via kerkbalans.nl
+            results += 'Bestelnummer: ' + urlParams['M'] + eol; // Magentonummer via kerkbalans.nl
+        }
+        
         results += eol + "UserAgent: " + navigator.userAgent + eol;
         if(actie == "below"){
             $('.bestellingstekst').hide();
@@ -255,7 +258,7 @@
         $('.Help').hide();
         
         // acties uitschakelen totdat het bestelbaar is
-        $('input#ActieNaamKerkbalans').prop('disabled', true);
+        // $('input#ActieNaamKerkbalans').prop('disabled', true);
         $('input#ActieNaamEJC').prop('disabled', true);
         
         //===========================
