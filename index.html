@@ -263,11 +263,11 @@
     <p>Kies hier of u alleen acceptgiro's wenst (later eventueel aangevuld met bijlagen) of een combiformulier (brief met aangehechte acceptgiro). Bij een keuze voor combiformulieren kunt u aangeven of u de standaard brieftekst wilt laten afdrukken of een aangepaste tekst. De standaardbrief vindt u <a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/eindejaarscollecte/Documents/Website%20Brief%20voor%20gemeenteleden_opzet%202014_def.doc">hier</a>.</p>
     <div class="Question ownLine">Uitvoering</div>
     <div class="Answer ownLineA">
-        <input type="radio" name="Uitvoering" value="Acceptgiros" id="Acceptgiros" title="Vink dit aan als u acceptgiro's wilt bestellen" onChange="$('.sjabloonKeus').find('input').prop('checked', false).prop('disabled', this.checked);" >
+        <input type="radio" name="Uitvoering-EJC" value="Acceptgiros" id="Acceptgiros" title="Vink dit aan als u acceptgiro's wilt bestellen" onChange="$('.sjabloonKeus').find('input').prop('checked', false).prop('disabled', this.checked);" >
         <label for="Acceptgiros">Acceptgiro's</label>
     </div>
     <div class="Answer ownLineA">
-        <input type="radio" name="Uitvoering" value="Combiformulieren" id="Combiformulieren" title="Vink dit aan als u combiformulieren wilt bestellen" onChange="processCombi(this.checked, 'sjabloonKeus')" checked> 
+        <input type="radio" name="Uitvoering-EJC" value="Combiformulieren" id="Combiformulieren" title="Vink dit aan als u combiformulieren wilt bestellen" onChange="processCombi(this.checked, 'sjabloonKeus')" checked> 
         <label for="Combiformulieren">Combiformulieren, met als brief:</label>
     </div>
     <div class="sjabloonKeus" style="margin-left: 2em; clear: both;">
@@ -276,7 +276,7 @@
             <label for="StBrief">Standaardbrief</label>
         </div>
         <div class="Answer ownLineA">
-            <input type="radio" name="EJC=Sjabloon" id="GemBrief" value="GemeenteSjabloon">
+            <input type="radio" name="EJC-Sjabloon" id="GemBrief" value="GemeenteSjabloon">
             <label for="GemBrief">Eigen sjabloon</label>
             <span class="Vraagteken">?</span>
             <div id="HelpEJC-Sjabloon" class="Help">
@@ -308,11 +308,11 @@
     <p>Kies hier of u alleen acceptgiro's wenst of een combiformulier (brief met aangehechte acceptgiro). Bij een keuze voor combiformulieren kunt u aangeven of u de standaard brieftekst wilt laten afdrukken of een aangepaste tekst. De standaardbrief vindt u <a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/Solidariteitskas/Documents/SolidariteitskasCombolaVoorbeeldVb.pdf">hier</a>.</p>
     <div class="Question ownLine">Uitvoering</div>
     <div class="Answer ownLineA">
-        <input type="radio" name="Uitvoering" value="Acceptgiros" id="SK-Acceptgiros" title="Vink dit aan als u acceptgiro's wilt bestellen" onChange="$('.SKsjabloonKeus').find('input').prop('checked', false).prop('disabled', this.checked);" required >
+        <input type="radio" name="Uitvoering-SK" value="Acceptgiros" id="SK-Acceptgiros" title="Vink dit aan als u acceptgiro's wilt bestellen" onChange="$('.SKsjabloonKeus').find('input').prop('checked', false).prop('disabled', this.checked);" required >
         <label for="SK-Acceptgiros">Acceptgiro's zonder brief erboven</label>
     </div>
     <div class="Answer ownLineA">
-        <input type="radio" name="Uitvoering" value="Combiformulieren" id="SK-Combiformulieren" title="Vink dit aan als u combiformulieren wilt bestellen" onChange="processCombi(this.checked, 'SKsjabloonKeus')" > 
+        <input type="radio" name="Uitvoering-SK" value="Combiformulieren" id="SK-Combiformulieren" title="Vink dit aan als u combiformulieren wilt bestellen" onChange="processCombi(this.checked, 'SKsjabloonKeus')" > 
         <label for="SK-Combiformulieren">Brieven met aangehechte acceptgiro (Combiformulieren), met als brief:</label>
     </div>
     <div class="SKsjabloonKeus" style="margin-left: 2em; clear: both;">
