@@ -739,19 +739,22 @@ NABEWERKING
 	<select name="OrderEnveloppen" size="1" id="Env" onChange="processEnvelop(this.value);" required>
         <!-- voor keuze in enveloppen zie .js, is afhankelijk van AKB of niet -->
         <option class="blankoption" value="" selected>Kies uw enveloppen:</option>
-        <option class="blankoption" value="">Enveloppen acceptgiroformaat:</option>
-        <option value="Venster-CvK">Vensterenvelop met CvK-opdruk</option>
-        <option value="Venster-blanco">Vensterenvelop blanco</option>
-        <option value="Venster-Eigen">U levert zelf enveloppen aan LRP-team</option>
-        <option value="Venster-PPS">Vensterenvelop op te maken via PKN Printstudio</option>
-        <option class="blankoption" value="">Enveloppen C5-formaat (162 x 229 mm):</option>
-        <option value="C5-VKB">Kerkbalans-envelop via Kerkbalans.nl</option>
-        <option value="C5-LRP">PKN-envelop via LRP-team</option>
-        <option value="C5-PPS">Envelop eigen opmaak via LRP-team</option>
-        <option value="C5-Eigen">U levert zelf C5-enveloppen aan LRP-team</option>
-        <option class="blankoption" value="">Anders:</option>
-        <option class="AAopts" value="Geen" id="optionEnvGeen">Geen envelop nodig</option>
-        <option value="Onbekend">Onbekend (er wordt contact opgenomen)</option>
+        <optgroup label="Enveloppen acceptgiroformaat:">
+            <option value="Venster-CvK">Vensterenvelop met CvK-opdruk</option>
+            <option value="Venster-blanco">Vensterenvelop blanco</option>
+            <option value="Venster-Eigen">U levert zelf enveloppen aan LRP-team</option>
+            <option value="Venster-PPS">Vensterenvelop op te maken via PKN Printstudio</option>
+        </optgroup>
+        <optgroup label="Enveloppen C5-formaat (162 x 229 mm):">
+            <option value="C5-VKB">Kerkbalans-envelop via Kerkbalans.nl</option>
+            <option value="C5-LRP">PKN-envelop via LRP-team</option>
+            <option value="C5-PPS">Envelop eigen opmaak via LRP-team</option>
+            <option value="C5-Eigen">U levert zelf C5-enveloppen aan LRP-team</option>
+        </optgroup>
+        <optgroup label="Anders:">
+            <option class="AAopts" value="Geen" id="optionEnvGeen">Geen envelop nodig</option>
+            <option value="Onbekend">Onbekend (er wordt contact opgenomen)</option>
+        </optgroup>
     </select>
     </span>
     <span class="Vraagteken">?</span>
