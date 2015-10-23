@@ -1171,11 +1171,20 @@ AKB
 		<p>Net als bij acceptgiro’s kunt u ook de maandelijkse incasso-opdrachten door het LRP-Team laten uitvoeren. Hiervoor dient u te beschikken over een incassocontract met uw bank. Met dit contract bevestigt u dat het LRP-Team gemachtigd is om deze incasso-opdrachten voor u te versturen. Let op: Liet u nog niet eerder door ons incasso-opdrachten uitvoeren, dan hebben wij een kopie nodig van het incassocontract waarop ook het incassant-ID staat vermeld.</p>
         <p>Wanneer u deze optie niet kunt aanvinken, hebt u bij het onderdeel 'Toezeggingsformulier' niet aangegeven dat de optie automatische incasso moet worden aangeboden aan uw gemeenteleden. Ga desgewenst terug om dat te herstellen.</p>
 	</div>
-    
+    <span class="SubAnswer">
+        <input type="checkbox" name="AKB-iDeal" value="Ja" id="AkbIdeal" title="Vink dit aan als u maandelijkse e-mails wilt laten klaarzetten" disabled>
+        <label for="AkbIdeal">Maandelijks klaarzetten iDeal e-mails</label>
+    </span>
+    <span class="Vraagteken">?</span>
+    <div id="HelpAkbIdeal" class="Help">
+        <p>Het LRP-team kan maandelijks de e-mails klaarzetten waarin een iDeal-link wordt gestuurd aan degenen die toegezegd hebben via iDeal te willen betalen. De e-mails worden niet verzonden. De bijdrageadministrateur kan de e-mails verzenden vanuit het verzameldocument in het fondsjaar.</p>
+        <p>Wanneer u deze optie niet kunt aanvinken, hebt u bij het onderdeel 'Toezeggingsformulier' niet aangegeven dat de optie iDeal moet worden aangeboden aan uw gemeenteleden. Ga desgewenst terug om dat te herstellen.</p>
+    </div>
     <span class="SubAnswer">
         <input type="checkbox" name="AKB-herinneringen" value="Ja" id="AkbHerinnering" title="Vink dit aan als u herinneringen wilt laten aanmaken." onChange="toggledAKBher(this.checked)">
         <label for="AkbHerinnering">Versturen herinneringen</label>
     </span>
+    
     <span class="Vraagteken">?</span>
     <div id="HelpAkbHerinnering" class="Help">
         <p>Door het vakje “Versturen herinneringen” aan te vinken geeft u het LRP-Team opdracht herinneringen op ontbrekende ontvangsten aan te maken en te versturen. Verderop in het bestelformulier kunt u aangeven in welke maanden u wenst te herinneren en hoe deze moeten worden verzonden.</p>

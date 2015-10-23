@@ -144,6 +144,11 @@
         } else {
             $('#AkbIncasso').prop('disabled', true);
         };
+        if(id){
+            $('#AkbIdeal').prop('disabled', false);
+        } else {
+            $('#AkbIdeal').prop('disabled', true);
+        };
     };
     
     function processSKTweeBestellingen(checked){
