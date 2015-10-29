@@ -111,7 +111,8 @@
         } else if(actie == "returnpdf"){
             return returntag + results + closereturntag;
         } else {
-            window.location = "mailto:lrp-order@pkn.nl?subject=Bestelling%20" + FinActie + "&body=" + results;
+            mailbody = results.replace(/&/gi, "%26");
+            window.location = "mailto:lrp-order@pkn.nl?subject=Bestelling%20" + FinActie + "&body=" + mailbody;
         };
     };
 
