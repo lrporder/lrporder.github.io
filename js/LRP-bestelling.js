@@ -112,7 +112,8 @@
             return returntag + results + closereturntag;
         } else {
             mailbody = results.replace(/&/gi, "%26");
-            window.location = "mailto:lrp-order@pkn.nl?subject=Bestelling%20" + FinActie + "&body=" + mailbody;
+            mailsubject = "Bestelling%20" + FinActie + "%20" + $('#Gemnm').val().replace(/&/gi, "%26");
+            window.location = "mailto:lrp-order@pkn.nl?subject=" + mailsubject + "&body=" + mailbody;
         };
     };
 
