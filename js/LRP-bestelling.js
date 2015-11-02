@@ -33,7 +33,6 @@
         this.blur();
         this.focus();
     };
-   
  
     // bij iedere form: als goed ingevuld, naar volgende, dat is volgende fieldset met class=type bestelling
     function processActieNaam(){
@@ -111,6 +110,7 @@
         } else if(actie == "returnpdf"){
             return returntag + results + closereturntag;
         } else {
+            // ampersands vervangen, anders klopt mailto link niet (%-tekens blijven problematisch)
             mailbody = results.replace(/&/gi, "%26");
             mailsubject = "Bestelling%20" + FinActie + "%20" + $('#Gemnm').val().replace(/&/gi, "%26");
             window.location = "mailto:lrp-order@pkn.nl?subject=" + mailsubject + "&body=" + mailbody;
@@ -174,6 +174,7 @@
                 .not('#PostNaam').attr('data-message', ' ');
             $('.AAshow').css('display', 'block');
             document.getElementById('optionEnvGeen').removeAttribute('disabled');
+            document.getElementById('Sort').selectedIndex = 0; // set to default value
         } else if(wijze == "PortBetaald"){
             $('.AAshow').css('display', 'none');
             $('.AAopts').prop('disabled', true);
@@ -184,6 +185,7 @@
                 .prop('disabled', true)
                 .prop('required', false);
             $('span.starAtAA').remove();
+            $('select#Sort').val("Nvt");
         } else {
             return false;
         }
