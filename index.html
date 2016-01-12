@@ -1125,7 +1125,7 @@ AKB
     function toggledAKBacc(check){
         if(check){
             $('#AKB').prop('checked', check);
-            $('#AKB-accept-env-CvK').prop('checked', check);
+            $('#AKB-accept-env-PKN').prop('checked', check);
             $('.AKB-acc').find('input,select').each( function(){
                 $(this).removeProp('disabled');
             });
@@ -1139,7 +1139,7 @@ AKB
     }
     
     function toggledAKBher(check){
-        $('#AKB-herinneringen-env-CvK').prop('checked', check);
+        $('#AKB-herinneringen-env-PKN').prop('checked', check);
         if(check){
             $('#AKB').prop('checked', check);
             $('.AKB-her').show();

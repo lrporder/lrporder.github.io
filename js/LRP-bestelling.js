@@ -360,7 +360,7 @@
             
             if(urlParams['V'] == "true"){
                 var ItemsViaKBnl = "Besteld via kerkbalans.nl:";
-                $('select#Env option[value="Venster-CvK"]').prop('disabled', true);
+                $('select#Env option[value="Venster-PKN"]').prop('disabled', true);
                 $('select#Env option[value="Venster-blanco"]').prop('disabled', true);
                 $('select#Env option[value="Venster-Eigen"]').prop('disabled', true);
                 $('select#Env option[value="Venster-PPS"]').prop('disabled', true);
