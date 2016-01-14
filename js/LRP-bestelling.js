@@ -598,6 +598,5 @@
 				doc.save('Bestelling.pdf');
 			},
 			margins
-        );
-        
+        );  
     };
