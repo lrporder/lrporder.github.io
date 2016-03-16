@@ -274,9 +274,6 @@
         //   BUILD DOM
         //===========================
 
-        // alle externe links openen in nieuwe tab
-        $('a[href^="http"]').attr('target','_blank');
-        
         // alle vraagtekens voorzien van title
         $('.Vraagteken').attr('title','Klik om info te openen/sluiten');
         
