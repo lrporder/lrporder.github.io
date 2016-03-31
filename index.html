@@ -47,7 +47,7 @@
     <li class="NavLink">Help</li>
     <li class="NavLink">Contact</li>
     <li class="NavLink">Links</li>
-    <li><a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/Solidariteitskas/Documents/Tarievenlijst-20150407.pdf" style="color: white; text-decoration: none;">Tarieven</a></li>
+    <li><a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/Solidariteitskas/Documents/Tarievenlijst_2016.docx" style="color: white; text-decoration: none;">Tarieven</a></li>
     <li class="NavLink" style="float: right; font-size: 0; width: 10px; height: 10px;">Test</li>
 </ul>
 <ul class="Quicklinks" style="display: none;">
@@ -62,10 +62,13 @@
     <li onclick="$('fieldset:visible').hide();$('fieldset#Afronding').show()">Afronding</li>
 </ul>
 
-<!--<div class="Kosten">
-    <span>Kostenindicatie</span><br>
-    <span>(nog niet functioneel)</span>
-</div>-->
+<div id="Kosten">
+    <span style="font-weight: bold; font-size: 1.2em;">Kostenindicatie</span><br><br>
+    <div id="productenperbestelling"></div>
+    <br>
+    <div style="text-decoration: underline; font-weight: bold;">Plus per stuk:</div>
+    <div id="productenperstuk"></div>
+</div>
 <div id="errorBox"><h2>U heeft iets niet of verkeerd beantwoord:</h2></div>
 <!--===========================
     FIELDSET START
@@ -86,19 +89,19 @@
     <p>Als u het symbool<span class="Vraagteken" style="float: none;">?</span> tegenkomt, kunt u daarop klikken om een toelichting te krijgen bij de betreffende vraag of het bijbehorende product.</p>
     <div class="Question ownLine">Actie waarop uw bestelling betrekking heeft</div>
     <div class="Answer oneLineA">
-        <input type="radio" name="ActieNaam" value="Kerkbalans" id="ActieNaamKerkbalans" title="Vink dit aan als u materialen m.b.t. de actie Kerkbalans wilt bestelling" data-fsclass="AKB" required data-message="U moet iets kiezen" >
+        <input type="radio" name="ActieNaam" value="Kerkbalans" id="ActieNaamKerkbalans" title="Vink dit aan als u materialen m.b.t. de actie Kerkbalans wilt bestelling" data-fsclass="AKB" required data-message="U moet iets kiezen" data-product="96000000">
         <label id="ActieNaamKerkbalansLabel" for="ActieNaamKerkbalans">Kerkbalans (bestelbaar vanaf begin september)</label>
     </div>
     <div class="Answer ownLineA">
-        <input type="radio" name="ActieNaam" value="Eindejaarscollecte" id="ActieNaamEJC" title="Vink dit aan als u materialen m.b.t. de eindejaarscollecte wilt bestellen" data-fsclass="EJC">
+        <input type="radio" name="ActieNaam" value="Eindejaarscollecte" id="ActieNaamEJC" title="Vink dit aan als u materialen m.b.t. de eindejaarscollecte wilt bestellen" data-fsclass="EJC" data-product="96000000">
         <label for="ActieNaamEJC">Eindejaarscollecte (bestelbaar vanaf half september)</label>
     </div>
     <div class="Answer ownLineA">
-        <input type="radio" name="ActieNaam" value="Solidariteitskas" id="ActieNaamSK" title="Vink dit aan als u materialen m.b.t. de solidariteitskas wilt bestellen" data-fsclass="SK">
+        <input type="radio" name="ActieNaam" value="Solidariteitskas" id="ActieNaamSK" title="Vink dit aan als u materialen m.b.t. de solidariteitskas wilt bestellen" data-fsclass="SK" data-product="96000000">
         <label for="ActieNaamSK">Solidariteitskas (bestelbaar vanaf maart)</label>
     </div>
     <div class="Answer ownLineA">
-        <input type="radio" name="ActieNaam" value="Overig" id="ActieNaamOverig" title="Vink dit aan als u materialen wilt bestellen voor een niet-landelijke actie" data-fsclass="Adhoc">
+        <input type="radio" name="ActieNaam" value="Overig" id="ActieNaamOverig" title="Vink dit aan als u materialen wilt bestellen voor een niet-landelijke actie" data-fsclass="Adhoc" data-product="96000000">
         <label for="ActieNaamOverig">Overig (bv. Paascollecte, Kerkbladabonnement, Zendingscollecte enz.)</label>
     </div>
 </fieldset>
@@ -240,7 +243,7 @@
     
     <div class="Question ownLine">Looplijst toevoegen?</div>
     <div class="Answer ownLineA">
-	<input type="checkbox" id="Looplijst" name="Looplijst" value="Ja" title="Vink dit aan als u een looplijst wilt ontvangen." >
+	<input type="checkbox" id="Looplijst" name="Looplijst" value="Ja" title="Vink dit aan als u een looplijst wilt ontvangen." data-product="96000018" >
 	<label for="Looplijst">Ja, ik bestel ook een looplijst</label>
         <span class="Vraagteken">?</span>
         <div class="Help" id="HelpLooplijst">
@@ -295,7 +298,7 @@
 
     <div class="Question ownLine">Looplijst toevoegen?</div>
     <div class="Answer ownLineA">
-	<input type="checkbox" id="Looplijst-EJC" name="Looplijst" value="Ja" title="Vink dit aan als u een looplijst wilt ontvangen." >
+	<input type="checkbox" id="Looplijst-EJC" name="Looplijst" value="Ja" title="Vink dit aan als u een looplijst wilt ontvangen." data-product="96000018" >
 	<label for="Looplijst-EJC">Ja, ik bestel ook een looplijst</label>
         <span class="Vraagteken">?</span>
         <div class="Help" id="HelpLooplijst-EJC">
@@ -316,16 +319,16 @@
     <p>Kies hier of u alleen acceptgiro's wenst of een combiformulier (brief met aangehechte acceptgiro). Bij een keuze voor combiformulieren kunt u aangeven of u de standaard brieftekst wilt laten afdrukken of een aangepaste tekst. De standaardbrief vindt u <a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/Solidariteitskas/Documents/SK2016-Combi.pdf">hier</a>.</p>
     <div class="Question ownLine">Uitvoering</div>
     <div class="Answer ownLineA">
-        <input type="radio" name="Uitvoering-SK" value="Acceptgiros" id="SK-Acceptgiros" title="Vink dit aan als u acceptgiro's wilt bestellen" onChange="$('.SKsjabloonKeus').find('input').prop('checked', false).prop('disabled', this.checked);" required >
+        <input type="radio" name="Uitvoering-SK" value="Acceptgiros" id="SK-Acceptgiros" title="Vink dit aan als u acceptgiro's wilt bestellen" onChange="$('.SKsjabloonKeus').find('input').prop('checked', false).prop('disabled', this.checked);" data-product="96000007" required >
         <label for="SK-Acceptgiros">Acceptgiro's zonder brief erboven</label>
     </div>
     <div class="Answer ownLineA">
-        <input type="radio" name="Uitvoering-SK" value="Combiformulieren" id="SK-Combiformulieren" title="Vink dit aan als u combiformulieren wilt bestellen" onChange="processCombi(this.checked, 'SKsjabloonKeus')" > 
+        <input type="radio" name="Uitvoering-SK" value="Combiformulieren" id="SK-Combiformulieren" title="Vink dit aan als u combiformulieren wilt bestellen" onChange="processCombi(this.checked, 'SKsjabloonKeus')" data-product="96000004" > 
         <label for="SK-Combiformulieren">Brieven met aangehechte acceptgiro (Combiformulieren), met als brief:</label>
     </div>
     <div class="SKsjabloonKeus" style="margin-left: 2em; clear: both;">
         <div class="Answer ownlineA">
-            <input type="radio" name="UitvoeringBrieftekst" id="SKStBrief" value="Standaard" >
+            <input type="radio" name="UitvoeringBrieftekst" id="SKStBrief" value="Standaard">
             <label for="SKStBrief">Standaardbrief</label>
         </div>
         <div class="Answer ownLineA">
@@ -337,7 +340,7 @@
             </div>
         </div>
         <div class="Answer ownLineA">
-            <input type="radio" name="UitvoeringBrieftekst" id="OverlaySK" value="BrieftekstDigitaal">
+            <input type="radio" name="UitvoeringBrieftekst" id="OverlaySK" value="BrieftekstDigitaal" data-product="96000005">
             <label for="OverlaySK">Brieftekst wordt digitaal aangeleverd (€ 60,00 extra)</label>
             <span class="Vraagteken">?</span>
             <div id="HelpOverlaySK" class="Help">
@@ -383,7 +386,7 @@
         
     <div class="Question ownLine">Folders toevoegen?</div>
     <div class="Answer ownLineA">
-	<input type="checkbox" id="foldersSK" name="SolidariteitskasFolders" value="Ja" title="Vink dit aan als u folders wilt ontvangen.">
+	<input type="checkbox" id="foldersSK" name="SolidariteitskasFolders" value="Ja" title="Vink dit aan als u folders wilt ontvangen." data-product="96000153">
 	<label for="foldersSK">Ja, ik bestel ook de folders</label>
         <span class="Vraagteken">?</span>
         <div class="Help" id="HelpFolders-SK">
@@ -413,7 +416,7 @@
     
     <div class="Question ownLine">Uitvoering</div>
     <div class="Answer ownLineA">
-        <input type="radio" name="Uitvoering" value="Acceptgiros" id="AcceptgirosAdhoc" title="Vink dit aan als u acceptgiro's wilt bestellen" onChange="$('.sjabloonKeusAdhoc').find('input').prop('checked', false).prop('disabled', this.checked);" >
+        <input type="radio" name="Uitvoering" value="Acceptgiros" id="AcceptgirosAdhoc" title="Vink dit aan als u acceptgiro's wilt bestellen" onChange="$('.sjabloonKeusAdhoc').find('input').prop('checked', false).prop('disabled', this.checked);" data-product="96000007" >
         <label for="AcceptgirosAdhoc">Acceptgiro's</label>
     </div>
     <div class="Answer ownLineA">
@@ -422,11 +425,11 @@
     </div>
     <div class="sjabloonKeusAdhoc" style="margin-left: 2em; clear: both;">
         <div class="Answer ownlineA">
-            <input type="radio" name="Sjabloon" id="StBriefPSC" value="StandaardPaascollecte" checked>
+            <input type="radio" name="Sjabloon" id="StBriefPSC" value="StandaardPaascollecte" data-product="96000004" checked >
             <label for="StBriefPSC">Standaardbrief Paascollecte</label>
         </div>
         <div class="Answer ownLineA">
-            <input type="radio" name="Sjabloon" id="GemBriefAdhoc" value="GemeenteSjabloon">
+            <input type="radio" name="Sjabloon" id="GemBriefAdhoc" value="GemeenteSjabloon" data-product="96000003">
             <label for="GemBriefAdhoc">Eigen sjabloon is in LRP gekoppeld in het fonds</label>
             <span class="Vraagteken">?</span>
             <div id="HelpSjabloonAdhoc" class="Help">
@@ -434,7 +437,7 @@
             </div>
         </div>
         <div class="Answer ownLineA">
-            <input type="radio" name="Sjabloon" id="OverlayAdhoc" value="BrieftekstDigitaal">
+            <input type="radio" name="Sjabloon" id="OverlayAdhoc" value="BrieftekstDigitaal" data-product="96000003">
             <label for="OverlayAdhoc">Brieftekst wordt digitaal aangeleverd (€ 60,00 extra kosten)</label>
             <span class="Vraagteken">?</span>
             <div id="HelpOverlayAdhco" class="Help">
@@ -663,7 +666,7 @@ INRICHTING LRP SOLIDARITEITSKAS
     </div>
 
     <div class="Question ownLine">Selectie</div>
-    <p style="font-size: 0.8em">Als in LRP een correcte selectie beschikbaar is, kunt u de eerste optie kiezen en het selectienummer opgeven. U kunt ook kiezen voor één van de standaardselecties die dan door het LRP-team voor uw gemeente zal worden aangemaakt. Dit zijn:</p>
+    <p id="SK-selectie-uitleg" style="font-size: 0.8em">Als in LRP een correcte selectie beschikbaar is, kunt u de eerste optie kiezen en het selectienummer opgeven. U kunt ook kiezen voor één van de standaardselecties die dan door het LRP-team voor uw gemeente zal worden aangemaakt. Dit zijn:</p>
   
     <!--Optie met sel.nr. is checked by default om te voorkomen dat men niets aanvinkt, en bij deze is nr invullen nog verplicht dus misverstand niet mogelijk -->
     <script>
@@ -734,8 +737,8 @@ NABEWERKING
 	<span class="Answer">
     <select size="1" name="OrderVerzendwijze" id="Verzendwijze" onChange="processVerzendwijze(this.value);" required>
 		<option class="blankoption" value="">Kies uw verzendwijze</option>
-		<option value="PortBetaald">Port betaald direct naar gemeenteleden</option>
-		<option value="AfleverAdres">Pakket bezorgen op afleveradres</option>
+		<option value="PortBetaald" data-product="96001102">Port betaald direct naar gemeenteleden</option>
+		<option value="AfleverAdres" data-product="96001101">Pakket bezorgen op afleveradres</option>
     </select>
     </span>
 	
@@ -747,16 +750,16 @@ NABEWERKING
         <!-- voor keuze in enveloppen zie .js, is afhankelijk van AKB of niet -->
         <option class="blankoption" value="" selected>Kies uw enveloppen:</option>
         <optgroup label="Enveloppen acceptgiroformaat:">
-            <option value="Venster-PKN">Vensterenvelop met PKN-logo</option>
-            <option value="Venster-blanco">Vensterenvelop blanco</option>
-            <option value="Venster-Eigen">U levert zelf enveloppen aan LRP-team</option>
-            <option value="Venster-PPS">Vensterenvelop op te maken via PKN Printstudio</option>
+            <option value="Venster-PKN" data-product="96000106">Vensterenvelop met PKN-logo</option>
+            <option value="Venster-blanco" data-product="96000108">Vensterenvelop blanco</option>
+            <option value="Venster-Eigen" data-product="96000101">U levert zelf enveloppen aan LRP-team</option>
+            <option value="Venster-PPS" data-product="96000109">Vensterenvelop op te maken via PKN Printstudio</option>
         </optgroup>
         <optgroup label="Enveloppen C5-formaat (162 x 229 mm):">
             <option value="C5-VKB">Kerkbalans-envelop via Kerkbalans.nl</option>
-            <option value="C5-PKN">PKN-envelop via LRP-team</option>
-            <option value="C5-PPS">Envelop eigen opmaak via LRP-team</option>
-            <option value="C5-Eigen">U levert zelf C5-enveloppen aan LRP-team</option>
+            <option value="C5-PKN" data-product="96000104">PKN-envelop via LRP-team</option>
+            <option value="C5-PPS" data-product="96000109">Envelop eigen opmaak via LRP-team</option>
+            <option value="C5-Eigen" data-product="96000101">U levert zelf C5-enveloppen aan LRP-team</option>
         </optgroup>
         <optgroup label="Anders:">
             <option class="AAopts" value="Geen" id="optionEnvGeen">Geen envelop nodig</option>

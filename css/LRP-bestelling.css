@@ -136,7 +136,7 @@ legend + * {
     background-color: #F4E0ED;
     list-style:     none;
     margin-top:     0;
-    float:          right;
+    float:          left;
     height:         68%;
     padding:        0.5em 0% 0.5em 0.5em;
     width:          15%;
@@ -155,13 +155,22 @@ legend + * {
     max-width:      12%;
 }
 
-.Kosten {
+#Kosten {
+    display:        none;
     background-color: #DDD;
-    float:          left;
+    float:          right;
     font-size:      0.8em;
+    margin-right:   0.5em;
+    margin-top:     2em;
     width:          15%;
-    padding:        0.3em 1em 0.3em 1em;
-    position:       fixed;
+    padding:        0.3em 1em 0.5em 1em;
+}
+
+.product {
+    display:    none;
+}
+.price {
+    float: right;
 }
 
 .error {

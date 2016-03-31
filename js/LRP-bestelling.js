@@ -12,6 +12,32 @@
             urlParams[decode(match[1])] = decode(match[2]);
     })();
 
+    // productlijst t.b.v. kostenindicatie
+    var productperbestelling = [
+    { id: 96000000, product: "Per bestelling", price: 25 },
+    { id: 96000005, product: "Inbrengen brief", price: 60 },
+    { id: 96001000, product: "Inpakken", price: 10 },
+    { id: 96000018, product: "Looplijst", price: 25 },
+    { id: 96001101, product: "Verzenden per pakket", price: 7 }
+    ];
+
+    var productperstuk = [
+    { id: 96000006, product: "Printen", price: "0,09" },
+    { id: 96000035, product: "Printen", price: "0,10" },
+    { id: 96000007, product: "Printen", price: "0,08" },
+    { id: 96000003, product: "Printen", price: "0,16" },
+    { id: 96000004, product: "Printen", price: "0,17" },
+    { id: 96000153, product: "Folder bijvoegen", price: "0,01" },
+    { id: 96000101, product: "Envelop", price: "0,00" },
+    { id: 96000108, product: "Envelop", price: "0,04" },
+    { id: 96000109, product: "Envelop", price: "0,25" },
+    { id: 96000106, product: "Envelop", price: "0,05" },
+    { id: 96000104, product: "Envelop", price: "0,07" },
+    { id: 96001001, product: "Inpakken", price: "0,02" },
+    { id: 96001004, product: "Schoonsnijden", price: "0,02" },
+    { id: 96001102, product: "Verzenden", price: "0,60" }
+    ];
+    
     // if fieldset was already .hasRequired, do nothing, else: add star and class
     $.fn.addReq2Fs = function(target) {
 	    if(target.is('.hasRequired')) {
@@ -157,13 +183,18 @@
         if(checked){
             $('.BLDLA').show();
             $('#SK-BL').hide();
+            $('#SK-selectie-uitleg').hide();
+            //TODO?: kosten bestelling + inpakken + verzending x2
         } else {
             $('.BLDLA').hide();
             $('#SK-BL').show();
+            $('#SK-selectie-uitleg').show();
+            //TODO?: kosten bestelling + inpakken + verzending :2
         }
     };
     
     function processVerzendwijze(wijze){
+        $('select#Env').prop('selectedIndex', null); // bij wijzigen verzendwijze ook enveloppen opnieuw kiezen
         if(wijze == "AfleverAdres"){
             $('#labelAA')
                 .append('<span class="star starAtAA" title="Dit is een verplicht veld">&nbsp;&nbsp;*</span>');
@@ -196,8 +227,14 @@
         if(enve == "Geen"){
             Qopen.checked = false;
             $(Qopen).prop('disabled', true);
+            $('#96001001').hide(); // product couverteren verwijderen kostenindicatie
+            if($('#96000007').is(':visible')) {
+                $('#96001004').show();
+            };
         } else {
             Qopen.removeAttribute('disabled');
+            $('#96001001').show(); // product couverteren toevoegen kostenindicatie
+            $('#96001004').hide(); // schoonsnijden verbergen (ivm mogelijke wijziging bestelling)
         }
     };
 
@@ -443,16 +480,30 @@
             // custom form submission logic
             }).submit(function(e)  {
  
-            // when data is valid
-            if (!e.isDefaultPrevented()) {
+                // when data is valid
+                if (!e.isDefaultPrevented()) {
  
-            // tell user that everything is OK
-            $("#errorBox").html("<h2>Fouten:</h2>");
+                    // tell user that everything is OK
+                    $("#errorBox").html("<h2>Fouten:</h2>");
  
-            // prevent the form data being submitted to the server
-            e.preventDefault();
-            }
- 
+                    // prevent the form data being submitted to the server
+                    e.preventDefault();
+                }
+                
+                //// added prijsberekening
+                $('#Kosten').show();
+                $(this).find('input,select option').each( function(){
+                    prod = $(this).attr('data-product');
+                    $('#' + prod).hide();
+                });
+                $(this).find('input:checked, select option:selected').each( function(){
+                    prod = $(this).attr('data-product');
+                    //alert('To show: ' + '#' + prod);
+                    $('#' + prod).show();
+                });
+                
+                //// end prijsberekening
+            
             });
         });
 
@@ -492,7 +543,20 @@
                     $(backFs).fadeToggle(400)});
             }
         });
-
+        
+        //// start add producten
+        var productlijstpb = ""
+        var productlijstps = ""
+        for (var key in productperbestelling){
+            productlijstpb += '<div class="product" id="'+productperbestelling[key].id+'">'+productperbestelling[key].product+': <span class="price">€ '+productperbestelling[key].price+'</span></div>';
+        };
+        for (var key in productperstuk){
+            productlijstps += '<div class="product" id="'+productperstuk[key].id+'">'+productperstuk[key].product+': <span class="price">€ '+productperstuk[key].price+'</span></div>';
+        };
+        $('#productenperbestelling').append(productlijstpb);
+        $('#productenperstuk').append(productlijstps);
+        //// end add producten
+        
         
         //===========================
         //   SETTINGS
