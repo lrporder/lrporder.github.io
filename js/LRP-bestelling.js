@@ -227,13 +227,13 @@
         if(enve == "Geen"){
             Qopen.checked = false;
             $(Qopen).prop('disabled', true);
-            $('#96001001').hide(); // product couverteren verwijderen kostenindicatie
+            $('#96001001,#96001000').hide(); // producten couverteren verwijderen kostenindicatie
             if($('#96000007').is(':visible')) {
                 $('#96001004').show();
             };
         } else {
             Qopen.removeAttribute('disabled');
-            $('#96001001').show(); // product couverteren toevoegen kostenindicatie
+            $('#96001001,#96001000').show(); // product couverteren toevoegen kostenindicatie
             $('#96001004').hide(); // schoonsnijden verbergen (ivm mogelijke wijziging bestelling)
         }
     };
