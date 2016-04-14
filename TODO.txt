@@ -1,0 +1,5 @@
+TODO:
+- kosten berekenen per input/select, niet per submit
+- oude bestelling kunnen oppakken ('als vorig jaar' oid)
+- submitten naar googledocs / email zonder huidige handwerk
+- producten tonen (enveloppen bijv.)
