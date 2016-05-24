@@ -315,7 +315,7 @@
     UITVOERING Solidariteitskas
 ======================-->
 <fieldset id="UitvoeringSK" class="SK"><legend>Uitvoering</legend>
-    <p>Kies hier of u alleen acceptgiro's wenst of een combiformulier (brief met aangehechte acceptgiro). Bij een keuze voor combiformulieren kunt u aangeven of u de standaard brieftekst wilt laten afdrukken of een aangepaste tekst. De standaardbrief vindt u <a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/Solidariteitskas/Documents/SK2016-Combi.pdf">hier</a>.</p>
+    <p>Kies hier of u alleen acceptgiro's wenst of een combiformulier (brief met aangehechte acceptgiro). Bij een keuze voor combiformulieren kunt u aangeven of u de standaard brieftekst wilt laten afdrukken of een aangepaste tekst. De standaardbrief vindt u <a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/Solidariteitskas/Documents/SK2016-CombiVb.pdf">hier</a> en de brieftekst in .docx-formaat <a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/Solidariteitskas/Documents/SK2016-Brieftekst%201.docx">hier</a>.</p>
     <div class="Question ownLine">Uitvoering</div>
     <div class="Answer ownLineA">
         <input type="radio" name="Uitvoering-SK" value="Acceptgiros" id="SK-Acceptgiros" title="Vink dit aan als u acceptgiro's wilt bestellen" onChange="$('.SKsjabloonKeus').find('input').prop('checked', false).prop('disabled', this.checked);" data-product="96000007" required >
@@ -489,8 +489,12 @@
 <fieldset id="LRP-inrichting" class="AKB EJC Adhoc VKB"><legend>Inrichting LRP</legend>
     <span class="Question">Rekeningnummer</span>
     <span class="Answer">
-        <input type="text" name="ActieRekNr" pattern='N?L?\d{0,2}[A-Z]{0,4}\d{4,10}' title="Vul uw rekeningnummer in (IBAN mag, hoeft niet)" required onChange="checkAS(this.value, 'errorCheckAS', 'checkAS');" />
+        <input type="text" name="ActieRekNr" pattern='N?L?\d{0,2}[A-Z]{0,4}\d{4,10}' title="Vul uw rekeningnummer in (IBAN mag, hoeft niet). Vul '0000' in als u niet verder kunt en vermeld bij de opmerkingen later wat het rekeningnummer moet zijn." required onChange="checkAS(this.value, 'errorCheckAS', 'checkAS');" />
     </span>
+    <span class="Vraagteken">?</span>
+    <div id="HelpReknr" class="Help">
+        <p>Geef het rekeningnummer op waar de ontvangsten voor deze actie op moeten binnenkomen. Als u acceptgiro's bestelt, moet er een A/S-contract bekend zijn. Dat wordt gecontroleerd en eventueel wordt een venster getoond met de opties. Als u niet verder komt, vul dan '0000' in en vermeld later bij de opmerkingen het juiste rekeningnummer.</p>
+    </div>
     <div id="errorCheckAS" class="errorCheckAS" style="display: none;">
         <div id="checkAS" class="hidden">
         </div>
@@ -498,9 +502,9 @@
         <ul>
             <li>U hebt een tikfout gemaakt in het rekeningnummer. Controleer dat.
             <li>Ons is mogelijk een acceptgirocontract bekend op een ander rekeningnummer van uw gemeente. Controleer of u het juiste rekeningnummer hebt gekozen en ingevuld.
-            <li>De lijst met ons bekende rekeningnummers waar dit bestelformulier naar kijkt bevat abusievelijk niet het door u opgegeven rekeningnummer. Als u eerder al succesvol acceptgiro's hebt besteld op dit rekeningnummer, ga dan gewoon verder.
-            <li>Ons is geen acceptgirocontract bekend. Stuur een kopie op van het acceptgirocontract. Als u dat nog bij de bank moet regelen, hebt u onze gegevens als servicebureau nodig: S121, DO Protestantse Kerk LRP, te Utrecht. Als u over een C-contract beschikt, is het in orde.
-            <li>U wilt helemaal geen acceptgiro's. Het is mogelijk om op de plaats van de acceptgiro alleen een adresblok af te drukken. Ga dan gewoon verder.
+            <li>De lijst met ons bekende rekeningnummers waar dit bestelformulier naar kijkt bevat abusievelijk niet het door u opgegeven rekeningnummer. Als u eerder al succesvol acceptgiro's hebt besteld op dit rekeningnummer, ga dan gewoon verder. Vul desnoods '0000' in en vermeld later bij de opmerkingen het juiste rekeningnummer.
+            <li>Ons is geen acceptgirocontract bekend. Stuur een kopie op van het acceptgirocontract. Als u dat nog bij de bank moet regelen, hebt u onze gegevens als servicebureau nodig: S121, DO Protestantse Kerk LRP, te Utrecht. Als u over een C-contract beschikt, is het in orde. Vul desnoods '0000' in en vermeld later bij de opmerkingen het juiste rekeningnummer.
+            <li>U wilt helemaal geen acceptgiro's. Het is mogelijk om op de plaats van de acceptgiro alleen een adresblok af te drukken. Ga dan gewoon verder. Vul desnoods '0000' in en vermeld later bij de opmerkingen het juiste rekeningnummer.
         </ul>
     </div>
 
@@ -603,8 +607,12 @@ INRICHTING LRP SOLIDARITEITSKAS
     <br><br>
     <span class="Question">Rekeningnummer</span>
     <span class="Answer">
-        <input type="text" name="ActieRekeningnummer" pattern='N?L?\d{0,2}[A-Z]{0,4}\d{4,10}' title="Vul uw rekeningnummer in (IBAN mag, hoeft niet)" required onChange="checkAS(this.value, 'errorCheckAS-SK', 'checkAS-SK');" />
+        <input type="text" name="ActieRekeningnummer" pattern='N?L?\d{0,2}[A-Z]{0,4}\d{4,10}' title="Vul uw rekeningnummer in (IBAN mag, hoeft niet). Vul '0000' in als u niet verder komt en geef later bij de opmerkingen het juiste rekeningnummer op." required onChange="checkAS(this.value, 'errorCheckAS-SK', 'checkAS-SK');" />
     </span>
+    <span class="Vraagteken">?</span>
+    <div id="HelpReknrSK" class="Help">
+        <p>Geef het rekeningnummer op waar de ontvangsten voor deze actie op moeten binnenkomen. Als u acceptgiro's bestelt, moet er een A/S-contract bekend zijn. Dat wordt gecontroleerd en eventueel wordt een venster getoond met de opties. Als u niet verder komt, vul dan '0000' in en vermeld later bij de opmerkingen het juiste rekeningnummer.</p>
+    </div>
     <div id="errorCheckAS-SK" class="errorCheckAS" style="display: none;">
         <div id="checkAS-SK" class="hidden">
         </div>
@@ -612,9 +620,9 @@ INRICHTING LRP SOLIDARITEITSKAS
         <ul>
             <li>U hebt een tikfout gemaakt in het rekeningnummer. Controleer dat.
             <li>Ons is mogelijk een acceptgirocontract bekend op een ander rekeningnummer van uw gemeente. Controleer of u het juiste rekeningnummer hebt gekozen en ingevuld.
-            <li>De lijst met ons bekende rekeningnummers waar dit bestelformulier naar kijkt bevat abusievelijk niet het door u opgegeven rekeningnummer. Als u eerder al succesvol acceptgiro's hebt besteld op dit rekeningnummer, ga dan gewoon verder.
-            <li>Ons is geen acceptgirocontract bekend. Stuur een kopie op van het acceptgirocontract. Als u dat nog bij de bank moet regelen, hebt u onze gegevens als servicebureau nodig: S121, DO Protestantse Kerk LRP, te Utrecht. Als u over een C-contract beschikt, is het in orde.
-            <li>U wilt helemaal geen acceptgiro's. Het is mogelijk om op de plaats van de acceptgiro alleen een adresblok af te drukken. Ga dan gewoon verder.
+            <li>De lijst met ons bekende rekeningnummers waar dit bestelformulier naar kijkt bevat abusievelijk niet het door u opgegeven rekeningnummer. Als u eerder al succesvol acceptgiro's hebt besteld op dit rekeningnummer, ga dan gewoon verder. Vul desnoods '0000' in en vermeld later bij de opmerkingen het juiste rekeningnummer.
+            <li>Ons is geen acceptgirocontract bekend. Stuur een kopie op van het acceptgirocontract. Als u dat nog bij de bank moet regelen, hebt u onze gegevens als servicebureau nodig: S121, DO Protestantse Kerk LRP, te Utrecht. Als u over een C-contract beschikt, is het in orde. Vul desnoods '0000' in en vermeld later bij de opmerkingen het juiste rekeningnummer.
+            <li>U wilt helemaal geen acceptgiro's. Het is mogelijk om op de plaats van de acceptgiro alleen een adresblok af te drukken. Ga dan gewoon verder. Vul desnoods '0000' in en vermeld later bij de opmerkingen het juiste rekeningnummer.
         </ul>
     </div>
 
