@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Pain Patcher</title>
+    <link rel="icon" href="img/patch.ico" type="image/x-icon" /> <!-- from: http://www.iconsmind.com -->
+    <base target="_blank" /> <!-- open all links in new tab -->
+    <link rel="stylesheet" href="css/pain.css" />
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <script src="js/jquery-2.2.2.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/jszip.min.js"></script>
+    <script src="js/FileSaver.min.js"></script>
+    <script src="js/pain.js"></script>
+
+</head>
+
+<!-- BODY -->
+<body>
+    
+    <form onSubmit="event.preventDefault(); downloadZipFile();">
+
+        <h1>Pain Patcher</h1>
+        <fieldset>
+            <legend>Aanpassen</legend>
+            <span class="label">Nieuwe incassodatum:</span>
+            <input type="text" id="newReqdColltnDt" placeholder="JJJJ-MM-DD">
+            <input type="text" id="humanReadableDate" disabled>
+            <span class="label">Eerder aangeboden?</span>
+            <span class="qapair">
+                <input type="checkbox" name="aangeboden" id="aangeboden" value="y">
+                <label for="aangeboden">Ja, deze incasso&#39;s zijn al eens bij de bank aangeboden</label>
+            </span>
+            <span id="resetLabel" class="label hidden">Opnieuw beginnen</span>
+            <input type="button" id="reset" class="hidden" onclick="location.reload(true);" value="Reset" title="Opnieuw beginnen">
+        </fieldset>
+            
+        <fieldset id="dropbox">
+            <legend>Selecteren</legend>
+            <p id="fileComment">Selecteer bestand(en) of sleep hiernaartoe.</p>
+            <span id="dropTarget" class="hidden">Drop bestand(en) hier</span>
+            <span id="fileLabel" class="label">Bestand(en) selecteren:</span>
+            <input type="file" id="fileInput" name="files[]" multiple>
+            <span id="loadError" class="hidden"></span>
+            <table id="tableDetails" class="hidden">
+                <tr>
+                    <th>Nr</th>
+                    <th>Bestand</th>
+                    <th>Posten</th>
+                    <th>Bedrag</th>
+                    <th>Oude datum</th>
+                    <th>OK?</th>
+                    <th>Acties</th>
+                </tr>
+            </table>
+            <div id="previewContainer" class="hidden">
+                <h2 id="previewTitle"></h2>
+                <p>Links het oude, rechts het gewijzigde bestand. Wijzigingen in geel.</p>
+                <div id="xmlCompare">
+                    <div id="xmlContent"></div>
+                    <div id="xmlNewContent"></div>
+                </div>
+            </div>
+        </fieldset>
+            
+        <fieldset>
+            <legend>Downloaden</legend>
+            <p>U kunt bestanden hierboven inzien of individueel downloaden.</p>
+            <span class="label">Bestand(en) als .zip downloaden:</span>
+            <input type="submit" id="getzip" value="Download" title="Bestand(en) downloaden als .zip">
+        </fieldset>
+
+    </form>
+
+    <div id="License">
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+            <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />
+        </a>
+        <br />
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">License</a>
+    </div>
+</body>
+</html>
