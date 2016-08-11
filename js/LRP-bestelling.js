@@ -305,7 +305,7 @@
         
         // acties uitschakelen totdat het bestelbaar is
         $('input#ActieNaamKerkbalans').prop('disabled', true);
-        $('input#ActieNaamEJC').prop('disabled', true);
+        // $('input#ActieNaamEJC').prop('disabled', true);
         
         //===========================
         //   BUILD DOM
