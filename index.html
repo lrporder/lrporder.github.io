@@ -262,24 +262,24 @@
 ======================-->
 <fieldset id="UitvoeringEJC" class="EJC">
     <legend>Uitvoering</legend>
-    <p>Kies hier of u alleen acceptgiro's wenst (later eventueel aangevuld met bijlagen) of een combiformulier (brief met aangehechte acceptgiro). Bij een keuze voor combiformulieren kunt u aangeven of u de standaard brieftekst wilt laten afdrukken of een aangepaste tekst. De standaardbrief vindt u <a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/eindejaarscollecte/Documents/3%20Voorbeeldbrief%20gemeenteleden.pdf">hier</a>.</p>
+    <p>Kies hier of u alleen acceptgiro's wenst (later eventueel aangevuld met bijlagen) of een combiformulier (brief met aangehechte acceptgiro). Bij een keuze voor combiformulieren kunt u aangeven of u de standaard brieftekst wilt laten afdrukken of een aangepaste tekst. De standaardbrief vindt u <a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/eindejaarscollecte/Documents/3%20Voorbeeldbrief%20gemeenteleden%20(1)%20(1)%202016.pdf">hier</a>.</p>
     <div class="Question ownLine">Uitvoering</div>
     <div class="Answer ownLineA">
         <input type="radio" name="Uitvoering-EJC" value="Acceptgiros" id="Acceptgiros" title="Vink dit aan als u acceptgiro's wilt bestellen" onChange="$('.sjabloonKeus').find('input').prop('checked', false).prop('disabled', this.checked);" >
         <label for="Acceptgiros">Acceptgiro's</label>
     </div>
     <div class="Answer ownLineA">
-        <input type="radio" name="Uitvoering-EJC" value="Combiformulieren" id="Combiformulieren" title="Vink dit aan als u combiformulieren wilt bestellen" onChange="processCombi(this.checked, 'sjabloonKeus')" checked> 
+        <input type="radio" name="Uitvoering-EJC" value="Combiformulieren" id="Combiformulieren" title="Vink dit aan als u combiformulieren wilt bestellen" onChange="processCombi(this.checked, 'sjabloonKeus'); $('.sjabloonKeusBrief').find('input').prop('checked', false).prop('disabled', this.checked);" checked> 
         <label for="Combiformulieren">Combiformulieren, met als brief:</label>
     </div>
-    <div class="sjabloonKeus" style="margin-left: 2em; clear: both;">
+    <div class="sjabloonKeus sjabloonKeusCombi" style="margin-left: 2em; clear: both;">
         <div class="Answer ownlineA">
             <input type="radio" name="EJC-Sjabloon" id="StBrief" value="Standaard" checked>
             <label for="StBrief">Standaardbrief</label>
         </div>
         <div class="Answer ownLineA">
             <input type="radio" name="EJC-Sjabloon" id="GemBrief" value="GemeenteSjabloon">
-            <label for="GemBrief">Eigen sjabloon</label>
+            <label for="GemBrief">Brieftekst staat als gemeentesjabloon in LRP</label>
             <span class="Vraagteken">?</span>
             <div id="HelpEJC-Sjabloon" class="Help">
                 <p>De bijdragenadministrateur kan het sjabloon in LRP koppelen in het fondsjaar, tabblad "Selectie".</p>
@@ -287,13 +287,40 @@
         </div>
         <div class="Answer ownLineA">
             <input type="radio" name="EJC-Sjabloon" id="EJCOverlay" value="Overlay">
-            <label for="GemBrief">Overlay</label>
+            <label for="GemBrief">Brieftekst wordt gemaild</label>
             <span class="Vraagteken">?</span>
             <div id="HelpEJC-Overlay" class="Help">
                 <p>U kunt uw brieftekst als bijlage bij deze bestelling meesturen of later doormailen.</p>
             </div>
         </div>
     </div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="Uitvoering-EJC" value="Brieven" id="EJC-brieven" title="Vink dit aan als u brieven wilt bestellen zonder acceptgiro" onChange="processCombi(this.checked, 'sjabloonKeus'); $('.sjabloonKeusCombi').find('input').prop('checked', false).prop('disabled', this.checked);">
+        <label for="EJC-brieven">Brieven zonder acceptgiro</label>
+    </div>
+    
+        <div class="sjabloonKeus sjabloonKeusBrief" style="margin-left: 2em; clear: both;">
+            <div class="Answer ownlineA">
+                <input type="radio" name="EJC-BriefSjabloon" id="EJC-StBrief" value="Standaard">
+                <label for="EJC-StBrief">Standaardbrief</label>
+            </div>
+            <div class="Answer ownLineA">
+                <input type="radio" name="EJC-BriefSjabloon" id="EJC-GemBrief" value="GemeenteSjabloon">
+                <label for="EJC-GemBrief">Brieftekst staat als gemeentesjabloon in LRP</label>
+                <span class="Vraagteken">?</span>
+                <div id="HelpEJC-BriefSjabloon" class="Help">
+                    <p>De bijdragenadministrateur kan het sjabloon in LRP koppelen in het fondsjaar, tabblad "Selectie".</p>
+                </div>
+            </div>
+            <div class="Answer ownLineA">
+                <input type="radio" name="EJC-BriefSjabloon" id="EJC-Overlay" value="Overlay">
+                <label for="EJC-Overlay">Brieftekst wordt gemaild</label>
+                <span class="Vraagteken">?</span>
+                <div id="HelpEJC-Overlay" class="Help">
+                    <p>U kunt uw brieftekst als bijlage bij deze bestelling meesturen of later doormailen.</p>
+                </div>
+            </div>
+        </div>
 
     <div class="Question ownLine">Looplijst toevoegen?</div>
     <div class="Answer ownLineA">
@@ -1572,6 +1599,7 @@ Telefoon: 078 639 3669</p>
     <H4>Eindejaarscollecte</H4>
     <ul>
         <li><a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/eindejaarscollecte/Paginas/Default.aspx">Eindejaarscollecte</a>
+        <li><a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/eindejaarscollecte/Documents/Brieftekst%20gem.leden%20Oudej.coll.2016.odt">Standaard brief aan gemeenteleden</a>
     </ul>
 </fieldset>
 <!--=====================
