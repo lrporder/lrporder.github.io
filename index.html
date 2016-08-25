@@ -243,7 +243,12 @@
     <div class="Question ownLine">Looplijst toevoegen?</div>
     <div class="Answer ownLineA">
 	<input type="checkbox" id="Looplijst" name="Looplijst" value="Ja" title="Vink dit aan als u een looplijst wilt ontvangen." data-product="96000018" >
-	<label for="Looplijst">Ja, ik bestel ook een looplijst</label>
+	<label for="Looplijst">Ja, ik bestel ook een looplijst&nbsp;</label>
+        <select size="1" name="KBlooplijst">
+            <option value="Geen"></option>
+            <option value="Papier">op papier</option>
+            <option value="E-mail">via e-mail</option>
+        </select>
         <span class="Vraagteken">?</span>
         <div class="Help" id="HelpLooplijst">
             <p>De looplijst is op dezelfde wijze gesorteerd als de toezeggingsformulieren. Een looplijst kan helpen bij het bezorgen en ophalen van de toezeggingsformulieren. U kunt één exemplaar bestellen. Deze kunt u naar wens kopi&euml;ren. Ook is in het fonds in LRP de looplijst te downloaden door de bijdrageadministrateur. Op verzoek kan deze ook worden doorgemaild.</p>
@@ -262,19 +267,21 @@
 ======================-->
 <fieldset id="UitvoeringEJC" class="EJC">
     <legend>Uitvoering</legend>
+
     <p>Kies hier of u alleen acceptgiro's wenst (later eventueel aangevuld met bijlagen) of een combiformulier (brief met aangehechte acceptgiro). Bij een keuze voor combiformulieren kunt u aangeven of u de standaard brieftekst wilt laten afdrukken of een aangepaste tekst. De standaardbrief vindt u <a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/eindejaarscollecte/Documents/3%20Voorbeeldbrief%20gemeenteleden%20(1)%20(1)%202016.pdf">hier</a>.</p>
+    
     <div class="Question ownLine">Uitvoering</div>
     <div class="Answer ownLineA">
-        <input type="radio" name="Uitvoering-EJC" value="Acceptgiros" id="Acceptgiros" title="Vink dit aan als u acceptgiro's wilt bestellen" onChange="$('.sjabloonKeus').find('input').prop('checked', false).prop('disabled', this.checked);" >
+        <input type="radio" name="Uitvoering-EJC" value="Acceptgiros" id="Acceptgiros" title="Vink dit aan als u acceptgiro's wilt bestellen" onChange="$('.sjabloonKeus').find('input').prop('checked', false).prop('disabled', this.checked);">
         <label for="Acceptgiros">Acceptgiro's</label>
     </div>
     <div class="Answer ownLineA">
-        <input type="radio" name="Uitvoering-EJC" value="Combiformulieren" id="Combiformulieren" title="Vink dit aan als u combiformulieren wilt bestellen" onChange="processCombi(this.checked, 'sjabloonKeus'); $('.sjabloonKeusBrief').find('input').prop('checked', false).prop('disabled', this.checked);" checked> 
+        <input type="radio" name="Uitvoering-EJC" value="Combiformulieren" id="Combiformulieren" title="Vink dit aan als u combiformulieren wilt bestellen" onChange="processCombi(this.checked, 'sjabloonKeus'); $('.sjabloonKeusBrief').find('input').prop('checked', false).prop('disabled', this.checked);" checked > 
         <label for="Combiformulieren">Combiformulieren, met als brief:</label>
     </div>
     <div class="sjabloonKeus sjabloonKeusCombi" style="margin-left: 2em; clear: both;">
         <div class="Answer ownlineA">
-            <input type="radio" name="EJC-Sjabloon" id="StBrief" value="Standaard" checked>
+            <input type="radio" name="EJC-Sjabloon" id="StBrief" value="Standaard" checked >
             <label for="StBrief">Standaardbrief</label>
         </div>
         <div class="Answer ownLineA">
@@ -301,11 +308,11 @@
     
         <div class="sjabloonKeus sjabloonKeusBrief" style="margin-left: 2em; clear: both;">
             <div class="Answer ownlineA">
-                <input type="radio" name="EJC-BriefSjabloon" id="EJC-StBrief" value="Standaard">
+                <input type="radio" name="EJC-BriefSjabloon" id="EJC-StBrief" value="Standaard" disabled>
                 <label for="EJC-StBrief">Standaardbrief</label>
             </div>
             <div class="Answer ownLineA">
-                <input type="radio" name="EJC-BriefSjabloon" id="EJC-GemBrief" value="GemeenteSjabloon">
+                <input type="radio" name="EJC-BriefSjabloon" id="EJC-GemBrief" value="GemeenteSjabloon" disabled>
                 <label for="EJC-GemBrief">Brieftekst staat als gemeentesjabloon in LRP</label>
                 <span class="Vraagteken">?</span>
                 <div id="HelpEJC-BriefSjabloon" class="Help">
@@ -313,7 +320,7 @@
                 </div>
             </div>
             <div class="Answer ownLineA">
-                <input type="radio" name="EJC-BriefSjabloon" id="EJC-Overlay" value="Overlay">
+                <input type="radio" name="EJC-BriefSjabloon" id="EJC-Overlay" value="Overlay" disabled>
                 <label for="EJC-Overlay">Brieftekst wordt gemaild</label>
                 <span class="Vraagteken">?</span>
                 <div id="HelpEJC-Overlay" class="Help">
@@ -325,7 +332,12 @@
     <div class="Question ownLine">Looplijst toevoegen?</div>
     <div class="Answer ownLineA">
 	<input type="checkbox" id="Looplijst-EJC" name="Looplijst" value="Ja" title="Vink dit aan als u een looplijst wilt ontvangen." data-product="96000018" >
-	<label for="Looplijst-EJC">Ja, ik bestel ook een looplijst</label>
+	<label for="Looplijst-EJC">Ja, ik bestel ook een looplijst&nbsp;</label>
+        <select size="1" name="EJClooplijst">
+            <option value="Geen"></option>
+            <option value="Papier">op papier</option>
+            <option value="E-mail">via e-mail</option>
+        </select>
         <span class="Vraagteken">?</span>
         <div class="Help" id="HelpLooplijst-EJC">
             <p>De looplijst is op dezelfde wijze gesorteerd als de combiformulieren. Een looplijst kan helpen bij het bezorgen. U kunt één exemplaar bestellen. Deze kunt u naar wens kopi&euml;ren. Ook is in het fonds in LRP de looplijst te downloaden door de bijdrageadministrateur. Op verzoek kan deze ook worden doorgemaild.</p>
@@ -945,18 +957,54 @@ NABEWERKING
 <legend class="MyLegend">Door LRP-team bij te voegen</legend>
 <div id="Bijlagen">
     <div class="Question ownLine">Door het LRP-team bij te voegen materialen (optioneel, meerdere opties mogelijk)</div>
-    
     <div class="newSection">
-        <div class="answersCat">Door LRP-team te produceren:
+        <div class="answersCat">Door LRP-team te produceren / bij te voegen:
         </div>
         <div class="Answer ownLineA">
-            <input type="checkbox" name="Bijlagen" value="AntwEnvPPS" id="AntwEnvPPS">
-            <label for="AntwEnvPPS">Antwoordenvelop via PKN-Printstudio</label>
+            <input type="checkbox" name="Bijlagen" value="AntwEnvUAWBUO" id="AKBAE-UAWBUO" data-product="96000157" >
+            <label for="AKBAE-UAWBUO">Antwoordenvelop met Kerkbalanslogo en tekst "Uw antwoord wordt bij u opgehaald"</label>
+        </div>
+        <div class="Answer ownLineA">
+            <input type="checkbox" name="Bijlagen" value="AntwEnvPPS" id="AntwEnvPPS" data-product="96000123" onchange="connectToggleVisible($(this).prop('checked'), '#AKB-antwenv');">
+            <label for="AntwEnvPPS">Antwoordenvelop met specifieke bedrukking</label>
             <span class="Vraagteken">?</span>
             <div class="Help">
-            U hebt de mogelijkheid om via <a href="http://www.pknprintstudio.nl">PKN-printstudio</a> uw eigen antwoordenvelop te ontwerpen. U kunt uw eigen tekst of logo aanleveren. Optioneel kan ook een port-betaald stempel worden afgedrukt (hetgeen niet betekent dat de portokosten al zijn voldaan).
+            U hebt de mogelijkheid om uw eigen antwoordenvelop te ontwerpen. U kunt uw eigen tekst of logo aanleveren. Optioneel kan ook een port-betaald stempel worden afgedrukt (hetgeen niet betekent dat de portokosten al zijn voldaan).
             </div>
         </div>
+        <div id="AKB-antwenv" class="hidden">
+            <p>Geef hieronder uw wensen op. U kunt meerdere opties aanvinken. Niets is verplicht. Een voorbeeld inscannen of opmaken in Word en doormailen kan ook. </p>
+            <span class="SubAnswer">
+                <input type="checkbox" name="AKB-antwenv" value="AntwEnv-KBlogo" id="AKBAE-KB">
+                <label for="AKBAE-KB">Kerkbalans-logo linksboven</label>
+            </span>
+            <span class="SubAnswer">
+            <input type="checkbox" name="AKB-antwenv" value="AntwEnv-PKNlogo" id="AKBAE-PKN">
+            <label for="AKBAE-PKN">PKN-logo linksboven</label>
+            </span>
+            <span class="SubAnswer">
+            <input type="checkbox" name="AKB-antwenv" value="AntwEnv-PostzegelNietNodig" id="AKBAE-PNN">
+            <label for="AKBAE-PNN">Vignet 'Postzegel niet nodig' rechtsboven</label>
+            </span>
+            <span class="SubAnswer">
+            <input type="checkbox" name="AKB-antwenv" value="AntwEnv-UAWBUO" id="AKBAE-tekstUAWBUO">
+            <label for="AKBAE-tekstUAWBUO">Tekst: "Uw antwoord wordt bij u opgehaald"</label>
+            </span>
+            <span class="SubAnswer">
+            <input type="checkbox" name="AKB-antwenv" value="AntwEnv-Adres" id="AKBAE-Adres">
+            <label for="AKBAE-Adres">Tekst: adres (hieronder invullen)</label>
+            </span>
+            <textarea id="AKBAE-Adresgegevens" class="hidden">Vul hier het volledige adres in</textarea>
+            <span class="SubAnswer">
+            <input type="checkbox" name="AKB-antwenv" value="AntwEnv-Kleur" id="AKBAE-Kleur">
+            <label for="AKBAE-Kleur">Antwoordenveloppen drukken in kleur</label>
+            </span>
+            <span class="SubAnswer">
+            <input type="checkbox" name="AKB-antwenv" value="AntwEnv-Custom" id="AKBAE-Custom">
+            <label for="AKBAE-Custom">Anders. Er wordt contact opgenomen.</label>
+            </span>
+        </div>
+        
         <div class="Answer ownLineA">
             <input type="checkbox" name="Bijlagen" value="Bijsluiter-Kopietoezegging" id="BijlaBijsluiterKopie">
             <label for="BijlaBijsluiterKopie">Bijsluiter kopie toezegging</label>
@@ -965,17 +1013,8 @@ NABEWERKING
             Deze bijsluiter is bedoeld voor de eigen administratie van uw gemeenteleden. Zij kunnen als geheugensteun hierop hun toezegging overnemen. Ook is er ruimte voor het noteren van de IBAN van uw gemeente en het geregistreerdennummer, voor als mensen zelf hun bijdragen overmaken. Als er gekozen werd voor automatische incasso kan de incassodatum en het machtigings-ID worden ingevuld. Zie <a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/Actiekerkbalans/Documents/Kopiestrook2015.pdf">hier</a> voor een voorbeeld.
             </div>
         </div>
-        <script>
-            function processVrijeBrief(check){
-                if(check){
-                    $('.briefPPS').show();
-                } else {
-                    $('.briefPPS').hide();
-                }
-            }
-        </script>
         <div class="Answer ownLineA">
-            <input type="checkbox" name="Bijlagen" value="Brief-LRP-sjabloon" id="BijlaVrijeBriefLRP" onChange="processVrijeBrief(this.checked)">
+            <input type="checkbox" name="Bijlagen" value="Brief-LRP-sjabloon" id="BijlaVrijeBriefLRP" onChange="connectToggleVisible(this.checked, '.briefPPS')">
             <label for="BijlaVrijeBriefLRP">Brief o.b.v. door gemeente ingericht LRP-sjabloon</label>
             <span class="Vraagteken">?</span>
             <div class="Help">
@@ -983,8 +1022,8 @@ NABEWERKING
             </div>
         </div>
         <div class="Answer ownLineA briefPPS hidden" style="margin-left: 2em;">
-            <input type="checkbox" name="BriefOpmaakPPS" value="Printstudio" id="BriefOpmaakPPS">
-            <label for="BriefOpmaakPPS">Optioneel: briefpapier opmaken via PKN-Printstudio</label>
+            <input type="checkbox" name="BriefOpmaakPPS" value="Printstudio" id="BriefOpmaakPPS" data-product="96000019">
+            <label for="BriefOpmaakPPS">Optioneel: buiten LRP om laten toevoegen van logo's of plaatjes</label>
         </div>
         <div class="Answer ownLineA">
             <input type="checkbox" name="Bijlagen" value="Brief-Digitaal" id="BijlaBriefDigitaal" onchange="connectToggle($(this).prop('checked'), '#BriefPrintwijze')">
