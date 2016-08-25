@@ -31,13 +31,13 @@ fieldset {
 
 .bestellingstekst {
     background-color: rgb(250, 237, 245);
-    border:    solid #CF3835 4px;
-    float: left;
-    clear: both;
-    margin-top: 1em;
-    padding: 0.5em 2em;
-    overflow: auto;
-    height: 10em;
+    border:         solid #CF3835 4px;
+    float:          left;
+    clear:          both;
+    margin-top:     1em;
+    padding:        0.5em 2em;
+    overflow:       auto;
+    height:         10em;
 }
 
 H3 {
@@ -64,7 +64,7 @@ header {
 
 input, select, textarea {
     border:         solid grey 1px;
-	float: left;
+	float:          left;
     font-size:      0.9em;
     vertical-align: middle;
 }
@@ -87,7 +87,7 @@ legend {
 }
 
 legend + * {
-    clear: both;
+    clear:          both;
 }
 
 .Question {
@@ -167,10 +167,10 @@ legend + * {
 }
 
 .product {
-    display:    none;
+    display:        none;
 }
 .price {
-    float: right;
+    float:          right;
 }
 
 .error {
@@ -182,8 +182,8 @@ legend + * {
 }
 
 .invalid {
-    border-color: red;
-    box-shadow: 0 0 4px red;
+    border-color:   red;
+    box-shadow:     0 0 4px red;
 }
 
 p {
@@ -193,12 +193,12 @@ p {
 }
 
 th {
-    text-align: left;
+    text-align:     left;
 }
 
 .blankoption {
-    color: black;
-    font-weight: bold;
+    color:          black;
+    font-weight:    bold;
 }
 
 .Help, .Belangrijk {
@@ -229,17 +229,17 @@ hr {
 }
 
 .Link {
-    color: blue;
-    cursor: pointer;
+    color:          blue;
+    cursor:         pointer;
     text-decoration: underline;
 }
 
 ::selection {
-    color: white;
+    color:          white;
     background-color: rgb(164, 50, 136);
 }
 ::-moz-selection {
-    color: white;
+    color:          white;
     background-color: rgb(164, 50, 136);
 }
 
@@ -264,7 +264,7 @@ hr {
 }
 
 .Uitroep:hover {
-    color: red;
+    color:          red;
     text-decoration: underline;
 }
 
@@ -309,7 +309,7 @@ hr {
 }
 
 .Toelichting {
-    font-size: 0.8em;
+    font-size:      0.8em;
 }
 
 .navButton {
@@ -369,7 +369,7 @@ hr {
     -webkit-transform: translate(1px,1px);
     -ms-transform:  translate(1px,1px);
     -o-transform:   translate(1px,1px);
-    transform:   translate(1px,1px);
+    transform:      translate(1px,1px);
 }
 
 .star {

@@ -18,21 +18,29 @@
     { id: 96000005, product: "Inbrengen brief", price: 60 },
     { id: 96001000, product: "Inpakken", price: 10 },
     { id: 96000018, product: "Looplijst", price: 25 },
-    { id: 96001101, product: "Verzenden per pakket", price: 7 }
+    { id: 96000019, product: "Opmaak brief", price: 60 },            // logo's of plaatjes buiten LRP om
+    { id: 96000024, product: "Looplijst via e-mail", price: 25 },
+    { id: 96001101, product: "Verzenden per pakket", price: 7 },
+    { id: 96003008, product: "Aut. incasso (per jaar)", price: 225 }
     ];
 
     var productperstuk = [
-    { id: 96000006, product: "Printen", price: "0,09" },
-    { id: 96000035, product: "Printen", price: "0,10" },
-    { id: 96000007, product: "Printen", price: "0,08" },
-    { id: 96000003, product: "Printen", price: "0,16" },
-    { id: 96000004, product: "Printen", price: "0,17" },
-    { id: 96000153, product: "Folder bijvoegen", price: "0,01" },
-    { id: 96000101, product: "Envelop", price: "0,00" },
-    { id: 96000108, product: "Envelop", price: "0,04" },
-    { id: 96000109, product: "Envelop", price: "0,25" },
-    { id: 96000106, product: "Envelop", price: "0,05" },
-    { id: 96000104, product: "Envelop", price: "0,07" },
+    { id: 96000006, product: "Printen", price: "0,09" },            // adrukken blanco A4
+    { id: 96000035, product: "Printen", price: "0,10" },            // afdrukken PKN briefpapier
+    { id: 96000007, product: "Printen", price: "0,08" },            // afdrukken acceptgiro
+    { id: 96000003, product: "Printen", price: "0,16" },            // afdrukken combola blanco
+    { id: 96000004, product: "Printen", price: "0,17" },            // afdrukken combola PKN-logo
+    { id: 96000122, product: "Antw.Env. bijvoegen", price: "0,01" }, // antwoordenvelop uit gemeente
+    { id: 96000148, product: "Bijsluiter", price: "0,02" },         // bijsluiter kopie toezegging
+    { id: 96000153, product: "Folder bijvoegen", price: "0,01" },   // folder Solidariteitskas
+    { id: 96000101, product: "Envelop", price: "0,00" },            // envelop via gemeente
+    { id: 96000108, product: "Envelop", price: "0,04" },            // envelop blanco
+    { id: 96000109, product: "Envelop", price: "0,25" },            // envelop printstudio
+    { id: 96000106, product: "Envelop", price: "0,05" },            // envelop PKN
+    { id: 96000104, product: "Envelop", price: "0,07" },            // C5-envelop PKN
+    { id: 96000123, product: "Antw.Env. aangepast", price: "0,25" }, // antwoordenvelop via printstudio
+    { id: 96000150, product: "Folder bijvoegen", price: "0,01" },   // folder via gemeente
+    { id: 96000157, product: "Antw.Env. standaard", price: "0,07" }, // antwoordenvelop Uw antw. wordt opgehaald
     { id: 96001001, product: "Inpakken", price: "0,02" },
     { id: 96001004, product: "Schoonsnijden", price: "0,02" },
     { id: 96001102, product: "Verzenden", price: "0,60" }
@@ -82,7 +90,7 @@
             e.preventDefault();
         });
     }
-
+    
     function showOrder(actie){
         if(actie == "below"){
             var eol = '</p><p style="padding: 0; margin: 0;">'; // regeleinde om in browser te tonen
@@ -282,13 +290,12 @@
     // aan te roepen bij onchange van checkbox: als checked, dan target enable vice versa:
     // onchange="connectToggle($(this).prop('checked'), '#TargetId');"
     function connectToggle(on, target){
-        if(on){
-            $(target).prop('disabled', false);
-        } else {
-            $(target).prop('disabled', true);
-        }
+        (on) ? $(target).prop('disabled', false) : $(target).prop('disabled', true);
     };
     
+    function connectToggleVisible(on, target){
+        (on) ? $(target).show() : $(target).hide();
+    };
     //============================
     //   DOCUMENT READY
     //============================
@@ -420,7 +427,116 @@
             $('.ViaKBnl').show();
             
         };
+
+        //===========================
+        //   GOED BEGINNEN (na URL PARAMS)
+        //===========================
         
+        // alle fieldsets behalve de eerste hiden en knoppen next/back toevoegen
+        $('fieldset').not(".Start").hide()
+            .find('form')
+            .append('<span class="goBack navButton">&#171;&nbsp;&nbsp;Terug</span>');
+        $('.noNext').append('<span class="goBack navButton">&#171;&nbsp;&nbsp;Terug</span>');
+        
+        $('fieldset').not(".noNext").not('.lastFieldset')
+            .find('form')
+            .append('<input type="submit" class="goNext navButton" value="Verder&nbsp;&nbsp;&#187;">');
+        
+        // back button functioneel maken, binnen bestelling vorige tonen, anders laatst geopende tonen
+        $('.goBack').on( "click", function() {
+            $('#errorBox').hide();
+            var thisFs = $(this).closest('fieldset');
+            var backFsClass = $('[name="ActieNaam"]:checked').attr('data-fsclass');
+            var backFs = $(thisFs).prevAll('fieldset').filter('.' + backFsClass).first();
+            //alert('thisFs: ' + thisFs + '\nbackFsClass: ' + backFsClass + '\nbackFs: ' + backFs + '\nbackFsId: ' + backFsId);
+            if(thisFs.attr('class') == "noNext") { 
+                $(thisFs).fadeToggle(400, function() {
+                    $('#' + currentFieldsetId).fadeToggle(400)});
+            } else { 
+                $(thisFs).fadeToggle(400, function() {
+                    $(backFs).fadeToggle(400)});
+            }
+        });
+        
+        //// start add producten
+        var productlijstpb = ""
+        var productlijstps = ""
+        for (var key in productperbestelling){
+            productlijstpb += '<div class="product" id="'+productperbestelling[key].id+'">'+productperbestelling[key].product+': <span class="price">€ '+productperbestelling[key].price+'</span></div>';
+        };
+        for (var key in productperstuk){
+            productlijstps += '<div class="product" id="'+productperstuk[key].id+'">'+productperstuk[key].product+': <span class="price">€ '+productperstuk[key].price+'</span></div>';
+        };
+        $('#productenperbestelling').append(productlijstpb);
+        $('#productenperstuk').append(productlijstps);
+        //// end add producten
+        
+        
+        //===========================
+        //   SETTINGS
+        //===========================
+        
+        // vanwege IE alles met onChange ook onClick="radioclick" meegeven
+        $('form').find('input').each( function() {
+            if($(this).attr('onChange') && $(this).attr('type') !== "text"){
+                $(this).attr('onClick', 'this.blur();');
+            }
+        });
+        
+        // opties AKB acc en inc koppelen aan vinkjes betaalwijzen
+        $('input[name="Betaalwijze"]').change( function(){
+            ac = $('#BetaalwijzeAcceptgiro').prop('checked');
+            ai = $('#BetaalwijzeIncasso').prop('checked');
+            id = $('#BetaalwijzeIdeal').prop('checked');
+            ov = $('#BetaalwijzeOverig').prop('checked');
+            processBetaalwijze(ac, ai, id, ov);
+        });
+        
+        // AKB-vragen disabelen zodat standaard aangevinkte zaken niet meekomen in bestelling; pas activeren zodra AKB aangevinkt en pagina wordt ververst
+        if($('#AkbAcceptgiro').prop('checked')){
+            $('.AKB-acc').show();
+            $('.AKB-acc').find('input,select').each( function(){
+                $(this).removeProp('disabled');
+            });
+        } else {
+            $('.AKB-acc').hide();
+            $('.AKB-acc').find('input,select').each( function(){
+                $(this).prop('disabled', true);
+            });
+        }
+        
+        if($('#AkbHerinnering').prop('checked')){
+            $('.AKB-her').show();
+            $('.AKB-her').find('input,select').each( function(){
+                $(this).removeProp('disabled');
+            });
+        } else {
+            $('.AKB-her').hide();
+            $('.AKB-her').find('input,select').each( function(){
+                $(this).prop('disabled', true);
+            });
+        }
+        
+        // bij refresh zorgen dat je verder kunt
+        $('input:checked').trigger('click');
+        
+        // in selects kopjes niet-selecteerbaar maken
+        $('.blankoption').prop('disabled', true);
+        
+
+        // waarom moet dit nou weer; radio is anders op het oog wel checked, maar niet als zodanig te gebruiken
+        //$('fieldset#Start').find('input').each( function() {
+        //    $(this).attr('checked', false);
+        //});
+
+        
+        // update kostenindicatie
+        // elke input/select onchange? mist evt default ingestelde dingen met kosten? onblur moet wachten tot je volgende selecteert
+        // array bouwen met id en kosten? dan toevoegen en weghalen wellicht makkelijker
+        // string bouwen van array elements = join(), of convert array to string = toString()
+        // var myArray = { key1: 100, key2: 200 }; for(ZZ
+        
+                
         //=============================
         //   FORM VALIDATION
         //=============================
@@ -514,113 +630,6 @@
             }
         });
 
-        //===========================
-        //   GOED BEGINNEN (na URL PARAMS)
-        //===========================
-        
-        // alle fieldsets behalve de eerste hiden en knoppen next/back toevoegen
-        $('fieldset').not(".Start").hide()
-            .find('form')
-            .append('<span class="goBack navButton">&#171;&nbsp;&nbsp;Terug</span>');
-        $('.noNext').append('<span class="goBack navButton">&#171;&nbsp;&nbsp;Terug</span>');
-        
-        $('fieldset').not(".noNext").not('.lastFieldset')
-            .find('form')
-            .append('<input type="submit" class="goNext navButton" value="Verder&nbsp;&nbsp;&#187;">');
-        
-        // back button functioneel maken, binnen bestelling vorige tonen, anders laatst geopende tonen
-        $('.goBack').on( "click", function() {
-            $('#errorBox').hide();
-            var thisFs = $(this).closest('fieldset');
-            var backFsClass = $('[name="ActieNaam"]:checked').attr('data-fsclass');
-            var backFs = $(thisFs).prevAll('fieldset').filter('.' + backFsClass).first();
-            //alert('thisFs: ' + thisFs + '\nbackFsClass: ' + backFsClass + '\nbackFs: ' + backFs + '\nbackFsId: ' + backFsId);
-            if(thisFs.attr('class') == "noNext") { 
-                $(thisFs).fadeToggle(400, function() {
-                    $('#' + currentFieldsetId).fadeToggle(400)});
-            } else { 
-                $(thisFs).fadeToggle(400, function() {
-                    $(backFs).fadeToggle(400)});
-            }
-        });
-        
-        //// start add producten
-        var productlijstpb = ""
-        var productlijstps = ""
-        for (var key in productperbestelling){
-            productlijstpb += '<div class="product" id="'+productperbestelling[key].id+'">'+productperbestelling[key].product+': <span class="price">€ '+productperbestelling[key].price+'</span></div>';
-        };
-        for (var key in productperstuk){
-            productlijstps += '<div class="product" id="'+productperstuk[key].id+'">'+productperstuk[key].product+': <span class="price">€ '+productperstuk[key].price+'</span></div>';
-        };
-        $('#productenperbestelling').append(productlijstpb);
-        $('#productenperstuk').append(productlijstps);
-        //// end add producten
-        
-        
-        //===========================
-        //   SETTINGS
-        //===========================
-        
-        // vanwege IE alles met onChange ook onClick="radioclick" meegeven
-        $('form').find('input').each( function() {
-            if($(this).attr('onChange') && $(this).attr('type') !== "text"){
-                $(this).attr('onClick', 'this.blur();');
-            }
-        });
-        
-        // opties AKB acc en inc koppelen aan vinkjes betaalwijzen
-        $('input[name="Betaalwijze"]').change( function(){
-            ac = $('#BetaalwijzeAcceptgiro').prop('checked');
-            ai = $('#BetaalwijzeIncasso').prop('checked');
-            id = $('#BetaalwijzeIdeal').prop('checked');
-            ov = $('#BetaalwijzeOverig').prop('checked');
-            processBetaalwijze(ac, ai, id, ov);
-        });
-        
-        // AKB-vragen disabelen zodat standaard aangevinkte zaken niet meekomen in bestelling; pas activeren zodra AKB aangevinkt en pagina wordt ververst
-        if($('#AkbAcceptgiro').prop('checked')){
-            $('.AKB-acc').show();
-            $('.AKB-acc').find('input,select').each( function(){
-                $(this).removeProp('disabled');
-            });
-        } else {
-            $('.AKB-acc').hide();
-            $('.AKB-acc').find('input,select').each( function(){
-                $(this).prop('disabled', true);
-            });
-        }
-        
-        if($('#AkbHerinnering').prop('checked')){
-            $('.AKB-her').show();
-            $('.AKB-her').find('input,select').each( function(){
-                $(this).removeProp('disabled');
-            });
-        } else {
-            $('.AKB-her').hide();
-            $('.AKB-her').find('input,select').each( function(){
-                $(this).prop('disabled', true);
-            });
-        }
-        
-        // bij refresh zorgen dat je verder kunt
-        $('input[name="ActieNaam"]:checked').trigger('click');
-        
-        // in selects kopjes niet-selecteerbaar maken
-        $('.blankoption').prop('disabled', true);
-        
-
-        // waarom moet dit nou weer; radio is anders op het oog wel checked, maar niet als zodanig te gebruiken
-        //$('fieldset#Start').find('input').each( function() {
-        //    $(this).attr('checked', false);
-        //});
-
-        
-        // update kostenindicatie
-        // elke input/select onchange? mist evt default ingestelde dingen met kosten? onblur moet wachten tot je volgende selecteert
-        // array bouwen met id en kosten? dan toevoegen en weghalen wellicht makkelijker
-        // string bouwen van array elements = join(), of convert array to string = toString()
-        // var myArray = { key1: 100, key2: 200 }; for(ZZ
     });
 
     function createOrderPdf() {
