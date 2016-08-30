@@ -63,7 +63,7 @@
 
 <div id="Kosten">
     <div style="font-weight: bold; font-size: 1.2em;">Kostenindicatie</div>
-    <p style="font-size: 0.9em;">Deze kostenindicatie wordt steeds als u op 'verder' klikt berekend. Zie ook de <a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/Solidariteitskas/Documents/Tarievenlijst_2016.docx">tarieflijst</a>.</p><br>
+    <p style="font-size: 0.9em;">Deze kostenindicatie wordt steeds als u op 'verder' klikt berekend. Zie ook de <a href="https://docs.google.com/document/d/1RZmUau48-xlmWFklBg18LbFSIvHotOkXlZznJvYwBis/export?format=pdf">tarieflijst</a>.</p><br>
     <div id="productenperbestelling"></div>
     <br>
     <div style="text-decoration: underline; font-weight: bold;">Plus per stuk:</div>
@@ -991,10 +991,10 @@ NABEWERKING
             <label for="AKBAE-tekstUAWBUO">Tekst: "Uw antwoord wordt bij u opgehaald"</label>
             </span>
             <span class="SubAnswer">
-            <input type="checkbox" name="AKB-antwenv" value="AntwEnv-Adres" id="AKBAE-Adres">
+            <input type="checkbox" name="AKB-antwenv" value="AntwEnv-Adres" id="AKBAE-Adres" onchange="connectToggleVisible(this.checked, '#AKBAE-Adresgegevens');">
             <label for="AKBAE-Adres">Tekst: adres (hieronder invullen)</label>
             </span>
-            <textarea id="AKBAE-Adresgegevens" class="hidden">Vul hier het volledige adres in</textarea>
+            <textarea id="AKBAE-Adresgegevens" class="SubAnswer" name="ABK-antwenv-adres" class="hidden" cols="50" rows="4">Vul hier het volledige adres in</textarea>
             <span class="SubAnswer">
             <input type="checkbox" name="AKB-antwenv" value="AntwEnv-Kleur" id="AKBAE-Kleur">
             <label for="AKBAE-Kleur">Antwoordenveloppen drukken in kleur</label>
