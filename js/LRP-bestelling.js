@@ -296,6 +296,23 @@
     function connectToggleVisible(on, target){
         (on) ? $(target).show() : $(target).hide();
     };
+    
+    // aan te roepen bij keuze 'als vorig jaar': form novalidate, inputs e.d. hidden en disabled (laatste om te voorkomen dat het in bestelresultaten komt)
+    // aanroepen als: onchange="processAlsVorigJaar(this.checked, '.thisClass');"  met .thisClass meegegeven aan betreffende input, .Question, .Answer en evt .Toelichting
+    function processAlsVorigJaar(on, target) {
+        if (on) {
+            $(target).parent('form')
+                .prop('novalidate', true)
+                .find('.Question, .Answer, .Toelichting, .Vraagteken, .starcomment, #Selectieoverzicht').not(target).hide()
+                .find('input, select').prop('disabled', true);
+        } else {
+            $(target).parent('form')
+                .prop('novalidate', false)
+                .find('.Question, .Answer, .Toelichting, .Vraagteken, .starcomment, #Selectieoverzicht').not(target).show()
+                .find('input, select').prop('disabled', false);
+        };
+    }
+    
     //============================
     //   DOCUMENT READY
     //============================

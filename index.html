@@ -170,6 +170,12 @@
 <fieldset id="Toezeggingsformulier" class="AKB VKB"><legend>Toezeggingsformulier</legend>
     <p>Bij dit onderdeel kunt u aangeven hoe het toezeggingsformulier eruit moet komen te zien. Het bestellen van (extra) losse acceptgiro's is in het kader van de actie Kerkbalans zo uitzonderlijk dat dit niet in de reguliere bestelprocedure is opgenomen. Het is uiteraard wel mogelijk. Neem contact op met de orderadministratie, of noteer uw wensen in het blok voor opmerkingen onderaan dit onderdeel.</p> 
 
+    <div class="Question ownLine KBalsvorigjaar">Als vorig jaar</div>
+    <div class="Answer ownLineA KBalsvorigjaar">
+        <input type="checkbox" name="KB-toezeggingsformulier" value="AlsVorigJaar" id="KbToezFormAlsVorigJaar" title="Vink dit aan als u dit onderdeel gelijk wilt houden aan vorig jaar" onChange="processAlsVorigJaar(this.checked, '.KBalsvorigjaar');">
+        <label for="KbToezFormAlsVorigJaar">Indeling toezeggingsformulier als vorig jaar</label>
+    </div>
+    
     <div class="Question ownLine">Toezeggingsformulier (sjabloon)</div>
     <div class="Answer ownLineA">
         <input type="radio" name="KB-Sjabloon" value="Standaard" id="ToezBronsjabloon" title="Vink dit aan als u van het standaard toezeggingsformulier gebruik wilt maken" onChange="$('.LaatsteToezegging').find('input').prop('disabled', false);" checked>
@@ -270,6 +276,12 @@
 
     <p>Kies hier of u alleen acceptgiro's wenst (later eventueel aangevuld met bijlagen) of een combiformulier (brief met aangehechte acceptgiro). Bij een keuze voor combiformulieren kunt u aangeven of u de standaard brieftekst wilt laten afdrukken of een aangepaste tekst. De standaardbrief vindt u <a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/eindejaarscollecte/Documents/3%20Voorbeeldbrief%20gemeenteleden%20(1)%20(1)%202016.pdf">hier</a>.</p>
     
+    <div class="Question ownLine EJCalsvorigjaar">Als vorig jaar</div>
+    <div class="Answer ownLineA EJCalsvorigjaar">
+        <input type="checkbox" name="EJC-uitvoering" value="AlsVorigJaar" id="EJCuitvoeringAlsVorigJaar" title="Vink dit aan als u dit onderdeel gelijk wilt houden aan vorig jaar" onChange="processAlsVorigJaar(this.checked, '.EJCalsvorigjaar');">
+        <label for="EJCuitvoeringAlsVorigJaar">Uitvoering eindejaarscollecte als vorig jaar</label>
+    </div>    
+    
     <div class="Question ownLine">Uitvoering</div>
     <div class="Answer ownLineA">
         <input type="radio" name="Uitvoering-EJC" value="Acceptgiros" id="Acceptgiros" title="Vink dit aan als u acceptgiro's wilt bestellen" onChange="$('.sjabloonKeus').find('input').prop('checked', false).prop('disabled', this.checked);">
@@ -355,6 +367,13 @@
 ======================-->
 <fieldset id="UitvoeringSK" class="SK"><legend>Uitvoering</legend>
     <p>Kies hier of u alleen acceptgiro's wenst of een combiformulier (brief met aangehechte acceptgiro). Bij een keuze voor combiformulieren kunt u aangeven of u de standaard brieftekst wilt laten afdrukken of een aangepaste tekst. De standaardbrief vindt u <a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/Solidariteitskas/Documents/SK2016-CombiVb.pdf">hier</a> en de brieftekst in .docx-formaat <a href="http://www.protestantsekerk.nl/lrpnetwerk/dienstverlening/geldwerving/Solidariteitskas/Documents/SK2016-Brieftekst%201.docx">hier</a>.</p>
+    
+    <div class="Question ownLine SKalsvorigjaar">Als vorig jaar</div>
+    <div class="Answer ownLineA SKalsvorigjaar">
+        <input type="checkbox" name="SK-uitvoering" value="AlsVorigJaar" id="SKuitvoeringAlsVorigJaar" title="Vink dit aan als u dit onderdeel gelijk wilt houden aan vorig jaar" onChange="processAlsVorigJaar(this.checked, '.SKalsvorigjaar');">
+        <label for="SKuitvoeringAlsVorigJaar">Uitvoering Solidariteitskas als vorig jaar</label>
+    </div>    
+    
     <div class="Question ownLine">Uitvoering</div>
     <div class="Answer ownLineA">
         <input type="radio" name="Uitvoering-SK" value="Acceptgiros" id="SK-Acceptgiros" title="Vink dit aan als u acceptgiro's wilt bestellen" onChange="$('.SKsjabloonKeus').find('input').prop('checked', false).prop('disabled', this.checked);" data-product="96000007" required >
@@ -526,6 +545,13 @@
 ======================-->
 
 <fieldset id="LRP-inrichting" class="AKB EJC Adhoc VKB"><legend>Inrichting LRP</legend>
+
+    <div class="Question ownLine LRPalsvorigjaar">Als vorig jaar</div>
+    <div class="Answer ownLineA LRPalsvorigjaar">
+        <input type="checkbox" name="LRP-inrichting" value="AlsVorigJaar" id="LRPAlsVorigJaar" title="Vink dit aan als u dit onderdeel gelijk wilt houden aan vorig jaar" onChange="processAlsVorigJaar(this.checked, '.LRPalsvorigjaar');">
+        <label for="LRPAlsVorigJaar">Inrichting LRP als vorig jaar</label>
+    </div><br><br>
+
     <span class="Question">Rekeningnummer</span>
     <span class="Answer">
         <input type="text" name="ActieRekNr" pattern='N?L?\d{0,2}[A-Z]{0,4}\d{4,10}' title="Vul uw rekeningnummer in (IBAN mag, hoeft niet). Vul '0000' in als u niet verder kunt en vermeld bij de opmerkingen later wat het rekeningnummer moet zijn." required onChange="checkAS(this.value, 'errorCheckAS', 'checkAS');" />
@@ -569,7 +595,8 @@
     </div>
 
     <div class="Question ownLine">Selectie</div>
-    <p style="font-size: 0.8em">Als in LRP een correcte selectie beschikbaar is, kunt u de eerste optie kiezen en het selectienummer opgeven. U kunt ook kiezen voor één van de standaardselecties die dan door het LRP-team voor uw gemeente zal worden aangemaakt / gecontroleerd. Dit zijn:</p>
+    <div id="Selectieoverzicht">
+    <p class="Toelichting">Als in LRP een correcte selectie beschikbaar is, kunt u de eerste optie kiezen en het selectienummer opgeven. U kunt ook kiezen voor één van de standaardselecties die dan door het LRP-team voor uw gemeente zal worden aangemaakt / gecontroleerd. Dit zijn:</p>
     <span class="selectieCat">Kerkbalans-selecties (PE-hoofden + inwonende kinderen):</span>
     <ul>
         <li class="SelExpl StndSel1">Standaardselectie 11: <em>Belijdende leden of doopleden</em> ouder dan 21 (of de door u opgegeven leeftijd) die PE-hoofd of inwonend kind zijn
@@ -582,6 +609,7 @@
         <li class="SelExpl StndSel5">Standaardselectie 22: <em>Alle protestantse PE-hoofden (belijdend lid, dooplid of ongedoopt; geen meegeregistreerden en blijkgevers)</em>
         <li class="SelExpl StndSel6">Standaardselectie 23: <em>Alle PE-hoofden die lid zijn (belijdend lid of dooplid)</em>
     </ul>
+    </div>
     
     <!-- Optie met sel.nr. is checked by default om te voorkomen dat men niets aanvinkt, en bij deze is nr invullen nog verplicht dus misverstand niet mogelijk -->
     <script>
@@ -639,8 +667,15 @@
 INRICHTING LRP SOLIDARITEITSKAS
 ==============================-->
 <fieldset id="LRP-inrichting-SK" class="SK"><legend>Inrichting LRP</legend>
+
+    <div class="Question ownLine LRP-SK-alsvorigjaar">Als vorig jaar</div>
+    <div class="Answer ownLineA LRP-SK-alsvorigjaar">
+        <input type="checkbox" name="LRP-SK-inrichting" value="AlsVorigJaar" id="LRP-SK-AlsVorigJaar" title="Vink dit aan als u dit onderdeel gelijk wilt houden aan vorig jaar" onChange="processAlsVorigJaar(this.checked, '.LRP-SK-alsvorigjaar');">
+        <label for="LRP-SK-AlsVorigJaar">Inrichting LRP als vorig jaar</label>
+    </div>
+
     <div class="Question ownLine">Aparte bestellingen voor belijdende en doopleden?</div>
-    <p style="font-size: 0.8em">Als u voor de bijdragen van belijdende leden en doopleden een afzonderlijk rekeningnummer gebruikt, of als u later alléén belijdende leden een herinnering wilt sturen, kies dan voor twee bestellingen.</p>
+    <p class="Toelichting">Als u voor de bijdragen van belijdende leden en doopleden een afzonderlijk rekeningnummer gebruikt, of als u later alléén belijdende leden een herinnering wilt sturen, kies dan voor twee bestellingen.</p>
     <span class="Answer"><input type="checkbox" name="Belijdende_en_Doopleden_Apart" id="BLDLApart" value="Ja" onChange="processSKTweeBestellingen(this.checked);"><label for="BLDLApart">Twee bestellingen</label></span>
     <!-- class BLDLA tonen/hiden; bij selectie één selnr en alléén bel.leden disabelen/enabelen-->
     <br><br>
@@ -712,7 +747,7 @@ INRICHTING LRP SOLIDARITEITSKAS
     </div>
 
     <div class="Question ownLine">Selectie</div>
-    <p id="SK-selectie-uitleg" style="font-size: 0.8em">Als in LRP een correcte selectie beschikbaar is, kunt u de eerste optie kiezen en het selectienummer opgeven. U kunt ook kiezen voor één van de standaardselecties die dan door het LRP-team voor uw gemeente zal worden aangemaakt. Dit zijn:</p>
+    <p id="SK-selectie-uitleg" class="Toelichting">Als in LRP een correcte selectie beschikbaar is, kunt u de eerste optie kiezen en het selectienummer opgeven. U kunt ook kiezen voor één van de standaardselecties die dan door het LRP-team voor uw gemeente zal worden aangemaakt. Dit zijn:</p>
   
     <!--Optie met sel.nr. is checked by default om te voorkomen dat men niets aanvinkt, en bij deze is nr invullen nog verplicht dus misverstand niet mogelijk -->
     <script>
