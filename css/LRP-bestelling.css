@@ -414,31 +414,42 @@ hr {
 }
 
 .submitButton {
-    background-color: green; /*#CF3835;*/
-    border: 2px solid white;
-    border-radius: 0.5em;
-/*    box-shadow: 0 0 8px 2px #444;*/
-    color: white;
-    cursor: pointer;
-    float: left;
-    font-size: 1.2em;
-    font-weight: bold;
-    margin: 1em 2em 2em 0;
-    padding: 0.2em 1em;
+    float:          left;
+    margin:         1em 2em 2em 0;
+    padding:        .6em 1.1em;
+    background-color: #5d9f11;
+    border:         1px solid transparent;
+    border-color:   #528d0f;
+    border-radius:  3px;
+    color:          #fff;
+    cursor:         pointer;
+    font-size:      14px;
+    font-weight:    bold;
+    text-align:     center;
+    vertical-align: middle;
 }
-.submitButton:hover{
-    text-decoration: underline;
+
+.submitButton:focus {
+	background-color: #458100 /*#286090;*/
+	border-color:   #505A00;
+}
+
+.submitButton:hover {
+	background-color:#458100;
+	border-color:   #505A00;
 }
 
 .submitButton:active {
+	background-color:#458100;
+	border-color:   #505A00;
     -webkit-transform: translate(3px,3px);
     -ms-transform:  translate(3px,3px);
     -o-transform:   translate(3px,3px);
-    transform:   translate(1px,1px);
+    transform:      translate(1px,1px);
 }
 
 .HelpItem {
-    margin-bottom: 1em;
+    margin-bottom:  1em;
 }
 
 .HelpItem:hover {

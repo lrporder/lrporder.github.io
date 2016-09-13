@@ -63,7 +63,7 @@
 
 <div id="Kosten">
     <div style="font-weight: bold; font-size: 1.2em;">Kostenindicatie</div>
-    <p style="font-size: 0.9em;">Deze kostenindicatie wordt steeds als u op 'verder' klikt berekend. Zie ook de <a href="https://docs.google.com/document/d/1RZmUau48-xlmWFklBg18LbFSIvHotOkXlZznJvYwBis/export?format=pdf">tarieflijst</a>.</p><br>
+    <p style="font-size: 0.9em;">Deze kostenindicatie wordt steeds als u op 'verder' klikt berekend. Zie ook de <a href="https://docs.google.com/document/d/1RZmUau48-xlmWFklBg18LbFSIvHotOkXlZznJvYwBis/export?format=pdf">tarieflijst</a>. Er kunnen producten ontbreken als u koos voor een verwerking 'als vorig jaar'.</p><br>
     <div id="productenperbestelling"></div>
     <br>
     <div style="text-decoration: underline; font-weight: bold;">Plus per stuk:</div>
@@ -204,11 +204,11 @@
     
     <div class="Question ownLine">Wel/geen acceptgiro aan het toezeggingsformulier</div>
     <div class="Answer ownLineA">
-        <input type="radio" name="AangehechteAccept" value="Ja" id="AangehechteAcceptJa" checked>
+        <input type="radio" name="AangehechteAccept" value="Ja" id="AangehechteAcceptJa" checked data-product="96000003">
         <label for="AangehechteAcceptJa">Wij maken wél gebruik van de acceptgiro</label>
     </div>
     <div class="Answer ownLineA">
-        <input type="radio" name="AangehechteAccept" value="Nee" id="AangehechteAcceptNee">
+        <input type="radio" name="AangehechteAccept" value="Nee" id="AangehechteAcceptNee" data-product="96000006">
         <label for="AangehechteAcceptNee">Wij maken géén gebruik meer van de acceptgiro</label>
     </div>
     
@@ -284,11 +284,11 @@
     
     <div class="Question ownLine">Uitvoering</div>
     <div class="Answer ownLineA">
-        <input type="radio" name="Uitvoering-EJC" value="Acceptgiros" id="Acceptgiros" title="Vink dit aan als u acceptgiro's wilt bestellen" onChange="$('.sjabloonKeus').find('input').prop('checked', false).prop('disabled', this.checked);">
+        <input type="radio" name="Uitvoering-EJC" value="Acceptgiros" id="Acceptgiros" title="Vink dit aan als u acceptgiro's wilt bestellen" onChange="$('.sjabloonKeus').find('input').prop('checked', false).prop('disabled', this.checked);" data-product="96000007">
         <label for="Acceptgiros">Acceptgiro's</label>
     </div>
     <div class="Answer ownLineA">
-        <input type="radio" name="Uitvoering-EJC" value="Combiformulieren" id="Combiformulieren" title="Vink dit aan als u combiformulieren wilt bestellen" onChange="processCombi(this.checked, 'sjabloonKeus'); $('.sjabloonKeusBrief').find('input').prop('checked', false).prop('disabled', this.checked);" checked > 
+        <input type="radio" name="Uitvoering-EJC" value="Combiformulieren" id="Combiformulieren" title="Vink dit aan als u combiformulieren wilt bestellen" onChange="processCombi(this.checked, 'sjabloonKeus'); $('.sjabloonKeusBrief').find('input').prop('checked', false).prop('disabled', this.checked);" checked data-product="96000004"> 
         <label for="Combiformulieren">Combiformulieren, met als brief:</label>
     </div>
     <div class="sjabloonKeus sjabloonKeusCombi" style="margin-left: 2em; clear: both;">
@@ -305,7 +305,7 @@
             </div>
         </div>
         <div class="Answer ownLineA">
-            <input type="radio" name="EJC-Sjabloon" id="EJCOverlay" value="Overlay">
+            <input type="radio" name="EJC-Sjabloon" id="EJCOverlay" value="Overlay" data-product="96000005">
             <label for="GemBrief">Brieftekst wordt gemaild</label>
             <span class="Vraagteken">?</span>
             <div id="HelpEJC-Overlay" class="Help">
@@ -314,7 +314,7 @@
         </div>
     </div>
     <div class="Answer ownLineA">
-        <input type="radio" name="Uitvoering-EJC" value="Brieven" id="EJC-brieven" title="Vink dit aan als u brieven wilt bestellen zonder acceptgiro" onChange="processCombi(this.checked, 'sjabloonKeus'); $('.sjabloonKeusCombi').find('input').prop('checked', false).prop('disabled', this.checked);">
+        <input type="radio" name="Uitvoering-EJC" value="Brieven" id="EJC-brieven" title="Vink dit aan als u brieven wilt bestellen zonder acceptgiro" onChange="processCombi(this.checked, 'sjabloonKeus'); $('.sjabloonKeusCombi').find('input').prop('checked', false).prop('disabled', this.checked);" data-product="96000035">
         <label for="EJC-brieven">Brieven zonder acceptgiro</label>
     </div>
     
@@ -332,7 +332,7 @@
                 </div>
             </div>
             <div class="Answer ownLineA">
-                <input type="radio" name="EJC-BriefSjabloon" id="EJC-Overlay" value="Overlay" disabled>
+                <input type="radio" name="EJC-BriefSjabloon" id="EJC-Overlay" value="Overlay" data-product="96000005" disabled>
                 <label for="EJC-Overlay">Brieftekst wordt gemaild</label>
                 <span class="Vraagteken">?</span>
                 <div id="HelpEJC-Overlay" class="Help">
@@ -1029,7 +1029,7 @@ NABEWERKING
             <input type="checkbox" name="AKB-antwenv" value="AntwEnv-Adres" id="AKBAE-Adres" onchange="connectToggleVisible(this.checked, '#AKBAE-Adresgegevens');">
             <label for="AKBAE-Adres">Tekst: adres (hieronder invullen)</label>
             </span>
-            <textarea id="AKBAE-Adresgegevens" class="SubAnswer" name="ABK-antwenv-adres" class="hidden" cols="50" rows="4">Vul hier het volledige adres in</textarea>
+            <textarea type="hidden" id="AKBAE-Adresgegevens" class="SubAnswer" name="ABK-antwenv-adres" class="hidden" cols="50" rows="4" disabled>Vul hier het volledige adres in</textarea>
             <span class="SubAnswer">
             <input type="checkbox" name="AKB-antwenv" value="AntwEnv-Kleur" id="AKBAE-Kleur">
             <label for="AKBAE-Kleur">Antwoordenveloppen drukken in kleur</label>
@@ -1041,7 +1041,7 @@ NABEWERKING
         </div>
         
         <div class="Answer ownLineA">
-            <input type="checkbox" name="Bijlagen" value="Bijsluiter-Kopietoezegging" id="BijlaBijsluiterKopie">
+            <input type="checkbox" name="Bijlagen" value="Bijsluiter-Kopietoezegging" id="BijlaBijsluiterKopie" data-product="96000148">
             <label for="BijlaBijsluiterKopie">Bijsluiter kopie toezegging</label>
             <span class="Vraagteken">?</span>
             <div class="Help">
@@ -1049,7 +1049,7 @@ NABEWERKING
             </div>
         </div>
         <div class="Answer ownLineA">
-            <input type="checkbox" name="Bijlagen" value="Brief-LRP-sjabloon" id="BijlaVrijeBriefLRP" onChange="connectToggleVisible(this.checked, '.briefPPS')">
+            <input type="checkbox" name="Bijlagen" value="Brief-LRP-sjabloon" id="BijlaVrijeBriefLRP" onChange="connectToggleVisible(this.checked, '.briefPPS')" data-product="96000020">
             <label for="BijlaVrijeBriefLRP">Brief o.b.v. door gemeente ingericht LRP-sjabloon</label>
             <span class="Vraagteken">?</span>
             <div class="Help">
@@ -1064,8 +1064,8 @@ NABEWERKING
             <input type="checkbox" name="Bijlagen" value="Brief-Digitaal" id="BijlaBriefDigitaal" onchange="connectToggle($(this).prop('checked'), '#BriefPrintwijze')">
             <label for="BijlaBriefDigitaal">Brief o.b.v. door gemeente digitaal aangeleverde bijlage&nbsp;</label>
             <select size="1" name="BriefPrintwijze" id="BriefPrintwijze" disabled>
-                <option value="Zwart-wit">Zwart-wit afdrukken</option>
-                <option value="Kleur">In kleur afdrukken</option>
+                <option value="Zwart-wit"  data-product="96000020">Zwart-wit afdrukken</option>
+                <option value="Kleur" data-product="96000022">In kleur afdrukken</option>
             </select>
             <span class="Vraagteken">?</span>
             <div class="Help">
@@ -1073,7 +1073,7 @@ NABEWERKING
             </div>
         </div>
         <div class="Answer ownLineA">
-            <input type="checkbox" name="Bijlagen" value="Folder-Digitaal" id="BijlaFolderDigitaal" onchange="connectToggle($(this).prop('checked'), '#FolderPrintwijze')">
+            <input type="checkbox" name="Bijlagen" value="Folder-Digitaal" id="BijlaFolderDigitaal" onchange="connectToggle($(this).prop('checked'), '#FolderPrintwijze')"  data-product="96000023">
             <label for="BijlaFolderDigitaal">Folder o.b.v. door gemeente digitaal aangeleverde bijlage&nbsp;</label>
             <select size="1" name="FolderPrintwijze" id="FolderPrintwijze" disabled>
                 <option value="Zwart-wit">Zwart-wit afdrukken</option>
@@ -1093,15 +1093,15 @@ NABEWERKING
             Producten die u hier aankruist worden door u aangeleverd. U ontvangt uiterlijk twee weken vóór de gewenste afleverweek per e-mail een pakbon. Deze dient u bij uw verzending te voegen. Vul uw e-mailadres in bij de contactgegevens.
             </div>
         <div class="Answer ownLineA">
-            <input type="checkbox" name="Bijlagen" id="BijlaAntwEnvGem" value="AntwEnv-gemeente">
+            <input type="checkbox" name="Bijlagen" id="BijlaAntwEnvGem" value="AntwEnv-gemeente" data-product="96000150">
             <label for="BijlaAntwEnvGem">Antwoordenvelop</label>
         </div>
         <div class="Answer ownLineA">
-            <input type="checkbox" name="Bijlagen" id="BijlaBijsluiterGem" value="Bijsluiter-gemeente">
+            <input type="checkbox" name="Bijlagen" id="BijlaBijsluiterGem" value="Bijsluiter-gemeente" data-product="96000140">
             <label for="BijlaBijsluiterGem">Bijsluiter</label>
         </div>
         <div class="Answer ownLineA">
-            <input type="checkbox" name="Bijlagen" id="BijlaBriefGemeente" value="Brief-Gemeente">
+            <input type="checkbox" name="Bijlagen" id="BijlaBriefGemeente" value="Brief-Gemeente" data-product="96000130">
             <label for="BijlaBriefGemeente">Brief</label>
             <span class="Vraagteken">?</span>
             <div class="Help">
@@ -1109,7 +1109,7 @@ NABEWERKING
             </div>
         </div>
         <div class="Answer ownLineA">
-            <input type="checkbox" name="Bijlagen" id="BijlaFolderGem" value="Folder-gemeente">
+            <input type="checkbox" name="Bijlagen" id="BijlaFolderGem" value="Folder-gemeente" data-product="96000150">
             <label for="BijlaFolderGem">Folder</label>
         </div>
     </div>
@@ -1121,11 +1121,11 @@ NABEWERKING
             <p>Deze materialen worden door de VKB verstuurd naar de drukker. U en de VKB ontvangen beide uiterlijk twee weken vóór de gewenste afleverweek per e-mail een pakbon. De VKB zal deze bij uw verzending voegen. Als u zelf geen materialen levert, hoeft u met de pakbon niets te doen. <strong>LET OP: Aangekruiste VKB-materialen dient u zelf bij de VKB te bestellen!</strong>
             </p></div>
         <div class="Answer ownLineA">
-            <input type="checkbox" name="Bijlagen" id="BijlaAntwEnvVKB" value="AntwEnv-VKB">
+            <input type="checkbox" name="Bijlagen" id="BijlaAntwEnvVKB" value="AntwEnv-VKB" data-product="96000150">
             <label for="BijlaAntwEnvVKB">VKB-antwoordenvelop</label>
         </div>
         <div class="Answer ownLineA">
-            <input type="checkbox" name="Bijlagen" id="BijlaFolderVKB" value="Folder-VKB">
+            <input type="checkbox" name="Bijlagen" id="BijlaFolderVKB" value="Folder-VKB" data-product="96000151">
             <label for="BijlaFolderVKB">VKB-folder</label>
         </div>
     </div>
@@ -1159,7 +1159,7 @@ EJC Bijlagen
             }
         </script>
         <div class="Answer ownLineA">
-            <input type="checkbox" name="Bijlagen" value="Brief-LRP-sjabloon" id="BijlaVrijeBriefLRPEJC" onChange="processVrijeBrief(this.checked)">
+            <input type="checkbox" name="Bijlagen" value="Brief-LRP-sjabloon" id="BijlaVrijeBriefLRPEJC" onChange="processVrijeBrief(this.checked)" data-product="96000020">
             <label for="BijlaVrijeBriefLRPEJC">Brief o.b.v. door gemeente ingericht LRP-sjabloon</label>
             <span class="Vraagteken">?</span>
             <div class="Help">
@@ -1167,11 +1167,11 @@ EJC Bijlagen
             </div>
         </div>
         <div class="Answer ownLineA briefPPS hidden" style="margin-left: 2em;">
-            <input type="checkbox" name="BriefOpmaakPPS" value="Printstudio" id="BriefOpmaakPPSEJC">
+            <input type="checkbox" name="BriefOpmaakPPS" value="Printstudio" id="BriefOpmaakPPSEJC" data-product="96000005">
             <label for="BriefOpmaakPPSEJC">Optioneel: briefpapier opmaken via PKN-Printstudio</label>
         </div>
         <div class="Answer ownLineA">
-            <input type="checkbox" name="Bijlagen" value="Brief-Digitaal" id="BijlaBriefDigitaalEJC">
+            <input type="checkbox" name="Bijlagen" value="Brief-Digitaal" id="BijlaBriefDigitaalEJC" data-product="96000006">
             <label for="BijlaBriefDigitaalEJC">Brief o.b.v. door gemeente digitaal aangeleverde bijlage</label>
             <span class="Vraagteken">?</span>
             <div class="Help">
@@ -1187,7 +1187,7 @@ EJC Bijlagen
             Producten die u hier aankruist worden door u aangeleverd. U ontvangt uiterlijk twee weken vóór de gewenste afleverweek per e-mail een pakbon. Deze dient u bij uw verzending te voegen. Vul uw e-mailadres in bij de contactgegevens.
             </div>
         <div class="Answer ownLineA">
-            <input type="checkbox" name="Bijlagen" id="BijlaBriefGemeenteEJC" value="Brief-Gemeente">
+            <input type="checkbox" name="Bijlagen" id="BijlaBriefGemeenteEJC" value="Brief-Gemeente" data-product="96000130">
             <label for="BijlaBriefGemeenteEJC">Brief</label>
             <span class="Vraagteken">?</span>
             <div class="Help">

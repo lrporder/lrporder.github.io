@@ -30,6 +30,10 @@
     { id: 96000007, product: "Printen", price: "0,08" },            // afdrukken acceptgiro
     { id: 96000003, product: "Printen", price: "0,16" },            // afdrukken combola blanco
     { id: 96000004, product: "Printen", price: "0,17" },            // afdrukken combola PKN-logo
+    { id: 96000020, product: "Printen bijlage", price: "0,07" },    // afdrukken bijlage enkelzijdig zwart-wit
+    { id: 96000021, product: "Printen bijlage", price: "0,10" },    // afdrukken bijlage dubbelzijdig zwart-wit
+    { id: 96000022, product: "Printen bijlage", price: "0,25" },    // afdrukken bijlage enkelzijdig kleur
+    { id: 96000023, product: "Printen bijlage", price: "0,45" },    // afdrukken bijlage dubbelzijdig kleur
     { id: 96000122, product: "Antw.Env. bijvoegen", price: "0,01" }, // antwoordenvelop uit gemeente
     { id: 96000148, product: "Bijsluiter", price: "0,02" },         // bijsluiter kopie toezegging
     { id: 96000153, product: "Folder bijvoegen", price: "0,01" },   // folder Solidariteitskas
@@ -39,7 +43,10 @@
     { id: 96000106, product: "Envelop", price: "0,05" },            // envelop PKN
     { id: 96000104, product: "Envelop", price: "0,07" },            // C5-envelop PKN
     { id: 96000123, product: "Antw.Env. aangepast", price: "0,25" }, // antwoordenvelop via printstudio
-    { id: 96000150, product: "Folder bijvoegen", price: "0,01" },   // folder via gemeente
+    { id: 96000150, product: "Antw.env. bijvoegen", price: "0,01" },   // Antw.env. via gemeente / VKB
+    { id: 96000130, product: "Brief bijvoegen", price: "0,01" },   // Brief via gemeente
+    { id: 96000140, product: "Bijsluiter bijvoegen", price: "0,01" },   // Bijsluiter via gemeente
+    { id: 96000151, product: "Folder bijvoegen", price: "0,01" },   // folder via gemeente / VKB
     { id: 96000157, product: "Antw.Env. standaard", price: "0,07" }, // antwoordenvelop Uw antw. wordt opgehaald
     { id: 96001001, product: "Inpakken", price: "0,02" },
     { id: 96001004, product: "Schoonsnijden", price: "0,02" },
@@ -294,6 +301,7 @@
     };
     
     function connectToggleVisible(on, target){
+        (on) ? $(target).prop('disabled', false) : $(target).prop('disabled', true);
         (on) ? $(target).show() : $(target).hide();
     };
     
@@ -400,7 +408,7 @@
                 var val = urlParams[key];
                 allUrlParams += key+": "+val+"\n";
             }
-            alert(allUrlParams);
+            //alert(allUrlParams);
         };
         
         // als bestelling via kerkbalans.nl: Start anders en route class VKB
