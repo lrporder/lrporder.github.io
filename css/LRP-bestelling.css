@@ -30,9 +30,8 @@ fieldset {
 }
 
 .bestellingstekst {
-    background-color: rgb(250, 237, 245);
-    border:         solid #CF3835 4px;
-    float:          left;
+    background-color: #CEF3A4;
+    border:         solid 4px #5d9f11;
     clear:          both;
     margin-top:     1em;
     padding:        0.5em 2em;
@@ -241,6 +240,15 @@ hr {
 ::-moz-selection {
     color:          white;
     background-color: rgb(164, 50, 136);
+}
+
+.bestellingstekst ::selection {
+    color:          white;
+    background-color: #305A00;
+}
+.bestellingstekst ::-moz-selection {
+    color:          white;
+    background-color: #305A00;
 }
 
 .Uitroepteken {
