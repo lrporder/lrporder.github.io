@@ -313,6 +313,7 @@
                 .prop('novalidate', true)
                 .find('.Question, .Answer, .Toelichting, .Vraagteken, .starcomment, #Selectieoverzicht').not(target).hide()
                 .find('input, select').prop('disabled', true);
+            $('#AkbIncasso, #AkbAcceptgiro, #AkbIdeal').prop('disabled', false);
         } else {
             $(target).parent('form')
                 .prop('novalidate', false)

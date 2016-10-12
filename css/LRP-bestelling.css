@@ -2,7 +2,7 @@
 PKN-kleuren:
 Rood:       #CF3835     rgb(207, 56, 53)
 Oranje:     #E98C00     rgb(233, 140, 0)
-Donkerroze: #BB3288     rgb(184, 50, 136) 
+Donkerroze: #BB3288     rgb(184, 50, 136)
 */
 * {
     box-sizing: border-box;
@@ -347,7 +347,7 @@ hr {
     border:         1px solid #E98C00;
     box-shadow:     0 0 4px #E98C00;
 }
-    
+
 .goNext {
     float:          right;
     font-family:    Verdana,"DejaVu Sans",sans-serif !important; /* override browser settings for input */
@@ -403,6 +403,7 @@ hr {
 .ownLineA {
     float: none;
     clear: both;
+    white-space: nowrap; /* doesn't prevent all floating elements to wrap, but it helps */
 }
 
 .newSection {
@@ -480,9 +481,9 @@ hr {
     background-color: #F75D59;
     border: 5px solid red;
     border-radius: 0.5em;
-    clear: both; 
-    float: left; 
-    margin-left: 180px; 
+    clear: both;
+    float: left;
+    margin-left: 180px;
     margin-bottom: 1em;
     padding: 1em;
 }
@@ -558,7 +559,7 @@ hr {
     z-index: 100;
     pointer-events: none;
 }
- 
+
 /* title */
 #errorBox h2 {
 	color:white;
