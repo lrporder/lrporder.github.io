@@ -448,6 +448,7 @@
                     ItemsViaKBnl += ", Folders";
                 };
                 
+                $('.ViaKBnl').html('<p>U kunt nu uw bestelling bij het LRP-team ten behoeve van de actie Kerkbalans plaatsen. Gegevens van uw bestelling via www.kerkbalans.nl zijn zo veel mogelijk verwerkt.</p><p><b>Bij kerkbalans.nl is aangegeven dat het LRP-team de hierna genoemde materialen ontvangt en verwerkt in uw bestelling.</b></p><p id="BesteldViaKBnl">' + ItemsViaKBnl + '</p>');
             };
             $('.ViaKBnl').show();
             
