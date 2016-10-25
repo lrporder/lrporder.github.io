@@ -141,6 +141,7 @@
         if("M" in urlParams){
             results += $('#BesteldViaKBnl').html() + eol; // Bestelde producten via kerkbalans.nl
             results += 'Bestelnummer: ' + urlParams['M'] + eol; // Magentonummer via kerkbalans.nl
+            results += 'URL: ' + window.location.href + eol; // add url in case #BesteldViaKBnl is broken
         }
         
         results += eol + "UserAgent: " + navigator.userAgent + eol;
