@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Creditor ID Calc</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <script>
+    function getModulo(account){
+        var tempstr = account + "232100"; // add NL (23 + 21) + 00
+        var partLength = 10; // prevent calculations on too large numbers
+        while (tempstr.length > partLength) {
+            var part = tempstr.substring(0, partLength);
+            tempstr = (part % 97) + tempstr.substring(partLength);
+        };
+
+        checker = 98 - (tempstr % 97) // calculate check digit
+		if (checker < 10) { checker = "0" + checker }; // add leading zero if necessary
+        result = "NL" + checker + "ZZZ" + account;	// build creditor id string
+
+        document.getElementById('result').innerHTML = "Result: " + result; // show result
+    }
+    </script>
+    <style>
+    body {
+		font-family:    Verdana, "DejaVu Sans", sans-serif;
+        padding: 5% 20%;
+    }
+    
+    fieldset {
+        border-radius: 0.4em;
+        background-color: #DDD;
+        padding: 2em 5%;
+        margin-top: 5%;
+        min-height: 4em;
+    }
+
+    legend {
+        font-size: 1.2em;
+        font-weight: bold;
+        background-color: #AAA;
+        color: black;
+        border: 1px solid black;
+        border-radius: 0.25em;
+        padding: 0.25em 1em;
+    }
+    </style>
+</head>
+
+<!-- BODY -->
+<body>
+	<form onSubmit="event.preventDefault(); getModulo(document.getElementById('account').value);">
+    <fieldset>
+        <legend>NL Creditor ID Calculator</legend>
+        <input type="text" name="account" id="account" pattern="\d{12}" title="Enter 12 digits" required>
+        <button type="submit">Go</button>		
+        <span id="result"></span>
+		<details>
+			<summary>Explanation</summary>
+			<p>Fill in 12-digit Creditor National ID, with 8-digit Creditor Trade Register Number (KvK Number) and 4-digit rolling number, and hit 'Go' to calculate Check Digit. Country Code is assumed to be 'NL' and Credit Business Code to be the default 'ZZZ'. The latter you may change at will.</p>
+		</details>		
+    </fieldset>
+    </form>
+</body>
