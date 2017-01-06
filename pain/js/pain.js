@@ -168,7 +168,7 @@ function showDetails(f, xml, nr) {
             // CHANGE FILE
             var newReqdColltnDt = $('#newReqdColltnDt').val();
             var newXML = changeFileTag(xml, 'ReqdColltnDt', ReqdColltnDt, newReqdColltnDt);
-            newFileNames.push(fileName);
+            newFileNames[nr] = fileNames[nr];
 
             // TODO: if it was already submitted, do extra stuff
             if ( $('#aangeboden').is(":checked") ) {
