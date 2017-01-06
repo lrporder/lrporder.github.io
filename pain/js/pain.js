@@ -175,7 +175,7 @@ function showDetails(f, xml, nr) {
                 // modify filename
                 var fileNameProper = fileNames[nr].replace(/\.[^/.]+$/, ""); // trim extension
                 var regexFN = new RegExp(fileNameProper, "g");
-                var fileNameExt = fileName.replace(regexFN, "");    // get extension
+                var fileNameExt = fileNames[nr].replace(regexFN, "");    // get extension
               
                 // check if file was modified before, VERY SLOPPY, TODO: clean this mess up
                 var fileNameParts = fileNameProper.split('_');
