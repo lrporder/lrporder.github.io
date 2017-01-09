@@ -1,0 +1,59 @@
+span, input, textarea, button {
+  float: left;
+  margin: 0.5em 0;
+}
+
+input:not([type="button"]) {
+  width: 40%;
+}
+
+input, textarea {
+  padding: 0 0.5em;
+  border-radius: 0.25em;
+}
+
+textarea, #subject {
+  width: 80%;
+}
+
+textarea {
+  height: 20em;
+  padding-top: 0.5em;
+}
+
+span {
+  clear: left;
+  width: 12%;
+  font-weight: bold;
+  text-align: right;
+  padding-right: 1.5em;
+}
+
+#reset, #submit, #gmail {
+  background-color: #EEE;
+  border: 1px solid #57788F;
+  border-radius: 0.25em;
+  padding: 0.25em;
+  cursor: pointer;
+  float: left;
+  margin-right: 3%;
+}
+
+#reset {
+  float: right;
+}
+
+@media screen and (max-width: 40.5em) {
+  body {
+    padding: 1em 5%;
+  }
+  h1 {
+    font-size: 1.8em;
+  }
+  input:not([type="button"]) {
+    width: 65%;
+  }
+  textarea, #subject {
+    width: 90%;
+  }
+}

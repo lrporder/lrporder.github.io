@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Mailto Converter</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="css/mkmail.css">
+    <script src="js/mkmail.js"></script>
+</head>
+<body>
+  <fieldset>
+    <legend>Mailto Generator</legend>
+    <span>Link:</span>
+    <input type="text" id="link" placeholder="Geef eerder gemaakte link op t.b.v. wijzigingen" onchange="readLink(this.value)">
+    
+    <span>Aan:</span>
+    <input type="email" multiple id="to" placeholder="ontvanger(s) (komma-gescheiden)">
+
+    <span>Cc:</span>
+    <input type="email" multiple id="cc" placeholder="meelezer(s) (komma-gescheiden)">
+
+    <span>Bcc:</span>
+    <input type="email" multiple id="bcc" placeholder="anonieme meelezer(s) (komma-gescheiden)">
+
+    <span>Onderwerp:</span>
+    <input type="text" id="subject" placeholder="Dit is het onderwerp">
+
+    <span>Bericht:</span>
+    <textarea cols="98" rows="15" id="body" placeholder="Geef hier de tekst van het bericht op."></textarea>
+
+    <span>Link:</span>
+    <input type="button" id="submit" onClick="createLink(true);" value="Generieke link tonen">
+    <input type="button" id="gmail" onClick="createGmail();" value="Gmail link">
+    <button id="reset" onclick="location.reload(true);">Opnieuw beginnen</button>
+
+  </fieldset>
+
+  <details>
+      <summary>Toelichting</summary>
+    <h3>Doel</h3>
+    <p>Met deze tool kan een standaard mail worden opgemaakt en omgezet in een link. Deze link kan bijvoorbeeld in de browser worden toegevoegd aan de favorieten. Daarna is de concept-mail met één klik beschikbaar. Dit kan gebruikt worden om de functionaliteit van snelle stappen in Outlook te simuleren.</p>
+    
+    <h3>Gebruik</h3>
+    <p>Stel de concept-mail op. Geen enkel invulveld is verplicht. Meerdere e-mailadressen kunnen worden ingevuld, gescheiden door een komma (met of zonder spatie, maakt niet uit). Attachments worden door dit protocol niet ondersteund, maar in het bericht kunnen natuurlijk links worden geplaatst naar gedeelde documenten op bijv. Google Drive. Ook kunnen attachments later handmatig aan het concept-bericht worden toegevoegd. Na invullen kan een mailto-link worden verkregen of kan direct een nieuw bericht in Gmail worden opgesteld.</p>
+    
+    <h3>Waarom geen canned response gebruiken?</h3>
+    <p>Gmail biedt wel de Lab 'Canned responses' om standaard mails te sturen, maar dat werkt eigenlijk slechts als een slim klembord. Er kan alleen vooraf opgestelde tekst geplakt worden op de plek waar de cursor staat. Het is niet mogelijk om alvast geadresseerden, Cc, Bcc of onderwerp in te vullen. Daar staat tegenover dat met canned responses opgemaakte tekst inclusief plaatjes e.d. kunnen worden ingevoegd. Dat kan met de mailto oplossing niet (en kon met de snelle stappen in Outlook evenmin).</p>
+
+    <h3>Nadeel en oplossingen</h3>
+    <p>Een nadeel van deze mailto oplossing is, dat als je de body (het bericht) gebruikt, de automatische handtekening zoals ingesteld in Gmail wordt overschreven. Er zijn de volgende mogelijkheden:</p>
+    <ol>
+      <li>Het berichtveld kan worden leeggelaten. Zodra de conceptmail wordt geopend, staat de ingestelde handtekening erin. Vervolgens kan via een canned response of handmatig de berichttekst worden ingevoegd.</li>
+      <li>Als de berichttekst via deze tool wordt ingevuld, kan de handtekening erbij worden getypt. Daarbij is alleen platte tekst mogelijk.</li>
+      <li>Ten slotte is het mogelijk om de handtekening via een canned response toe te voegen zodra de conceptmail wordt geopend.</li>
+    </ol>
+  </details>
+  <div id="License"><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">License</a></div>
+</body>
+</html>

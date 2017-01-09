@@ -1,0 +1,61 @@
+body {
+    padding: 0 10%;
+    font-family: Verdana, "DejaVu Sans", sans-serif;
+}
+
+h2, h3, span, input, label, p {
+    float: left
+}
+
+h2, h3, p {
+    clear: both;
+    margin-bottom: 0;
+}
+
+fieldset {
+    border-radius: 0.4em;
+    background-color: #DDD;
+    padding: 2em 5%;
+    margin-top: 5%;
+}
+
+legend {
+/*    -ms-transform: translate(-70%, 60%) rotate(320deg); /* IE 9 */
+/*    -webkit-transform: translate(-70%, 60%) rotate(320deg); /* Chrome, Safari, Opera */
+/*    transform: translate(-70%, 60%) rotate(320deg);
+*/
+    font-size: 1.2em;
+    font-weight: bold;
+    background-color: #AAA;
+    color: black;
+    border: 1px solid black;
+    border-radius: 0.25em;
+    padding: 0.25em 1em;
+}
+
+.noPointerEvents {
+    pointer-events: none; /* so it doesn't mess up drag events for parent */
+}
+
+.hidden {
+    display: none;
+}
+
+.label {
+    clear: left;
+    width: 35%;
+}
+
+/* =============
+ *   LICENSE 
+ * =============  
+ */
+#License {
+    clear: both;
+    width: 25%;
+    margin: auto;
+    padding-top: 2em;
+    font-size: 0.6em;	
+    text-align: center;	
+}
+
