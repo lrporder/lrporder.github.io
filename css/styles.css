@@ -3,7 +3,7 @@ body {
     font-family: Verdana, "DejaVu Sans", sans-serif;
 }
 
-h2, h3, span, input, label, p {
+h2, h3, span, input, label, p, ol, li {
     float: left
 }
 
