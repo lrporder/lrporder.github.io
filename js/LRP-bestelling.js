@@ -16,7 +16,7 @@
     var productperbestelling = [
     { id: 96000000, product: "Per bestelling", price: 25 },
     { id: 96000005, product: "Inbrengen brief", price: 60 },
-    { id: 96001000, product: "Inpakken", price: 10 },
+    { id: 96001000, product: "Inpakken", price: "12,50" },
     { id: 96000018, product: "Looplijst", price: 25 },
     { id: 96000019, product: "Opmaak brief", price: 60 },            // logo's of plaatjes buiten LRP om
     { id: 96000024, product: "Looplijst via e-mail", price: 25 },
