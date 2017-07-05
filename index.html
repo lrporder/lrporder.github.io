@@ -736,7 +736,7 @@ INRICHTING LRP SOLIDARITEITSKAS
 
     <span class="Question">Aanschrijving</span>
     <span class="Answer">
-        <select size="1" name="ActieAanschrijving" id="ActieAanschrijvingSK">
+        <select size="1" name="ActieAanschrijving" id="ActieAanschrijvingSK" onchange="$('#SKWarning').show()">
             <option value="PE-naam">Gezinsnaam (PE-naam)</option>
             <option value="Geregistreerdennaam" selected>Geregistreerdennaam</option>
         </select>
@@ -745,6 +745,9 @@ INRICHTING LRP SOLIDARITEITSKAS
     <div id="HelpAanschrijvingSK" class="Help">
         <p>Om per pastorale eenheid aan te schrijven, vinkt u het eerste vakje ”Gezinsnaam (PE-Naam)” aan. Hiermee worden alle PE-hoofden op gezinsnaam aangeschreven. Geselecteerde kinderen worden op hun eigen naam aangeschreven. U kunt er ook voor kiezen om alle geselecteerden op hun eigen naam aan te schrijven. Dan vinkt u het vakje “geregistreerdenaam” aan. Het LRP-team hanteert voor de Solidariteitskas standaard de geregistreerdennaam.</p>
     </div>
+	<div id="SKWarning" class="Help">
+		<p>LET OP: het is ongebruikelijk om voor de Solidariteitskas te kiezen voor aanschrijving op PE-naam. Ten eerste hoeven niet beide echtelieden (belijdend) lid te zijn. Ten tweede vereist dit ook dat de selectie alleen PE-hoofden (en inwonende kinderen) selecteert. Als de selectie bijv. alle belijdende leden ophaalt, wordt het PE-hoofd aangeschreven als 'Dhr. en Mevr.' en de partner daarnaast op zijn/haar eigen naam. Voorts is niet na te gaan welk bedrag moet worden afgedrukt. Als beide echtelieden lid zijn, moet er wellicht € 20 op de acceptgiro staan en als één van beide lid is € 10. Kies dus alleen voor PE-aanschrijving als u zeker bent van een passende selectie en een volledig correcte verwerking.</p>
+	</div>
 
     <div class="Question ownLine">Selectie</div>
     <p id="SK-selectie-uitleg" class="Toelichting">Als in LRP een correcte selectie beschikbaar is, kunt u de eerste optie kiezen en het selectienummer opgeven. U kunt ook kiezen voor één van de standaardselecties die dan door het LRP-team voor uw gemeente zal worden aangemaakt. Dit zijn:</p>
