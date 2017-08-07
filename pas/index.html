@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>SleutelApp</title>
+	<style>
+		.card {
+			float: left;
+			width: 400px;
+			height: 600px;
+			margin: 50px;
+			border: 4px solid black;
+		}
+		
+		.header {
+			height: 3em;
+			padding: 16px 16px;
+			color: white;
+			background-color: #E98C00;
+		}
+		
+		.body {
+			padding: 16px 16px;
+		}
+		
+		.text {
+			color: #BB3288;
+		}
+		
+		.menuitem {
+			color: #BB3288;
+			font-size: 1.5em;
+			border: 1px solid #CCC;
+			border-radius: 2px;
+			padding: 8px;
+			margin: 16px 16px;
+			height: 80px;
+			vertical-align: middle;
+		}
+		
+		.menuitem:hover {
+			background-color: #CCC;
+		}
+		
+		.menuicon {
+			font-size: 3em;
+			font-weight: bold;
+			color: grey;
+			height: 80px;
+			float: left;
+			margin-left: 16px;
+		}
+		
+		.menutext {
+			float: left;
+			font-size: 1.5em;
+			font-weight: bold;
+			height: 80px;
+			vertical-align: top;
+			margin-top: 20px;
+			margin-left: 16px;
+		}
+		
+		h1 {
+			margin-top: 0;
+		}
+		
+		.center {
+			text-align: center;
+		}
+		
+		.progress {
+			background: linear-gradient(to right, #E98C00 0%, #E98C00 60%, #CCCCCC 61%, #CCCCCC 100%);
+			height: 8px;
+			border-radius: 1em;
+			width: 100%;
+			text-align: center;
+	</style>
+
+<!-- BODY -->
+<body>
+    <div class="card">
+		<div class="header">
+			<h1>Activation</h1>
+		</div>
+		<div class="body">
+			<h2 class="text">Activation mode:</h2>
+			<div class="menuitem">
+				<div class="menuicon">#</div>
+				<div class="menutext">Manual</div>
+			</div>
+			<div class="menuitem">
+				<span class="menuicon">#</span>
+				<span class="menutext">QR code</span>
+			</div>
+		</div>
+	</div>
+	<div class="card">
+		<div class="header">
+			<h1>One time password</h1>
+		</div>
+		<div class="body center">
+			<h2 class="text" style="margin-top: 3em;">Your one time password is:</h2>
+			<h1 class="text" style="margin: 5em 0 3em;">123456</h1>
+			<div class="progress"></div>
+			<span class="text">Remaining time</span>
+		</div>
+	</div>
+</body>
+</html>
