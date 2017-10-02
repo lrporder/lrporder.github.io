@@ -90,6 +90,8 @@
             // indien AKB, blijft C5-VKB mogelijk, maar wel afstemmen
             if (actie !== "AKB") {
                 $('option[value="C5-VKB"]').prop('disabled', true);
+				$('option[value="Venster-PPS"]').prop('disabled', true);
+				$('option[value="C5-PPS"]').prop('disabled', true);
             }
             
             $('.bestellingstekst').find('textarea').prop('value', ''); // voorkomt append in textarea, whytf het niet vervangt weet ik niet
