@@ -599,9 +599,9 @@
     <p class="Toelichting">Als in LRP een correcte selectie beschikbaar is, kunt u de eerste optie kiezen en het selectienummer opgeven. U kunt ook kiezen voor één van de standaardselecties die dan door het LRP-team voor uw gemeente zal worden aangemaakt / gecontroleerd. Dit zijn:</p>
     <span class="selectieCat">Kerkbalans-selecties (PE-hoofden + inwonende kinderen):</span>
     <ul>
-        <li class="SelExpl StndSel1">Standaardselectie 11: <em>Belijdende leden of doopleden</em> ouder dan 21 (of de door u opgegeven leeftijd) die PE-hoofd of inwonend kind zijn
-        <li class="SelExpl StndSel2">Standaardselectie 12: <em>Belijdende leden, doopleden en ongedoopte kinderen</em> die PE-hoofd zijn of inwonend kind ouder dan 21 (of de door u opgegeven leeftijd)
-        <li class="SelExpl StndSel3" style="font-weight: bold;">Standaardselectie 13: <em>Belijdende leden, doopleden, ongedoopte kinderen en blijkgevers</em> die PE-hoofd zijn of inwonend kind ouder dan 21 (of de door u opgegeven leeftijd)
+        <li class="SelExpl StndSel1">Standaardselectie 11: Alle PE-hoofden die belijdend lid of dooplid zijn en alle kinderen die belijdend lid of dooplid zijn en ouder dan 21 (of de door u opgegeven leeftijd)
+        <li class="SelExpl StndSel2">Standaardselectie 12: Alle PE-hoofden excl. blijkgevers en alle kinderen ouder dan 21 (of de door u opgegeven leeftijd) excl. blijkgevers
+        <li class="SelExpl StndSel3" style="font-weight: bold;">Standaardselectie 13: Alle PE-hoofden en alle kinderen ouder dan 21 (of de door u opgegeven leeftijd)
     </ul>
     <span class="selectieCat">Eindejaarscollecte-selecties (PE-hoofden):</span>
     <ul>
@@ -1004,11 +1004,11 @@ NABEWERKING
             <label for="AKBAE-UAWBUO">Antwoordenvelop met Kerkbalanslogo en tekst "Uw antwoord wordt bij u opgehaald"</label>
         </div>
         <div class="Answer ownLineA">
-            <input type="checkbox" name="Bijlagen" value="AntwEnvPPS" id="AntwEnvPPS" data-product="96000123" onchange="connectToggleVisible($(this).prop('checked'), '#AKB-antwenv');">
-            <label for="AntwEnvPPS">Antwoordenvelop met specifieke bedrukking</label>
+            <input type="checkbox" name="Bijlagen" value="AntwEnvPPS" id="AntwEnvPPS" data-product="96000123">
+            <label for="AntwEnvPPS">Antwoordenvelop met specifieke bedrukking als vorig jaar</label>
             <span class="Vraagteken">?</span>
             <div class="Help">
-            U hebt de mogelijkheid om uw eigen antwoordenvelop te ontwerpen. U kunt uw eigen tekst of logo aanleveren. Optioneel kan ook een port-betaald stempel worden afgedrukt (hetgeen niet betekent dat de portokosten al zijn voldaan).
+            Als u vorig jaar ons antwoordenveloppen hebt laten maken met een eigen retouradres of logo, kan dat nog steeds o.b.v. dezelfde opmaak. Het is niet meer mogelijk om ons nieuwe antwoordenveloppen te laten ontwerpen of gewijzigde opmaak door te geven.
             </div>
         </div>
         <div id="AKB-antwenv" class="hidden">
