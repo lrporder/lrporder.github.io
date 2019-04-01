@@ -179,11 +179,11 @@
     <div class="Question ownLine">Toezeggingsformulier (sjabloon)</div>
     <div class="Answer ownLineA">
         <input type="radio" name="KB-Sjabloon" value="Standaard" id="ToezBronsjabloon" title="Vink dit aan als u van het standaard toezeggingsformulier gebruik wilt maken" onChange="$('.LaatsteToezegging').find('input').prop('disabled', false);" checked>
-        <label for="ToezBronsjabloon">Standaard toezeggingsformulier gebruiken</label>
+        <label for="ToezBronsjabloon">Landelijk sjabloon toezeggingsformulier gebruiken</label>
     </div>
     <div class="Answer ownLineA">
         <input type="radio" name="KB-Sjabloon" value="Gemeentesjabloon" id="ToezGemeentesjabloon" title="Vink dit aan als u een eigen sjabloon in LRP hebt opgesteld en gekoppeld aan het fonds" onChange="$('.LaatsteToezegging').find('input').prop('disabled', true);">
-        <label for="ToezGemeentesjabloon">Eigen sjabloon staat klaar of wordt afgestemd met LRP-team</label>
+        <label for="ToezGemeentesjabloon">Eigen gemeentesjabloon staat klaar of wordt afgestemd met LRP-team</label>
         <span class="Vraagteken">?</span>
         <div id="HelpKB-Sjabloon" class="Help">
             <p>U kunt kiezen tussen een eigen tekst op de toezeggingsbrief (gemeentesjabloon) of de standaard brief zoals deze is opgesteld door het LRP-Team. De toezeggingsbrief is zo compact dat normaalgesproken alleen de koptekst in aanmerking komt voor een gewijzigde invulling via een gemeentesjabloon. Voor de standaard tekst vinkt u "Bovenstaande gebruiken" aan.  Wanneer u een eigen tekst wenst te gebruiken, vinkt u het vakje “eigen sjabloon” aan. Hierbij is het van belang dat u in LRP zelf het gewenste gemeentesjabloon aan het fonds koppelt of laat koppelen. De bijdragenadministrateur kan dat doen in het fondsjaar 2015, tabblad “Selectie”. Voorbeelden van de standaard toezeggingsbrieven vindt u <a href="http://lrp-netwerk.pkn.nl/dienstverlening/geldwerving/kerkbalans">hier</a>.</p>
@@ -594,7 +594,12 @@
         <p>Om per pastorale eenheid aan te schrijven, vinkt u het eerste vakje ”Gezinsnaam (PE-Naam)” aan. Hiermee worden alle PE-hoofden op gezinsnaam aangeschreven. Geselecteerde kinderen worden op hun eigen naam aangeschreven. U kunt er ook voor kiezen om alle geselecteerden  op hun eigen naam aan te schrijven. Dan vinkt u het vakje “geregistreerdenaam” aan. Het LRP-team hanteert standaard de PE-naam, zodat echtparen ook als echtpaar worden aangeschreven.</p>
     </div>
 
-    <div class="Question ownLine">Selectie</div>
+    <div class="Question ownLine">Selectienummer</div>
+    <span class="Answer">
+        <input type="number" min="0" max="9999999" name="SelectieNr" title="Vul het selectienummer in" required />
+    </span>
+    
+    <!--
     <div id="Selectieoverzicht">
     <p class="Toelichting">Als in LRP een correcte selectie beschikbaar is, kunt u de eerste optie kiezen en het selectienummer opgeven. U kunt ook kiezen voor één van de standaardselecties die dan door het LRP-team voor uw gemeente zal worden aangemaakt / gecontroleerd. Dit zijn:</p>
     <span class="selectieCat">Kerkbalans-selecties (PE-hoofden + inwonende kinderen):</span>
@@ -628,6 +633,7 @@
         }
     }
     </script>
+    <!--
     <div class="Answer ownLineA" id="StndSel0">
         <input type="radio" name="Selectie" value="SelectieNr" id="SelectieNr" title="Vink dit aan als in LRP al een correcte selectie gereed staat en vul het selectienummer in" onChange="validateSelectie(this.id);">
         <label for="SelectieNr">Selectienummer:&nbsp;</label>
@@ -659,7 +665,7 @@
     <div class="Answer ownLineA" id="StndSel6" onClick="validateSelectie(this.id)">
         <input type="radio" name="Selectie" value="Selectie-EJC23" id="Selectie6">
         <label for="Selectie3">Standaardselectie 23&nbsp;</label>
-    </div>
+    </div> -->
 
 </fieldset>
 
@@ -846,7 +852,7 @@ NABEWERKING
             <option value="C5-Eigen" data-product="96000101">U levert zelf C5-enveloppen aan LRP-team</option>
         </optgroup>
         <optgroup label="Anders:">
-            <option class="AAopts" value="Geen" id="optionEnvGeen">Geen envelop nodig</option>
+            <option class="AAopts" value="Geen" id="optionEnvGeen">Geen envelop nodig / u pakt zelf in</option>
             <option value="Onbekend">Onbekend (er wordt contact opgenomen)</option>
         </optgroup>
     </select>
@@ -898,7 +904,7 @@ NABEWERKING
             </select>
         </span>
         <span class="Vraagteken">?</span>
-        <div id="HelpEigenSort" class="Help"><p>Als u kiest voor een eigen, aangepaste sortering, dient u deze zelf te hebben aangemaakt en gekoppeld in het fonds. Een sortering waarbij vrije gebieden een rol spelen werkt alleen bij combiformulieren, niet bij losse acceptgiro's. De betreffende vrije gebieden dienen in het fonds te worden aangegeven, rechts naast het veld waar de sortering wordt opgegeven. In verband met de complexiteit van een sortering op vrij gebied kan het LRP-team niet verantwoordelijk worden gehouden voor eventuele fouten op dit onderdeel. Het verdient aanbeveling uw sortering te testen in de <a href="http://www.lrp-oefen.pkn.nl">oefenomgeving</a>.</p></div>
+        <div id="HelpEigenSort" class="Help"><p>Als u kiest voor een eigen, aangepaste sortering, dient u deze zelf te hebben aangemaakt en gekoppeld in het fonds. Een sortering waarbij vrije gebieden een rol spelen werkt alleen bij combiformulieren, niet bij losse acceptgiro's. De betreffende vrije gebieden dienen bij de sortering te worden aangegeven. In verband met de complexiteit van een sortering op vrij gebied kan het LRP-team niet verantwoordelijk worden gehouden voor eventuele fouten op dit onderdeel. Het verdient aanbeveling uw sortering te testen in de <a href="http://www.lrp-oefen.pkn.nl">oefenomgeving</a>.</p></div>
 </div>
 
 <!-- Week van ontvangst -->
