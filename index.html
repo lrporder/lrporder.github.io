@@ -546,12 +546,13 @@
 
 <fieldset id="LRP-inrichting" class="AKB EJC Adhoc VKB"><legend>Inrichting LRP</legend>
 
+<!-- Gedeactiveerd i.v.m. overgang naar nieuwe selecties waarbij 'als vorig jaar' voor verwarring kan zorgen.
     <div class="Question ownLine LRPalsvorigjaar">Als vorig jaar</div>
     <div class="Answer ownLineA LRPalsvorigjaar">
         <input type="checkbox" name="LRP-inrichting" value="AlsVorigJaar" id="LRPAlsVorigJaar" title="Vink dit aan als u dit onderdeel gelijk wilt houden aan vorig jaar" onChange="processAlsVorigJaar(this.checked, '.LRPalsvorigjaar');">
         <label for="LRPAlsVorigJaar">Inrichting LRP als vorig jaar</label>
     </div><br><br>
-
+-->
     <span class="Question">Rekeningnummer</span>
     <span class="Answer">
         <input type="text" name="ActieRekNr" pattern='N?L?\d{0,2}[A-Z]{0,4}\d{4,10}' title="Vul uw rekeningnummer in (IBAN mag, hoeft niet). Vul '0000' in als u niet verder kunt en vermeld bij de opmerkingen later wat het rekeningnummer moet zijn." required onChange="checkAS(this.value, 'errorCheckAS', 'checkAS');" />
@@ -673,13 +674,13 @@
 INRICHTING LRP SOLIDARITEITSKAS
 ==============================-->
 <fieldset id="LRP-inrichting-SK" class="SK"><legend>Inrichting LRP</legend>
-
+<!-- Gedeactiveerd i.v.m. overgang naar nieuwe selecties waarbij 'als vorig jaar' voor verwarring kan zorgen.
     <div class="Question ownLine LRP-SK-alsvorigjaar">Als vorig jaar</div>
     <div class="Answer ownLineA LRP-SK-alsvorigjaar">
         <input type="checkbox" name="LRP-SK-inrichting" value="AlsVorigJaar" id="LRP-SK-AlsVorigJaar" title="Vink dit aan als u dit onderdeel gelijk wilt houden aan vorig jaar" onChange="processAlsVorigJaar(this.checked, '.LRP-SK-alsvorigjaar');">
         <label for="LRP-SK-AlsVorigJaar">Inrichting LRP als vorig jaar</label>
     </div>
-
+-->
     <div class="Question ownLine">Aparte bestellingen voor belijdende en doopleden?</div>
     <p class="Toelichting">Als u voor de bijdragen van belijdende leden en doopleden een afzonderlijk rekeningnummer gebruikt, of als u later alléén belijdende leden een herinnering wilt sturen, kies dan voor twee bestellingen.</p>
     <span class="Answer"><input type="checkbox" name="Belijdende_en_Doopleden_Apart" id="BLDLApart" value="Ja" onChange="processSKTweeBestellingen(this.checked);"><label for="BLDLApart">Twee bestellingen</label></span>
