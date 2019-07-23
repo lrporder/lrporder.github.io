@@ -631,7 +631,7 @@
     <div class="Answer ownLineA" id="StndSel0">
         <input type="radio" name="Selectie" value="SelectieNr" id="SelectieNr" title="Vink dit aan als in LRP al een correcte selectie gereed staat en vul het selectienummer in" onChange="validateSelectie(this.id);">
         <label for="SelectieNr">Selectienummer:&nbsp;</label>
-        <input type="number" name="ActieSlctNr" id="ActieSlctNr" title="Vul het selectienummer uit LRP in" onclick="document.getElementById('SelectieNr').checked = true;" value="" />
+        <input type="number" name="ActieSlctNr" id="ActieSlctNr" title="Vul het selectienummer uit LRP in" onclick="document.getElementById('SelectieNr').checked = true;" value="Eigen" />
     </div>
     <div class="Answer ownLineA" id="StndSelKB1" onClick="validateSelectie(this.id)" style="padding-top: 0.5em;">
         <input type="radio" name="Selectie" value="Selectie-KB1" id="Selectie1">
@@ -639,7 +639,7 @@
         <input type="number" name="SelectieLeeftijd" id="Slct1Age" min="16" max="30" placeholder="21">
     </div>
     <div class="Answer ownLineA" id="StndSelKB2" onClick="validateSelectie(this.id)">
-        <input type="radio" name="Selectie" value="Selectie-KB2" id="Selectie3" checked>
+        <input type="radio" name="Selectie" value="Selectie-KB2" id="Selectie3">
         <label for="Selectie3">Standaardselectie KB2 vanaf leeftijd&nbsp;</label>
         <input type="number" name="SelectieLeeftijd" id="Slct3Age" min="16" max="30" placeholder="21">
     </div>
