@@ -1,0 +1,1687 @@
+﻿<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html lang="nl">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>LRP-Bestelling</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <base target="_blank" /> <!-- open all links in new tab -->
+
+    <link rel="stylesheet" href="css/LRP-bestelling.css" />
+    <style></style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+    <!--<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>-->
+    <script src="js/jquery.tools.min.js"></script>
+
+	<!-- from https://raw.githubusercontent.com/Flamenco/jsPDF/master/dist/jspdf.min.js -->
+    <script src="js/jspdf.min.js"></script>
+
+    <!-- from https://raw.githubusercontent.com/drench/blowfish.js/master/blowfish.js -->
+    <script src="js/blowfish.js"></script>
+
+    <script src="js/encrypted.js"></script>
+
+    <!-- deze als laatst -->
+    <script src="js/LRP-bestelling.js"></script>
+</head>
+
+<!-- BODY -->
+<body>
+
+<!--=========================
+    HEADER
+==========================-->
+
+<header>
+<a href="http://www.protestantsekerk.nl"><img alt="Protestantse Kerk in Nederland" src="images/logo.png" /></a>
+<img alt="Geloof.Hoop.Liefde" src="images/motto.png" style="float: right; margin-top: 20px;" />
+</header>
+
+<!--=========================
+    MENUBARS
+==========================-->
+<ul class="Nav">
+    <li class="NavLink">Help</li>
+    <li class="NavLink">Contact</li>
+    <li class="NavLink">Links</li>
+    <li><a href="https://docs.google.com/document/d/1RZmUau48-xlmWFklBg18LbFSIvHotOkXlZznJvYwBis/export?format=pdf" style="color: white; text-decoration: none;">Tarieven</a></li>
+    <li class="NavLink" style="float: right; font-size: 0; width: 10px; height: 10px;">Test</li>
+</ul>
+<ul class="Quicklinks" style="display: none;">
+    <li onclick="$('fieldset:visible').hide();$('fieldset#Start').show()">Start</li>
+    <li onclick="$('fieldset:visible').hide();$('fieldset#Gemeente').show()">Gemeente</li>
+    <li onclick="$('fieldset:visible').hide();$('fieldset#LRP-inrichting').show()">LRP-inrichting</li>
+    <li onclick="$('fieldset:visible').hide();$('fieldset#Toezeggingsformulier').show()">Toezeggingsformulier</li>
+    <li onclick="$('fieldset:visible').hide();$('fieldset#LRP-inrichting-SK').show()">LRP-inrichting-SK</li>
+    <li onclick="$('fieldset:visible').hide();$('fieldset#Nabewerking').show()">Nabewerking</li>
+    <li onclick="$('fieldset:visible').hide();$('fieldset#AKB-fieldset').show()">Maandelijkse verwerking</li>
+    <li onclick="$('fieldset:visible').hide();$('fieldset#Personalia').show()">Personalia</li>
+    <li onclick="$('fieldset:visible').hide();$('fieldset#Afronding').show()">Afronding</li>
+</ul>
+
+<div id="Kosten">
+    <div style="font-weight: bold; font-size: 1.2em;">Kostenindicatie</div>
+    <p style="font-size: 0.9em;">Deze kostenindicatie wordt steeds als u op 'verder' klikt berekend. Zie ook de <a href="https://docs.google.com/document/d/1RZmUau48-xlmWFklBg18LbFSIvHotOkXlZznJvYwBis/export?format=pdf">tarieflijst</a>. Er kunnen producten ontbreken als u koos voor een verwerking 'als vorig jaar'.</p><br>
+    <div id="productenperbestelling"></div>
+    <br>
+    <div style="text-decoration: underline; font-weight: bold;">Plus per stuk:</div>
+    <div id="productenperstuk"></div>
+</div>
+<div id="errorBox"><h2>U heeft iets niet of verkeerd beantwoord:</h2></div>
+<!--===========================
+    FIELDSET START
+==========================-->
+<fieldset id="Start" class="Start AKB EJC SK Adhoc"><legend>LRP-Bestelformulier</legend>
+<input type="hidden" value="Kerkbalans" id="Actie">
+<div class="noScriptWarning">
+    <H4>WAARSCHUWING</H4><p>Het gebruik van scripts in uw browser is uitgeschakeld. Het heeft géén zin om door te gaan, voordat u scripts hebt ingeschakeld en de pagina hebt ververst.
+    <ul>
+        <li>Internet Explorer: menu Extra (toetscombinatie Alt+X) > Internetopties > Beveiliging > Aangepast niveau > bijna onderin kunt u bij 'Uitvoeren van scripts' kiezen voor 'Inschakelen'.
+        <li>Firefox: in Firefox is javascript standaard ingeschakeld. Mogelijk hebt u een add-on als NoScript geïnstalleerd. Schakel deze uit voor deze pagina.
+        <li>Chrome: menu > Instellingen > onderin: Geavanceerde instellingen weergeven > onder het kopje Privacy klik op 'Instellingen voor inhoud...' > onder het kopje Javascript 'Alle sites toestaan' selecteren.
+        <li>Safari: menu Bewerken > Voorkeuren > Beveiliging > (Web)Inhoud > "JavaScript inschakelen" aanvinken.
+    </ul>
+</div>
+    <p>Met dit formulier kunt u een bestelling opmaken bij het LRP-team. Dit betreft financi&euml;le producten, dus toezeggingsformulieren, acceptgiro's, herinneringen, incasso's enz. Als u alleen enveloppen wilt bestellen, brengt u dan een bezoek aan de <a href="https://webwinkel.pkn.nl/">webwinkel</a>. Klik <a href="http://lrp-netwerk.pkn.nl/dienstverlening/sleutels">hier</a> voor het bestellen van LRP-inlogsleutels.</p>
+    <p>Als u het symbool<span class="Vraagteken" style="float: none;">?</span> tegenkomt, kunt u daarop klikken om een toelichting te krijgen bij de betreffende vraag of het bijbehorende product.</p>
+    <div class="Question ownLine">Actie waarop uw bestelling betrekking heeft</div>
+    <div class="Answer oneLineA">
+        <input type="radio" name="ActieNaam" value="Kerkbalans" id="ActieNaamKerkbalans" title="Vink dit aan als u materialen m.b.t. de actie Kerkbalans wilt bestelling" data-fsclass="AKB" required data-message="U moet iets kiezen" data-product="96000000">
+        <label id="ActieNaamKerkbalansLabel" for="ActieNaamKerkbalans">Kerkbalans (bestelbaar vanaf begin september)</label>
+    </div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="ActieNaam" value="Eindejaarscollecte" id="ActieNaamEJC" title="Vink dit aan als u materialen m.b.t. de eindejaarscollecte wilt bestellen" data-fsclass="EJC" data-product="96000000">
+        <label for="ActieNaamEJC">Eindejaarscollecte</label>
+    </div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="ActieNaam" value="Solidariteitskas" id="ActieNaamSK" title="Vink dit aan als u materialen m.b.t. de solidariteitskas wilt bestellen" data-fsclass="SK" data-product="96000000">
+        <label for="ActieNaamSK">Solidariteitskas (bestelbaar vanaf maart)</label>
+    </div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="ActieNaam" value="Overig" id="ActieNaamOverig" title="Vink dit aan als u materialen wilt bestellen voor een niet-landelijke actie" data-fsclass="Adhoc" data-product="96000000">
+        <label for="ActieNaamOverig">Overig (bv. Paascollecte, Kerkbladabonnement, Zendingscollecte, KNA mei-actie enz.)</label>
+    </div>
+</fieldset>
+
+<!--============================
+    OPMERKINGEN BIJ KERKBALANS
+=============================-->
+<fieldset id="KB-Opmerkingen" class="AKB"><legend>Vooraf bij het bestellen t.b.v. de actie Kerkbalans</legend>
+    <!-- input nodig omdat formvalidatie anders verdergaan blokkeert -->
+    <input type="hidden" value="void" id="leeg">
+    <p style="font-weight: bold;">Als u uw bestelling bij het LRP-team wilt laten combineren met folders, enveloppen en/of antwoordenveloppen van kerkbalans.nl (de VKB), begin dan <a href="http://www.kerkbalans.nl">daar</a> met uw bestelling. Na uw bestelling daar ontvangt u een mail met een link waarmee u uw bestelling bij het LRP-team kunt vervolgen. Deze route voorkomt misverstanden en vertraging in de levering.</p>
+    <p>Als u geen toezeggingsformulieren wilt bestellen, maar alléén (een deel van) de maandelijkse verwerking, zoals acceptgiro's of incasso's, dan is dit formulier niet voor u. Neem contact op met de orderadministratie. In dit geval is persoonlijk contact het handigst.<p>
+    <p>Blanco acceptgiro's mogen niet worden geleverd. Ook blanco toezeggingsformulieren kunnen niet worden besteld. Wel is <a href="http://lrp-netwerk.pkn.nl/download/CAwdEAwUUkdGXUQ=/">hier</a> een model te downloaden dat u voor eigen gebruik kunt aanpassen. Als u later voor specifieke personen alsnog een toezeggingsformulier wilt maken, kunt u deze ook vooringevuld in LRP genereren.</p>
+    <p class="toggleDiv"><span class="Vraagteken">?</span><span class="Uitroep">&nbsp;Aanvullende toezeggingsformulieren maken in LRP?</span></p>
+    <div class="Help">
+    <ul>
+        <li>Zorg dat de betreffende personen onderdeel uitmaken van de selectie die in het fonds is gekoppeld
+        <li>Zorg dat in het fondsjaar, tabblad "Selectie" gemeentesjablonen zijn gekoppeld waarbij de acceptgiro is weggehaald (tenzij u beschikt over een C-contract, waardoor u zelf acceptgiro's mag printen). Op de plek van de acceptgiro kan wel een adresblok worden afgedrukt t.b.v een vensterenvelop. U kunt de acceptgiro uitschakelen en het adresblok inschakelen via de instellingen van het gemeentesjabloon.
+        <li>In het fondsjaar, tabblad "Selectie" ziet u de personen die kunnen worden aangeschreven. Dat is iedereen in de selectie voor wie nog geen uitnodiging was gegenereerd. In het tabblad "Selectie" klikt u op "Genereer brieven voor de hele selectie". Eventueel moet u door de helpdesk in het fonds het vinkje "DO financieel beheer" laten uitzetten voor u deze knop mag gebruiken.
+        <li>Als voor bepaalde personen tóch geen toezeggingsformulier wordt gegenereerd, en ze dus blijven staan in het tabblad "Selectie", subtabblad "Geregistreerden zonder brief en zonder toezegging", kunt u als bijdrageadministrateur in hun geregistreerdendossier bekijken of ze niet de aanmerking 'Kan nooit bijdragen' of 'Wil nooit bijdragen' aan hebben staan.</li>
+    </ul>
+    </div>
+    <p>Klik op verder om te beginnen met uw bestelling.</p>
+</fieldset>
+<!--=========================
+    FIELDSET GEMEENTE
+==========================-->
+<fieldset id="Gemeente" class="AKB EJC SK Adhoc VKB"><legend>Gemeente</legend>
+    <p class="toggleDiv"><span class="Uitroepteken">!</span> <span class="Uitroep">Pas gefuseerd? Klik hier!</span></p>
+    <div class="Belangrijk">
+        <H4>Recent gefuseerd?</H4>
+        <p>Als uw gemeente voortkomt uit een recente fusie tussen een Hervormde gemeente, Gereformeerde Kerk en/of Evangelisch-Lutherse gemeente, kan het zijn dat in LRP bijvoorbeeld nog sprake is van twee gemeenten: de HG en de GK. Dan dient u voor beide afzonderlijk een bestelling te plaatsen. Ook moeten voor de gemeenten aparte rekeningnummers worden opgegeven waarop een <a href="http://lrp-netwerk.pkn.nl/dienstverlening/bankinformatie/acceptgiros">acceptgirocontract</a> bekend is. In LRP kan een rekeningnummer maar bij één gemeente worden geregistreerd.</p>
+        <p>Waarschijnlijk is bij de fusie de tenaamstelling van het rekeningnummer aangepast. Als dat in LRP nog niet is doorgevoerd, laat het ons weten. Het LRP-team kan in LRP de tenaamstelling wijzigen voor rekeningnummers waarbij de DO als servicebureau het beheer voert. Stuur een kopie van een bankafschrift mee, zodat de registratie in LRP gelijk is aan wat bij de bank bekend is.</p>
+    </div>
+    <div class="ViaKBnl hidden">
+    </div>
+    <span class="Question">Gemeentenaam</span>
+    <span class="Answer">
+        <input type="text" id="Gemnm" name="GemeenteNaam" title="Vul uw gemeentenaam in" placeholder="Prot. Gem. Ons Dorp" style="width: 18em;" required />
+    </span><br>
+    <span class="Question">Gemeentenummer</span>
+    <span class="Answer">
+        <input type="text" id="GemNr" name="GemeenteNummer" maxlength="9" pattern="\d{1,4}.?[0-2]{0,1}[0]{0,3}" title="Vul uw gemeentenummer in (Alleen cijfers toegestaan)" placeholder="98760000" />
+    </span>
+    <span class="Question">Evt. wijknr/-naam</span>
+    <span class="Answer">
+        <input type="text" id="GemWijkNr" name="GemeenteWijknummer" title="Vul het wijknummer uit LRP in of de naam van de wijkgemeente" />
+    </span>
+        <span class="Vraagteken">?</span>
+    <div class="Help">
+        <H4>Bestelling per wijk</H4>
+        <p>Doorgaans is één bestelling per gemeente voldoende, maar u kunt ook per wijk een bestelling plaatsen. Dat kan nodig zijn in de volgende gevallen:
+            <ul>
+                <li>als u in LRP met wijkfondsen werkt
+                <li>als u niet voor alle wijken binnen uw gemeente een bestelling doet
+                <li>als de wijken elk een eigen werkwijze hebben, bijv. een apart rekeningnummer
+            </ul>
+        <p>Als u voor meerdere wijken een afzonderlijke bestelling plaatst, kunt u dit bestelformulier meerdere keren invullen en doormailen. Na elke keer doormailen kunt u de betreffende onderdelen van het formulier wijzigen en weer op "verzenden" klikken.</p>
+        <p>Let erop dat als u bij onderdeel “Nabewerking” eigen materiaal wilt laten bijvoegen, u per wijk een pakbon ontvangt en per wijk uw materialen in voldoende oplage dient aan te leveren.</p>
+    </div>
+</fieldset>
+
+<!--=========================
+    AKB TOEZEGGINGSFORMULIER
+==========================-->
+
+<fieldset id="Toezeggingsformulier" class="AKB VKB"><legend>Toezeggingsformulier</legend>
+    <p>Bij dit onderdeel kunt u aangeven hoe het toezeggingsformulier eruit moet komen te zien. Het bestellen van (extra) losse acceptgiro's is in het kader van de actie Kerkbalans zo uitzonderlijk dat dit niet in de reguliere bestelprocedure is opgenomen. Het is uiteraard wel mogelijk. Neem contact op met de orderadministratie, of noteer uw wensen in het blok voor opmerkingen onderaan dit onderdeel.</p>
+
+    <div class="Question ownLine KBalsvorigjaar">Als vorig jaar</div>
+    <div class="Answer ownLineA KBalsvorigjaar">
+        <input type="checkbox" name="KB-toezeggingsformulier" value="AlsVorigJaar" id="KbToezFormAlsVorigJaar" title="Vink dit aan als u dit onderdeel gelijk wilt houden aan vorig jaar" onChange="processAlsVorigJaar(this.checked, '.KBalsvorigjaar');">
+        <label for="KbToezFormAlsVorigJaar">Indeling toezeggingsformulier als vorig jaar</label>
+    </div>
+
+    <div class="Question ownLine">Toezeggingsformulier (sjabloon)</div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="KB-Sjabloon" value="Standaard" id="ToezBronsjabloon" title="Vink dit aan als u van het standaard toezeggingsformulier gebruik wilt maken" onChange="$('.LaatsteToezegging').find('input').prop('disabled', false);" checked>
+        <label for="ToezBronsjabloon">Landelijk sjabloon toezeggingsformulier gebruiken</label>
+    </div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="KB-Sjabloon" value="Gemeentesjabloon" id="ToezGemeentesjabloon" title="Vink dit aan als u een eigen sjabloon in LRP hebt opgesteld en gekoppeld aan het fonds" onChange="$('.LaatsteToezegging').find('input').prop('disabled', true);">
+        <label for="ToezGemeentesjabloon">Eigen gemeentesjabloon staat klaar of wordt afgestemd met LRP-team</label>
+        <span class="Vraagteken">?</span>
+        <div id="HelpKB-Sjabloon" class="Help">
+            <p>U kunt kiezen tussen een eigen tekst op de toezeggingsbrief (gemeentesjabloon) of de standaard brief zoals deze is opgesteld door het LRP-Team. De toezeggingsbrief is zo compact dat normaalgesproken alleen de koptekst in aanmerking komt voor een gewijzigde invulling via een gemeentesjabloon. Voor de standaard tekst vinkt u "Bovenstaande gebruiken" aan.  Wanneer u een eigen tekst wenst te gebruiken, vinkt u het vakje “eigen sjabloon” aan. Hierbij is het van belang dat u in LRP zelf het gewenste gemeentesjabloon aan het fonds koppelt of laat koppelen. Voorbeelden van de standaard toezeggingsbrieven vindt u <a href="http://lrp-netwerk.pkn.nl/dienstverlening/geldwerving/kerkbalans">hier</a>.</p>
+        </div>
+    </div>
+
+    <div style="clear: both" class="LaatsteToezegging">
+    <div class="Question ownLine">Toegezegd bedrag van laatst bekende toezegging vermelden?</div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="VorigeToez" value="Ja" id="VorigeToezJA" checked>
+        <label for="VorigeToezJA">Ja</label>
+    </div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="VorigeToez" value="Nee" id="VorigeToezNEE">
+        <label for="VorigeToezJA">Nee</label>
+    </div>
+    </div>
+
+    <div class="Question ownLine">Wel/geen acceptgiro aan het toezeggingsformulier</div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="AangehechteAccept" value="Ja" id="AangehechteAcceptJa" checked data-product="96000003">
+        <label for="AangehechteAcceptJa">Wij maken wél gebruik van de acceptgiro</label>
+    </div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="AangehechteAccept" value="Nee" id="AangehechteAcceptNee" data-product="96000006">
+        <label for="AangehechteAcceptNee">Wij maken géén gebruik meer van de acceptgiro</label>
+    </div>
+
+    <div class="Question ownLine">Aan gemeenteleden aan te bieden betaalwijzen</div>
+    <p class="Toelichting">
+    Acceptgiro en overige worden in principe standaard aangeboden. U kunt daarnaast kiezen voor automatische incasso (als een SEPA-incassocontract is afgesloten) en/of iDeal (als dat met de SKG is geregeld).</p>
+    <div class="Answer ownLineA">
+        <input type="checkbox" name="Betaalwijze" value="Acceptgiro" id="BetaalwijzeAcceptgiro" checked>
+        <label for="BetaalwijzeAcceptgiro">Acceptgiro</label>
+    </div>
+    <div class="Answer ownLineA">
+        <input type="checkbox" name="Betaalwijze" value="Overig" id="BetaalwijzeOverig" checked>
+        <label for="BetaalwijzeOverig">Overige</label>
+    </div>
+    <div class="Answer ownLineA">
+        <input type="checkbox" name="Betaalwijze" value="Incasso" id="BetaalwijzeIncasso">
+        <label for="BetaalwijzeIncasso">Automatische incasso</label>
+    </div>
+    <div class="Answer ownLineA">
+        <input type="checkbox" name="Betaalwijze" value="iDEAL" id="BetaalwijzeIdeal">
+        <label for="BetaalwijzeIdeal">iDEAL</label>
+    </div>
+
+    <div class="Question ownLine">Digitale toezeggingen?</div>
+    <p class="Toelichting">Een deel van de gemeenteleden kan een e-mail krijgen met het verzoek om digitaal de toezegging in te vullen, terwijl een ander deel het papieren toezeggingsformulier krijgt. Als u hiervan gebruik maakt (m.b.v. SKG Collect) zal het LRP-team e.e.a. met u afstemmen.</p>
+    <div class="Answer ownLineA">
+        <input type="checkbox" name="DigitaleToezeggingen" id="DigitaleToezeggingen" value="Ja">
+        <label for="DigitaleToezeggingen">Ja, wij maken gebruik van digitaal toezeggen via SKG Collect</label>
+    </div>
+
+    <div class="Question ownLine">Nieuw: Afstemming rond aan te bieden termijnen</div>
+    <p class="Toelichting">Vanwege het uitfaseren van de acceptgiro, of vanwege het niet kunnen incasseren in januari, stellen gemeenten soms prijs op het per betaalwijze kunnen aangeven van verschillende termijnen. Bijv. voor acceptgiro alleen januari, of voor incasso juist alle maanden behalve januari.Daarvoor is een sjabloon ontworpen. In overleg met het LRP-team kunt u hiervan gebruik maken.</p>
+    <div class="Answer ownLineA">
+        <input type="checkbox" name="TermijnenPerBetaalwijze" value="Ja" id="TermijnenPerBetaalwijze">
+        <label for="TermijnenPerBetaalwijze">Ja, wij hebben hiervoor belangstelling (het LRP-team neemt contact op)</label>
+    </div>
+
+    <div class="Question ownLine KBalsvorigjaar">Looplijst toevoegen?</div>
+    <div class="Answer ownLineA KBalsvorigjaar">
+	<input type="checkbox" id="Looplijst" name="Looplijst" value="Ja" title="Vink dit aan als u een looplijst wilt ontvangen." data-product="96000018" >
+	<label for="Looplijst">Ja, ik bestel ook een looplijst&nbsp;</label>
+        <select size="1" name="KBlooplijst">
+            <option value="Geen"></option>
+            <option value="Papier">op papier</option>
+            <option value="E-mail">via e-mail</option>
+        </select>
+        <span class="Vraagteken">?</span>
+        <div class="Help" id="HelpLooplijst">
+            <p>De looplijst is op dezelfde wijze gesorteerd als de toezeggingsformulieren. Een looplijst kan helpen bij het bezorgen en ophalen van de toezeggingsformulieren. U kunt één exemplaar bestellen. Deze kunt u naar wens kopi&euml;ren. Ook is in het fonds in LRP de looplijst te downloaden door de bijdrageadministrateur. Op verzoek kan deze ook worden doorgemaild.</p>
+        </div>
+    </div>
+
+    <div class="Question ownLine">Eventuele opmerkingen</div>
+    <div class="Answer ownlineA">
+        <textarea name="OpmBetaalwijze" id="OpmBetaalwijze" cols="84" rows="6"></textarea>
+    </div>
+
+</fieldset>
+
+<!--=====================
+    UITVOERING EINDEJAARSCOLLECTE
+======================-->
+<fieldset id="UitvoeringEJC" class="EJC">
+    <legend>Uitvoering</legend>
+
+    <p>Kies hier of u alleen acceptgiro's wenst (later eventueel aangevuld met bijlagen) of een combiformulier (brief met aangehechte acceptgiro). Bij een keuze voor combiformulieren kunt u aangeven of u de standaard brieftekst wilt laten afdrukken of een aangepaste tekst. De standaardbrief vindt u <a href="https://docs.google.com/document/d/1rOqh2g3TEvxE_fwN7Py-UF3sswYhLGUbVoJYbSVcwRY/edit?usp=sharing">hier</a>.</p>
+
+    <div class="Question ownLine EJCalsvorigjaar">Als vorig jaar</div>
+    <div class="Answer ownLineA EJCalsvorigjaar">
+        <input type="checkbox" name="EJC-uitvoering" value="AlsVorigJaar" id="EJCuitvoeringAlsVorigJaar" title="Vink dit aan als u dit onderdeel gelijk wilt houden aan vorig jaar" onChange="processAlsVorigJaar(this.checked, '.EJCalsvorigjaar');">
+        <label for="EJCuitvoeringAlsVorigJaar">Uitvoering eindejaarscollecte als vorig jaar</label>
+    </div>
+
+    <div class="Question ownLine">Uitvoering</div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="Uitvoering-EJC" value="Acceptgiros" id="Acceptgiros" title="Vink dit aan als u acceptgiro's wilt bestellen" onChange="$('.sjabloonKeus').find('input').prop('checked', false).prop('disabled', this.checked);" data-product="96000007">
+        <label for="Acceptgiros">Acceptgiro's</label>
+    </div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="Uitvoering-EJC" value="Combiformulieren" id="Combiformulieren" title="Vink dit aan als u combiformulieren wilt bestellen" onChange="processCombi(this.checked, 'sjabloonKeus'); $('.sjabloonKeusBrief').find('input').prop('checked', false).prop('disabled', this.checked);" checked data-product="96000004">
+        <label for="Combiformulieren">Combiformulieren, met als brief:</label>
+    </div>
+    <div class="sjabloonKeus sjabloonKeusCombi" style="margin-left: 2em; clear: both;">
+        <div class="Answer ownlineA">
+            <input type="radio" name="EJC-Sjabloon" id="StBrief" value="Standaard" checked >
+            <label for="StBrief">Standaardbrief</label>
+        </div>
+        <div class="Answer ownLineA">
+            <input type="radio" name="EJC-Sjabloon" id="GemBrief" value="GemeenteSjabloon">
+            <label for="GemBrief">Brieftekst staat als gemeentesjabloon in LRP</label>
+            <span class="Vraagteken">?</span>
+            <div id="HelpEJC-Sjabloon" class="Help">
+                <p>U kunt het gewenste sjabloon (laten) koppelen in het fonds, tabblad "Sjablonen".</p>
+            </div>
+        </div>
+        <div class="Answer ownLineA">
+            <input type="radio" name="EJC-Sjabloon" id="EJCOverlay" value="Overlay" data-product="96000005">
+            <label for="GemBrief">Brieftekst wordt gemaild</label>
+            <span class="Vraagteken">?</span>
+            <div id="HelpEJC-Overlay" class="Help">
+                <p>U kunt uw brieftekst als bijlage bij deze bestelling meesturen of later doormailen.</p>
+            </div>
+        </div>
+    </div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="Uitvoering-EJC" value="Brieven" id="EJC-brieven" title="Vink dit aan als u brieven wilt bestellen zonder acceptgiro" onChange="processCombi(this.checked, 'sjabloonKeus'); $('.sjabloonKeusCombi').find('input').prop('checked', false).prop('disabled', this.checked);" data-product="96000035">
+        <label for="EJC-brieven">Brieven zonder acceptgiro</label>
+    </div>
+
+        <div class="sjabloonKeus sjabloonKeusBrief" style="margin-left: 2em; clear: both;">
+            <div class="Answer ownlineA">
+                <input type="radio" name="EJC-BriefSjabloon" id="EJC-StBrief" value="Standaard" disabled>
+                <label for="EJC-StBrief">Standaardbrief</label>
+            </div>
+            <div class="Answer ownLineA">
+                <input type="radio" name="EJC-BriefSjabloon" id="EJC-GemBrief" value="GemeenteSjabloon" disabled>
+                <label for="EJC-GemBrief">Brieftekst staat als gemeentesjabloon in LRP</label>
+                <span class="Vraagteken">?</span>
+                <div id="HelpEJC-BriefSjabloon" class="Help">
+                    <p>U kunt het gewenste sjabloon (laten) koppelen in het fonds, tabblad "Sjablonen".</p>
+                </div>
+            </div>
+            <div class="Answer ownLineA">
+                <input type="radio" name="EJC-BriefSjabloon" id="EJC-Overlay" value="Overlay" data-product="96000005" disabled>
+                <label for="EJC-Overlay">Brieftekst wordt gemaild</label>
+                <span class="Vraagteken">?</span>
+                <div id="HelpEJC-Overlay" class="Help">
+                    <p>U kunt uw brieftekst als bijlage bij deze bestelling meesturen of later doormailen.</p>
+                </div>
+            </div>
+        </div>
+
+    <div class="Question ownLine">Looplijst toevoegen?</div>
+    <div class="Answer ownLineA">
+	<input type="checkbox" id="Looplijst-EJC" name="Looplijst" value="Ja" title="Vink dit aan als u een looplijst wilt ontvangen." data-product="96000018" >
+	<label for="Looplijst-EJC">Ja, ik bestel ook een looplijst&nbsp;</label>
+        <select size="1" name="EJClooplijst">
+            <option value="Geen"></option>
+            <option value="Papier">op papier</option>
+            <option value="E-mail">via e-mail</option>
+        </select>
+        <span class="Vraagteken">?</span>
+        <div class="Help" id="HelpLooplijst-EJC">
+            <p>De looplijst is op dezelfde wijze gesorteerd als de combiformulieren. Een looplijst kan helpen bij het bezorgen. U kunt één exemplaar bestellen. Deze kunt u naar wens kopi&euml;ren. Ook is in het fonds in LRP de looplijst te downloaden door de bijdrageadministrateur. Op verzoek kan deze ook worden doorgemaild.</p>
+        </div>
+    </div>
+
+    <div class="Question ownLine">Eventuele opmerkingen</div>
+    <div class="Answer ownlineA">
+        <textarea name="OpmBetaalwijze" id="OpmBetaalwijze-EJC" cols="84" rows="6"></textarea>
+    </div>
+</fieldset>
+
+<!--=====================
+    UITVOERING Solidariteitskas
+======================-->
+<fieldset id="UitvoeringSK" class="SK"><legend>Uitvoering</legend>
+    <p>Kies hier of u alleen acceptgiro's wenst of een combiformulier (brief met aangehechte acceptgiro). Bij een keuze voor combiformulieren kunt u aangeven of u de standaard brieftekst wilt laten afdrukken of een aangepaste tekst. De standaardbrief vindt u <a href="https://drive.google.com/open?id=0B7PAwNkP1CyRZ3l1RWxhOS1RaWM">hier</a> en de brieftekst in docx-formaat <a href="https://docs.google.com/document/d/1IAVx55CmhF-XOVEiSAfdN5RgGny-0rTkYleyr9hOZfo/export?format=docx">hier</a>.</p>
+
+    <div class="Question ownLine SKalsvorigjaar">Als vorig jaar</div>
+    <div class="Answer ownLineA SKalsvorigjaar">
+        <input type="checkbox" name="SK-uitvoering" value="AlsVorigJaar" id="SKuitvoeringAlsVorigJaar" title="Vink dit aan als u dit onderdeel gelijk wilt houden aan vorig jaar" onChange="processAlsVorigJaar(this.checked, '.SKalsvorigjaar');">
+        <label for="SKuitvoeringAlsVorigJaar">Uitvoering Solidariteitskas als vorig jaar</label>
+    </div>
+
+    <div class="Question ownLine">Uitvoering</div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="Uitvoering-SK" value="Acceptgiros" id="SK-Acceptgiros" title="Vink dit aan als u acceptgiro's wilt bestellen" onChange="$('.SKsjabloonKeus').find('input').prop('checked', false).prop('disabled', this.checked);" data-product="96000007" required >
+        <label for="SK-Acceptgiros">Acceptgiro's zonder brief erboven</label>
+    </div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="Uitvoering-SK" value="Combiformulieren" id="SK-Combiformulieren" title="Vink dit aan als u combiformulieren wilt bestellen" onChange="processCombi(this.checked, 'SKsjabloonKeus')" data-product="96000004" >
+        <label for="SK-Combiformulieren">Brieven met aangehechte acceptgiro (Combiformulieren), met als brief:</label>
+    </div>
+    <div class="SKsjabloonKeus" style="margin-left: 2em; clear: both;">
+        <div class="Answer ownlineA">
+            <input type="radio" name="UitvoeringBrieftekst" id="SKStBrief" value="Standaard">
+            <label for="SKStBrief">Standaardbrief</label>
+        </div>
+        <div class="Answer ownLineA">
+            <input type="radio" name="UitvoeringBrieftekst" id="SKGemBrief" value="GemeenteSjabloon">
+            <label for="SKGemBrief">Eigen sjabloon</label>
+            <span class="Vraagteken">?</span>
+            <div id="HelpSKSjabloon" class="Help">
+                <p>U kunt het gewenste sjabloon (laten) koppelen in het fonds, tabblad "Sjablonen".</p>
+            </div>
+        </div>
+        <div class="Answer ownLineA">
+            <input type="radio" name="UitvoeringBrieftekst" id="OverlaySK" value="BrieftekstDigitaal" data-product="96000005">
+            <label for="OverlaySK">Brieftekst wordt digitaal aangeleverd (€ 60,00 extra)</label>
+            <span class="Vraagteken">?</span>
+            <div id="HelpOverlaySK" class="Help">
+                <p>U kunt een brieftekst aanleveren als .doc(x), .pdf of .odt bestand. Houd rekening met min. 1/3 A4 (10 cm) ruimte onderin voor de acceptgiro.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function validateSKBedrag(){
+        if(document.getElementById("SK-bedrag-anders").checked){
+            $('#SK-ander-bedrag').prop('required', true);
+            $('#SK-ander-bedrag').prev('label').append('<span class="star" id="starAtAmt" title="Dit is een verplicht veld">&nbsp;&nbsp;*</span>');
+        } else {
+            $('#SK-ander-bedrag').prop('required', false).removeClass('invalid').val('');
+            $('.error').hide();
+            $('span#starAtAmt').remove();
+        }
+    }
+    </script>
+    <div class="Question ownLine">Te vermelden bedrag op acceptgiro</div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="AcceptgiroBedrag" id="SK-bedrag-tien" value="TienEuro" onChange="validateSKBedrag();">
+        <label for="SK-bedrag-tien">€ 10 (standaard)</label>
+    </div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="AcceptgiroBedrag" id="SK-bedrag-geen" value="Geen" onChange="validateSKBedrag();">
+        <label for="SK-bedrag-geen">Géén bedrag</label>
+        <span class="Vraagteken">?</span>
+        <div id="HelpSKGeenBedrag" class="Help">
+            <p>Als u geen bedrag laat afdrukken, kunnen later ook geen herinneringen worden aangemaakt. Zonder bedrag kan immers geen betalingsachterstand berekend worden. Let erop dat in de standaard brieftekst gevraagd wordt om tien euro.<p>
+        </div>
+    </div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="AcceptgiroBedrag" id="SK-bedrag-anders" value="Anders" onChange="validateSKBedrag();">
+        <label for="SK-bedrag-anders">Anders, namelijk: € </label>
+        <input type="text" size="5" name="AcceptgiroAnderBedrag" id="SK-ander-bedrag">
+        <span class="Vraagteken">?</span>
+        <div id="HelpSKAnderBedrag" class="Help">
+            <p>Als u een ander bedrag kiest, zorg dat ook dat u een eigen sjabloon / brieftekst aanlevert waarin dat bedrag wordt vermeld. In de standaard brief wordt gevraagd om € 10,00.</p>
+        </div>
+    </div>
+
+    <div class="Question ownLine">Folders toevoegen?</div>
+    <div class="Answer ownLineA">
+	<input type="checkbox" id="foldersSK" name="SolidariteitskasFolders" value="Ja" title="Vink dit aan als u folders wilt ontvangen." data-product="96000153">
+	<label for="foldersSK">Ja, ik bestel ook de folders</label>
+        <span class="Vraagteken">?</span>
+        <div class="Help" id="HelpFolders-SK">
+            <p>De folders zijn gratis. U betaalt alleen voor het couverteren. U kunt de folder <a href="https://drive.google.com/open?id=0B7PAwNkP1CyRRkJ6bnpfbFZ1TzQ">hier</a> inzien.</p>
+        </div>
+    </div>
+
+    <div class="Question ownLine">Eventuele opmerkingen</div>
+    <div class="Answer ownlineA">
+        <textarea name="Opmerking_Uitvoering" id="OpmUitvoering-SK" cols="84" rows="6"></textarea>
+    </div>
+</fieldset>
+
+<!--=====================
+    UITVOERING ADHOC
+======================-->
+<fieldset id="UitvoeringAdhoc" class="Adhoc"><legend>Uitvoering</legend>
+    <p>Kies hier of u alleen acceptgiro's wenst (later eventueel aangevuld met bijlagen) of een combiformulier (brief met aangehechte acceptgiro). Bij een keuze voor combiformulieren dient u aan te geven hoe de brieftekst wordt geleverd.</p>
+    <span class="Question">Actienaam</span>
+    <span class="Answer">
+        <input type="text" name="ActieFondsnaam" id="AdhocActie" required >
+    </span>
+    <span class="Vraagteken">?</span>
+    <div class="Help" id="HelpActieNaam">
+        <p>Geef de naam op van de actie waarvoor u een bestelling plaatst. Dit is de naam van het fonds of abonnement en dit wordt ook als onderwerp rechtsboven op de acceptgiro's afgedrukt.</p>
+    </div>
+
+    <div class="Question ownLine">Uitvoering</div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="Uitvoering" value="Acceptgiros" id="AcceptgirosAdhoc" title="Vink dit aan als u acceptgiro's wilt bestellen" onChange="$('.sjabloonKeusAdhoc').find('input').prop('checked', false).prop('disabled', this.checked);" data-product="96000007" >
+        <label for="AcceptgirosAdhoc">Acceptgiro's</label>
+    </div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="Uitvoering" value="Combiformulieren" id="CombiformulierenAdhoc" title="Vink dit aan als u combiformulieren wilt bestellen" onChange="processCombi(this.checked, 'sjabloonKeusAdhoc')" checked>
+        <label for="CombiformulierenAdhoc">Combiformulieren, met als brief:</label>
+    </div>
+    <div class="sjabloonKeusAdhoc" style="margin-left: 2em; clear: both;">
+        <div class="Answer ownlineA">
+            <input type="radio" name="Sjabloon" id="StBriefPSC" value="StandaardPaascollecte" data-product="96000004" checked >
+            <label for="StBriefPSC">Standaardbrief Paascollecte</label>
+        </div>
+        <div class="Answer ownLineA">
+            <input type="radio" name="Sjabloon" id="GemBriefAdhoc" value="GemeenteSjabloon" data-product="96000003">
+            <label for="GemBriefAdhoc">Eigen sjabloon is in LRP gekoppeld in het fonds</label>
+            <span class="Vraagteken">?</span>
+            <div id="HelpSjabloonAdhoc" class="Help">
+                <p>De bijdragenadministrateur kan het sjabloon in LRP koppelen in het fondsjaar, tabblad "Selectie".</p>
+            </div>
+        </div>
+        <div class="Answer ownLineA">
+            <input type="radio" name="Sjabloon" id="OverlayAdhoc" value="BrieftekstDigitaal" data-product="96000003">
+            <label for="OverlayAdhoc">Brieftekst wordt digitaal aangeleverd (€ 60,00 extra kosten)</label>
+            <span class="Vraagteken">?</span>
+            <div id="HelpOverlayAdhco" class="Help">
+                <p>U kunt een brieftekst aanleveren als .doc(x), .pdf of .odt bestand. Houd rekening met min. 1/3 A4 (10 cm) ruimte onderin voor de acceptgiro.</p>
+            </div>
+        </div>
+    </div>
+
+        <script>
+        function validateAdhocBedrag(){
+        if(document.getElementById("Adhoc-bedrag-anders").checked){
+            $('#Adhoc-ander-bedrag').prop('required', true);
+            $('#Adhoc-ander-bedrag').prev('label').append('<span class="star" id="starAtAHAmt" title="Dit is een verplicht veld">&nbsp;&nbsp;*</span>');
+        } else {
+            $('#Adhoc-ander-bedrag').prop('required', false).removeClass('invalid').val('');
+            $('.error').hide();
+            $('span#starAtAHAmt').remove();
+        }
+    }
+    </script>
+    <div class="Question ownLine">Te vermelden bedrag op acceptgiro</div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="AcceptgiroBedrag" id="Adhoc-bedrag-geen" value="Geen" onChange="validateAdhocBedrag();">
+        <label for="Adhoc-bedrag-geen">Géén bedrag</label>
+        <span class="Vraagteken">?</span>
+        <div id="HelpAdhocGeenBedrag" class="Help">
+            <p>Als u geen bedrag laat afdrukken, kunnen later ook geen herinneringen worden aangemaakt. Zonder bedrag kan immers geen betalingsachterstand berekend worden.<p>
+        </div>
+    </div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="AcceptgiroBedrag" id="Adhoc-bedrag-anders" value="Anders" onChange="validateAdhocBedrag();">
+        <label for="Adhoc-bedrag-anders">Een vast bedrag, namelijk: € </label>
+        <input type="text" size="5" name="AcceptgiroAnderBedrag" id="Adhoc-ander-bedrag">
+    </div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="AcceptgiroBedrag" id="Adhoc-bedrag-deelnemer" value="Conform_Toezegging" onChange="validateAdhocBedrag();">
+        <label for="Adhoc-bedrag-deelnemer">Het bedrag zoals ingevoerd bij de deelnemers in het fonds of abonnement</label>
+    </div>
+
+    <div class="Question ownLine">Eventuele opmerkingen</div>
+    <div class="Answer ownlineA">
+        <textarea name="OpmBetaalwijze" id="OpmBetaalwijzeAdhoc" cols="84" rows="6"></textarea>
+    </div>
+</fieldset>
+
+<!--=====================
+    INRICHTING LRP: AKB EJC Adhoc
+======================-->
+
+<fieldset id="LRP-inrichting" class="AKB EJC Adhoc VKB"><legend>Inrichting LRP</legend>
+
+<!-- Gedeactiveerd i.v.m. overgang naar nieuwe selecties waarbij 'als vorig jaar' voor verwarring kan zorgen.
+    <div class="Question ownLine LRPalsvorigjaar">Als vorig jaar</div>
+    <div class="Answer ownLineA LRPalsvorigjaar">
+        <input type="checkbox" name="LRP-inrichting" value="AlsVorigJaar" id="LRPAlsVorigJaar" title="Vink dit aan als u dit onderdeel gelijk wilt houden aan vorig jaar" onChange="processAlsVorigJaar(this.checked, '.LRPalsvorigjaar');">
+        <label for="LRPAlsVorigJaar">Inrichting LRP als vorig jaar</label>
+    </div><br><br>
+-->
+    <span class="Question">Rekeningnummer</span>
+    <span class="Answer">
+        <input type="text" name="ActieRekNr" pattern='N?L?\d{0,2}[A-Z]{0,4}\d{4,10}' title="Vul uw rekeningnummer in (IBAN mag, hoeft niet). Vul '0000' in als u niet verder kunt en vermeld bij de opmerkingen later wat het rekeningnummer moet zijn." required onChange="checkAS(this.value, 'errorCheckAS', 'checkAS');" />
+    </span>
+    <span class="Vraagteken">?</span>
+    <div id="HelpReknr" class="Help">
+        <p>Geef het rekeningnummer op waar de ontvangsten voor deze actie op moeten binnenkomen. Als u acceptgiro's bestelt, moet er een A/S-contract bekend zijn. Dat wordt gecontroleerd en eventueel wordt een venster getoond met de opties. Als u niet verder komt, vul dan '0000' in en vermeld later bij de opmerkingen het juiste rekeningnummer.</p>
+    </div>
+    <div id="errorCheckAS" class="errorCheckAS" style="display: none;">
+        <div id="checkAS" class="hidden">
+        </div>
+        <p>Ons is op het ingevulde rekeningnummer geen acceptgirocontract bekend. Er zijn de volgende opties:</p>
+        <ul>
+            <li>U hebt een tikfout gemaakt in het rekeningnummer. Controleer dat.
+            <li>Ons is mogelijk een acceptgirocontract bekend op een ander rekeningnummer van uw gemeente. Controleer of u het juiste rekeningnummer hebt gekozen en ingevuld. <b>Gebruik bij SKG-rekeningen nog het oude nummer. De rekeningnummers worden begin november automatisch geconverteerd. De nieuwe Rabo-nummers zijn in dit formulier nog niet bekend.</b>
+            <li>De lijst met ons bekende rekeningnummers waar dit bestelformulier naar kijkt bevat abusievelijk niet het door u opgegeven rekeningnummer. Als u eerder al succesvol acceptgiro's hebt besteld op dit rekeningnummer, ga dan gewoon verder. Vul desnoods '0000' in en vermeld later bij de opmerkingen het juiste rekeningnummer.
+            <li>Ons is geen acceptgirocontract bekend. Stuur een kopie op van het acceptgirocontract. Als u dat nog bij de bank moet regelen, hebt u onze gegevens als servicebureau nodig: S121, DO Protestantse Kerk LRP, te Utrecht. Als u over een C-contract beschikt, is het in orde. Vul desnoods '0000' in en vermeld later bij de opmerkingen het juiste rekeningnummer.
+            <li>U wilt helemaal geen acceptgiro's. Het is mogelijk om op de plaats van de acceptgiro alleen een adresblok af te drukken. Ga dan gewoon verder. Vul desnoods '0000' in en vermeld later bij de opmerkingen het juiste rekeningnummer.
+        </ul>
+    </div>
+
+    <span class="Question">Fondsnummer</span>
+    <span class="Answer">
+        <input type="number" min="3" max="20000" name="ActieNr" />
+    </span>
+    <span class="Vraagteken">?</span>
+    <div id="HelpFondsnr" class="Help">
+        <p>Het fondsnummer vindt u terug in LRP via het menu Bijdragenadministratie > Fondsen &amp; acties, in de eerste kolom van het overzicht. Tenzij er sprake is geweest van fusie kunt u hetzelfde fonds als vorig jaar gebruiken. Let op: Maakt u gebruik van wijkfondsen en een verzamelfonds dan zult u per wijkfonds een bestelling moeten doen. Het opgeven van het fondsnummer is niet verplicht, maar wel aanbevolen. Zeker als u bijvoorbeeld in LRP meerdere fondsen hebt staan met vergelijkbare namen, is verwarring bepaald niet uitgesloten.</p>
+    </div>
+
+    <span class="Question">Aanschrijving</span>
+    <span class="Answer">
+        <select size="1" name="ActieAanschrijving" id="ActieAanschrijving">
+            <option value="PE-naam" selected>Gezinsnaam (PE-naam)</option>
+            <option value="Geregistreerdennaam">Geregistreerdennaam</option>
+        </select>
+    </span>
+    <span class="Vraagteken">?</span>
+    <div id="HelpAanschrijving" class="Help">
+        <p>Om per pastorale eenheid aan te schrijven, vinkt u het eerste vakje ”Gezinsnaam (PE-Naam)” aan. Hiermee worden alle PE-hoofden op gezinsnaam aangeschreven. Geselecteerde kinderen worden op hun eigen naam aangeschreven. U kunt er ook voor kiezen om alle geselecteerden  op hun eigen naam aan te schrijven. Dan vinkt u het vakje “geregistreerdenaam” aan. Het LRP-team hanteert standaard de PE-naam, zodat echtparen ook als echtpaar worden aangeschreven.</p>
+    </div>
+
+    <span class="Question">Selectie</span>
+    <div id="Selectieoverzicht">
+    <p class="Toelichting">Als in LRP een correcte selectie beschikbaar is, kunt u de eerste optie kiezen en het selectienummer opgeven. U kunt ook kiezen voor één van de standaardselecties die dan door het LRP-team voor uw gemeente zal worden aangemaakt / gecontroleerd. Dit zijn:</p>
+    <span class="selectieCat">Kerkbalans-selecties (PE-hoofden + inwonende kinderen):</span>
+    <ul>
+        <li class="SelExpl StndSelKB1">Standaardselectie KB1: Alle PE-hoofden en kinderen die belijdend lid of dooplid zijn en ouder dan 21 (of de door u opgegeven leeftijd), uitzonderd: Wenst geen contact, Adres onbekend, Wil niet / Kan niet betalen
+        <li class="SelExpl StndSelKB2">Standaardselectie KB2: Als 1, maar incl. de Vrienden (voorm. blijkgevers)
+    </ul>
+    <span class="selectieCat">Eindejaarscollecte-selecties (PE-hoofden):</span>
+    <ul>
+        <li class="SelExpl StndSelEJC1">Standaardselectie EJC1: <em>Alle PE-hoofden ouder dan 21, uitzonderd: Wenst geen contact, Adres onbekend, Wil niet / Kan niet betalen</em>
+        <li class="SelExpl StndSelEJC2">Standaardselectie EJC2: <em>Alle PE-hoofden die lid zijn (belijdend lid of dooplid) en ouder dan 21, uitzonderd: Wenst geen contact, Adres onbekend, Wil niet / Kan niet betalen</em>
+    </ul>
+    </div>
+
+    <!-- Optie met sel.nr. is checked by default om te voorkomen dat men niets aanvinkt, en bij deze is nr invullen nog verplicht dus misverstand niet mogelijk -->
+    <script>
+    function validateSelectie(selected){
+        $('input[name="SelectieLeeftijd"]').val('');
+        if(document.getElementById("SelectieNr").checked){
+            $('#ActieSlctNr').prop('required', true);
+            $('.SelExpl').css('font-weight', 'normal');
+            $('#ActieSlctNr').prev('label').append('<span class="star" id="starAtNr" title="Dit is een verplicht veld">&nbsp;&nbsp;*</span>');
+        } else {
+            $('#ActieSlctNr').prop('required', false).removeClass('invalid').val('');
+            $('.error').hide();
+            $('.SelExpl').css('font-weight', 'normal');
+            $('.' + selected).css('font-weight', 'bold');
+            $('span#starAtNr').remove();
+        }
+    }
+    </script>
+
+    <div class="Answer ownLineA" id="StndSel0">
+        <input type="radio" name="Selectie" value="SelectieNr" id="SelectieNr" title="Vink dit aan als in LRP al een correcte selectie gereed staat en vul het selectienummer in" onChange="validateSelectie(this.id);">
+        <label for="SelectieNr">Selectienummer:&nbsp;</label>
+        <input type="number" name="ActieSlctNr" id="ActieSlctNr" title="Vul het selectienummer uit LRP in" onclick="document.getElementById('SelectieNr').checked = true;" value="Eigen" />
+    </div>
+    <div class="Answer ownLineA" id="StndSelKB1" onClick="validateSelectie(this.id)" style="padding-top: 0.5em;">
+        <input type="radio" name="Selectie" value="Selectie-KB1" id="Selectie1">
+        <label for="Selectie1">Standaardselectie KB1 vanaf leeftijd&nbsp;</label>
+        <input type="number" name="SelectieLeeftijd" id="Slct1Age" min="16" max="30" placeholder="21">
+    </div>
+    <div class="Answer ownLineA" id="StndSelKB2" onClick="validateSelectie(this.id)">
+        <input type="radio" name="Selectie" value="Selectie-KB2" id="Selectie3">
+        <label for="Selectie3">Standaardselectie KB2 vanaf leeftijd&nbsp;</label>
+        <input type="number" name="SelectieLeeftijd" id="Slct3Age" min="16" max="30" placeholder="21">
+    </div>
+    <div class="Answer ownLineA" id="StndSelEJC1" onClick="validateSelectie(this.id)" style="padding-top: 0.5em;">
+        <input type="radio" name="Selectie" value="Selectie-EJC21" id="Selectie4">
+        <label for="Selectie3">Standaardselectie EJC1&nbsp;</label>
+    </div>
+    <div class="Answer ownLineA" id="StndSelEJC2" onClick="validateSelectie(this.id)">
+        <input type="radio" name="Selectie" value="Selectie-EJC22" id="Selectie5">
+        <label for="Selectie3">Standaardselectie EJC2&nbsp;</label>
+    </div>
+
+</fieldset>
+
+<!--=============================
+INRICHTING LRP SOLIDARITEITSKAS
+==============================-->
+<fieldset id="LRP-inrichting-SK" class="SK"><legend>Inrichting LRP</legend>
+<!-- Gedeactiveerd i.v.m. overgang naar nieuwe selecties waarbij 'als vorig jaar' voor verwarring kan zorgen.
+    <div class="Question ownLine LRP-SK-alsvorigjaar">Als vorig jaar</div>
+    <div class="Answer ownLineA LRP-SK-alsvorigjaar">
+        <input type="checkbox" name="LRP-SK-inrichting" value="AlsVorigJaar" id="LRP-SK-AlsVorigJaar" title="Vink dit aan als u dit onderdeel gelijk wilt houden aan vorig jaar" onChange="processAlsVorigJaar(this.checked, '.LRP-SK-alsvorigjaar');">
+        <label for="LRP-SK-AlsVorigJaar">Inrichting LRP als vorig jaar</label>
+    </div>
+-->
+    <div class="Question ownLine">Aparte bestellingen voor belijdende en doopleden?</div>
+    <p class="Toelichting">Als u voor de bijdragen van belijdende leden en doopleden een afzonderlijk rekeningnummer gebruikt, of als u later alléén belijdende leden een herinnering wilt sturen, kies dan voor twee bestellingen.</p>
+    <span class="Answer"><input type="checkbox" name="Belijdende_en_Doopleden_Apart" id="BLDLApart" value="Ja" onChange="processSKTweeBestellingen(this.checked);"><label for="BLDLApart">Twee bestellingen</label></span>
+    <!-- class BLDLA tonen/hiden; bij selectie één selnr en alléén bel.leden disabelen/enabelen-->
+    <br><br>
+    <span class="Question">Rekeningnummer</span>
+    <span class="Answer">
+        <input type="text" name="ActieRekeningnummer" pattern='N?L?\d{0,2}[A-Z]{0,4}\d{4,10}' title="Vul uw rekeningnummer in (IBAN mag, hoeft niet). Vul '0000' in als u niet verder komt en geef later bij de opmerkingen het juiste rekeningnummer op." required onChange="checkAS(this.value, 'errorCheckAS-SK', 'checkAS-SK');" />
+    </span>
+    <span class="Vraagteken">?</span>
+    <div id="HelpReknrSK" class="Help">
+        <p>Geef het rekeningnummer op waar de ontvangsten voor deze actie op moeten binnenkomen. Als u acceptgiro's bestelt, moet er een A/S-contract bekend zijn. Dat wordt gecontroleerd en eventueel wordt een venster getoond met de opties. Als u niet verder komt, vul dan '0000' in en vermeld later bij de opmerkingen het juiste rekeningnummer.</p>
+    </div>
+    <div id="errorCheckAS-SK" class="errorCheckAS" style="display: none;">
+        <div id="checkAS-SK" class="hidden">
+        </div>
+        <p>Ons is op het ingevulde rekeningnummer geen acceptgirocontract bekend. Er zijn de volgende opties:</p>
+        <ul>
+            <li>U hebt een tikfout gemaakt in het rekeningnummer. Controleer dat.
+            <li>Ons is mogelijk een acceptgirocontract bekend op een ander rekeningnummer van uw gemeente. Controleer of u het juiste rekeningnummer hebt gekozen en ingevuld.
+            <li>De lijst met ons bekende rekeningnummers waar dit bestelformulier naar kijkt bevat abusievelijk niet het door u opgegeven rekeningnummer. Als u eerder al succesvol acceptgiro's hebt besteld op dit rekeningnummer, ga dan gewoon verder. Vul desnoods '0000' in en vermeld later bij de opmerkingen het juiste rekeningnummer.
+            <li>Ons is geen acceptgirocontract bekend. Stuur een kopie op van het acceptgirocontract. Als u dat nog bij de bank moet regelen, hebt u onze gegevens als servicebureau nodig: S121, DO Protestantse Kerk LRP, te Utrecht. Als u over een C-contract beschikt, is het in orde. Vul desnoods '0000' in en vermeld later bij de opmerkingen het juiste rekeningnummer.
+            <li>U wilt helemaal geen acceptgiro's. Het is mogelijk om op de plaats van de acceptgiro alleen een adresblok af te drukken. Ga dan gewoon verder. Vul desnoods '0000' in en vermeld later bij de opmerkingen het juiste rekeningnummer.
+        </ul>
+    </div>
+
+    <div class="BLDLA" >
+        <span class="Question">Rekeningnummer 2</span>
+        <span class="Answer">
+            <input type="text" name="ActieRekNrDL" pattern='N?L?\d{0,2}[A-Z]{0,4}\d{4,10}' title="Vul uw rekeningnummer in (IBAN mag, hoeft niet)" onChange="checkAS(this.value, 'errorCheckAS-SKDL', 'checkAS-SKDL');" />&nbsp;voor doopleden
+        </span>
+        <div id="errorCheckAS-SKDL" class="errorCheckAS" style="display: none;">
+            <div id="checkAS-SKDL" class="hidden">
+            </div>
+            <p>Ons is op het ingevulde rekeningnummer geen acceptgirocontract bekend. Er zijn de volgende opties:</p>
+            <ul>
+                <li>U hebt een tikfout gemaakt in het rekeningnummer. Controleer dat.
+                <li>Ons is mogelijk een acceptgirocontract bekend op een ander rekeningnummer van uw gemeente. Controleer of u het juiste rekeningnummer hebt gekozen en ingevuld.
+                <li>Ons is geen acceptgirocontract bekend. Stuur een kopie op van het acceptgirocontract. Als u dat nog bij de bank moet regelen, hebt u onze gegevens als servicebureau nodig: S121, DO Protestantse Kerk LRP, te Utrecht. Als u over een C-contract beschikt, is het in orde.
+                <li>U wilt helemaal geen acceptgiro's. Het is mogelijk om op de plaats van de acceptgiro alleen een adresblok af te drukken. Ga dan gewoon verder.
+            </ul>
+        </div>
+    </div>
+
+    <span class="Question">Fondsnummer</span>
+    <span class="Answer">
+        <input type="number" min="3" max="20000" name="ActieNr" />
+    </span>
+    <span class="Vraagteken">?</span>
+    <div id="HelpFondsnrSK" class="Help">
+        <p>Het fondsnummer vindt u terug in LRP via het menu Bijdragenadministratie > Fondsen &amp; acties, in de eerste kolom van het overzicht. Tenzij er sprake is geweest van fusie kunt u hetzelfde fonds als vorig jaar gebruiken. Let op: Maakt u gebruik van wijkfondsen en een verzamelfonds dan zult u per wijkfonds een bestelling moeten doen. Het opgeven van het fondsnummer is niet verplicht, maar wel aanbevolen. Zeker als u bijvoorbeeld in LRP meerdere fondsen hebt staan met de "kerkbalans" of "kerkelijke bijdrage" in de naam, is verwarring bepaald niet uitgesloten.</p>
+    </div>
+    <div class="BLDLA">
+        <span class="Question">Fondsnummer 2</span>
+        <span class="Answer">
+            <input type="number" min="3" max="20000" name="ActieNrDL" />
+            &nbsp;voor doopleden
+        </span>
+    </div>
+
+    <span class="Question">Aanschrijving</span>
+    <span class="Answer">
+        <select size="1" name="ActieAanschrijving" id="ActieAanschrijvingSK" onchange="$('#SKWarning').toggle()">
+            <option value="PE-naam">Gezinsnaam (PE-naam)</option>
+            <option value="Geregistreerdennaam" selected>Geregistreerdennaam</option>
+        </select>
+    </span>
+    <span class="Vraagteken">?</span>
+    <div id="HelpAanschrijvingSK" class="Help">
+        <p>Om per pastorale eenheid aan te schrijven, vinkt u het eerste vakje ”Gezinsnaam (PE-Naam)” aan. Hiermee worden alle PE-hoofden op gezinsnaam aangeschreven. Geselecteerde kinderen worden op hun eigen naam aangeschreven. U kunt er ook voor kiezen om alle geselecteerden op hun eigen naam aan te schrijven. Dan vinkt u het vakje “geregistreerdenaam” aan. Het LRP-team hanteert voor de Solidariteitskas standaard de geregistreerdennaam.</p>
+    </div>
+	<div id="SKWarning" class="Help">
+		<p>LET OP: het is ongebruikelijk om voor de Solidariteitskas te kiezen voor aanschrijving op PE-naam. Ten eerste hoeven niet beide echtelieden (belijdend) lid te zijn. Ten tweede vereist dit ook dat de selectie alleen PE-hoofden (en inwonende kinderen) selecteert. Als de selectie bijv. alle belijdende leden ophaalt, wordt het PE-hoofd aangeschreven als 'Dhr. en Mevr.' en de partner daarnaast op zijn/haar eigen naam. Voorts is niet na te gaan welk bedrag moet worden afgedrukt. Als beide echtelieden lid zijn, moet er wellicht € 20 op de acceptgiro staan en als één van beide lid is € 10. Kies dus alleen voor PE-aanschrijving als u zeker bent van een passende selectie en een volledig correcte verwerking.</p>
+	</div>
+
+    <div class="Question ownLine">Selectie</div>
+    <p id="SK-selectie-uitleg" class="Toelichting">Als in LRP een correcte selectie beschikbaar is, kunt u de eerste optie kiezen en het selectienummer opgeven. U kunt ook kiezen voor één van de standaardselecties die dan door het LRP-team voor uw gemeente zal worden aangemaakt. Dit zijn:</p>
+
+    <!--Optie met sel.nr. is checked by default om te voorkomen dat men niets aanvinkt, en bij deze is nr invullen nog verplicht dus misverstand niet mogelijk -->
+    <script>
+    function validateSKSelectie(selected){
+        if($('#SK-SelectieNr').is(':checked')){
+            $('#SK-SelectieNummer').prop('required', true);
+            if($('#BLDLApart').is(':checked')){
+                $('#SK-SelectieDL').prop('required', true);
+            };
+            $('.SelExpl').css('font-weight', 'normal');
+            $('#labelAtSKSelNr').append('<span class="star" id="starAtNr" title="Dit is een verplicht veld">&nbsp;&nbsp;*</span>');
+            $('#SK-Slct2Age').val('');
+        } else {
+            if($('#SK-Sel-BL').is(':checked')){
+                $('#SK-Slct2Age').val('');
+            };
+            $('#SK-SelectieNummer').prop('required', false).removeClass('invalid').val('');
+            $('#SK-SelectieDL').prop('required', false).removeClass('invalid').val('');
+            $('.error').hide();
+            $('.SelExpl').css('font-weight', 'normal');
+            $('.' + selected).css('font-weight', 'bold');
+            $('span#starAtNr').remove();
+        }
+    }
+    </script>
+    <div class="Answer ownLineA" id="SK-SelNr">
+        <input type="radio" name="ActieSelectie" value="SelectieNr" id="SK-SelectieNr" title="Vink dit aan als in LRP al een correcte selectie gereed staat en vul het selectienummer in" onChange="validateSKSelectie(this.id);">
+        <label id="labelAtSKSelNr" for="SK-SelectieNr">Selectienummer<span class="BLDLA">s</span>:&nbsp;</label>
+        <br class="BLDLA">
+        <input type="number" name="ActieSelectienummer" id="SK-SelectieNummer" title="Vul het selectienummer uit LRP in" onclick="document.getElementById('SK-SelectieNr').checked = true;" value="" style="margin-left: 2em;"/><span class="BLDLA">&nbsp;belijdende leden</span>
+        <div class="BLDLA" style="margin-top: 0.2em;">
+            <input type="number" name="ActieSelectie_DL" id="SK-SelectieDL" title="Vul het selectienummer voor doopleden in" onclick="document.getElementById('SK-SelectieNrs').checked = true;" value="" style="margin-left: 2em; clear: left;">
+            <span>&nbsp;doopleden</span>
+        </div><!-- clear left ivm chrome uitlijning inputs -->
+    </div>
+
+    <div class="Answer ownLineA" id="SK-BL" onClick="validateSKSelectie(this.id)">
+        <input type="radio" name="ActieSelectie" value="Belijdende_Leden" id="SK-Sel-BL">
+        <label for="SK-Sel-BL">Alléén belijdende leden&nbsp;</label>
+    </div>
+    <div class="Answer ownLineA" id="SK-BL-DL" onClick="validateSKSelectie(this.id)">
+        <input type="radio" name="ActieSelectie" value="Belijdende_en_Doopleden" id="SK-Sel-BL-DL">
+        <label for="SK-Sel-BL-DL">Belijdende én doopleden vanaf leeftijd:&nbsp;</label>
+        <input type="number" name="Selectie_Leeftijd" id="SK-Slct2Age" size="2" min="16" max="30" placeholder="21" value="">
+    </div>
+
+</fieldset>
+
+
+<!--
+=====================
+NABEWERKING
+=====================
+-->
+<fieldset id="Nabewerking" class="AKB EJC SK Adhoc VKB">
+<legend class="MyLegend">Nabewerking en verzending</legend>
+
+<!-- VERZENDWIJZE -->
+<script>
+// enable / disable .AAopts .PBopts
+// show / hide .AAshow .PBshow
+    // als AKB dan andere enveloppen aanbieden
+    // var actie = $('[name="ActieNaam"]:checked').attr('data-fsclass');
+
+</script>
+
+    <span class="Question">Verzendwijze</span>
+	<span class="Answer">
+    <select size="1" name="OrderVerzendwijze" id="Verzendwijze" onChange="processVerzendwijze(this.value);" required>
+		<option class="blankoption" value="">Kies uw verzendwijze</option>
+		<option value="PortBetaald" data-product="96001102">Port betaald direct naar gemeenteleden</option>
+		<option value="AfleverAdres" data-product="96001101">Pakket bezorgen op afleveradres</option>
+    </select>
+    </span>
+
+<!-- ID Enveloppen -->
+    <div id="Enveloppen">
+    <span class="Question">Enveloppen</span>
+    <span class="Answer">
+	<select name="OrderEnveloppen" size="1" id="Env" onChange="processEnvelop(this.value);" required>
+        <!-- voor keuze in enveloppen zie .js, is afhankelijk van AKB of niet -->
+        <option class="blankoption" value="" selected>Kies uw enveloppen:</option>
+        <optgroup label="Enveloppen acceptgiroformaat:">
+            <option value="Venster-PKN" data-product="96000106">Vensterenvelop met PKN-logo</option>
+            <option value="Venster-blanco" data-product="96000108">Vensterenvelop blanco</option>
+            <option value="Venster-Eigen" data-product="96000101">U levert zelf enveloppen aan LRP-team</option>
+            <option value="Venster-PPS" data-product="96000109">Vensterenvelop op te maken via PKN Printstudio</option>
+        </optgroup>
+        <optgroup label="Enveloppen C5-formaat (162 x 229 mm):">
+            <option value="C5-VKB">Kerkbalans-envelop via Kerkbalans.nl</option>
+            <option value="C5-PKN" data-product="96000104">PKN-envelop via LRP-team</option>
+            <option value="C5-PPS" data-product="96000109">Envelop eigen opmaak via LRP-team</option>
+            <option value="C5-Eigen" data-product="96000101">U levert zelf C5-enveloppen aan LRP-team</option>
+        </optgroup>
+        <optgroup label="Anders:">
+            <option class="AAopts" value="Geen" id="optionEnvGeen">Geen envelop nodig / u pakt zelf in</option>
+            <option value="Onbekend">Onbekend (er wordt contact opgenomen)</option>
+        </optgroup>
+    </select>
+    </span>
+    <span class="Vraagteken">?</span>
+        <div id="HelpOrderEnveloppen" class="Help"><p>Enveloppen met de tekst 'College van Kerkrentmeesters' zijn sinds begin 2016 niet meer beschikbaar. In plaats daarvan zijn er <a href="http://lrp-netwerk.pkn.nl/download/CAwdEAwUUkdGV0U=&inline=0">enveloppen met zwart-wit PKN-logo</a> linksboven en motto (Geloof – Hoop – Liefde) linksonder. Dit heeft twee redenen: ten eerste zegt 'College van Kerkrentmeesters' de ontvangers, zeker aan de rand van de kerk, niet altijd even veel. Ten tweede kunnen deze enveloppen ook gebruikt worden voor diaconale acties en hoeft daarvoor niet langer een neutrale blanco envelop te worden gebruikt.</p>
+        <p>Als u producten wilt laten bijvoegen die u hebt besteld via Kerkbalans.nl (antwoordenveloppen en/of folders), dan is het niet mogelijk om enveloppen op acceptgiro-formaat te bestellen. De Kerkbalans-producten zijn vanaf 2015 allemaal gericht op C5-formaat.<br>
+        Als u via Kerkbalans.nl enveloppen hebt besteld, is deze keuze hier reeds voor u aangegeven en kunt u dat niet aanpassen. Voor een wijziging van uw bestelling via kerkbalans.nl kunt u contact opnemen met Team Kerkbalans (zie Contact bovenaan dit formulier).<br>
+        Als u er niet uit komt, kies dan voor 'Onbekend'. Er wordt contact opgenomen.</p></div>
+    <div class="AAshow envOpen">
+        <span class="Question"></span>
+        <span class="Answer">
+            <input type="checkbox" name="EnvOpen" value="Ja" id="EnvOpen">
+            <label for="EnvOpen">Enveloppen openlaten</label>
+        </span>
+    </div>
+    </div>
+
+<!-- ID Afleveradres -->
+    <div class="AAshow KB-Afleveradres">
+	<div class="Question ownLine">Afleveradres</div>
+	<span class="Question" style="font-weight: normal">Naam</span>
+        <span class="Answer">
+            <input size="28" type="text" name="PostNaam" title="Vul naam in" placeholder="K. Rentmeester" id="PostNaam">
+        </span>
+
+	<span class="Question" style="font-weight: normal">Straat + Huisnr</span>
+        <span class="Answer">
+            <input size="26" type="text" name="PostStraat" title="Vul straatnaam in" placeholder="Straatnaam" id="PostStraat">
+            <input size="4" type="text" name="PostHuisnr" title="Vul huisnummer in" placeholder="Nr." id="PostHuisnr">
+        </span>
+
+        <span class="Question" style="font-weight: normal">Postcode + Plaats</span>
+        <span class="Answer" style="margin-bottom: 1em;">
+            <input size="6" type="text" name="PostCode" title="Vul uw postcode in zonder spatie" placeholder="1234AB" id="PostCode" maxlength="6" pattern="\d{4}[A-Z]{2}" onChange="this.value = this.value.toUpperCase()">
+            <input size="22" type="text" name="PostPlaats" title="Vul plaatsnaam in" placeholder="Plaatsnaam" id="PostPlaats">
+		</span>
+
+		<span class="Question">Sortering</span>
+        <span class="Answer">
+            <select size="1" name="ActieSortering" id="Sort">
+				<option value="SorteringAlsVorigJaar" selected>Als vorig jaar</option>
+                <option value="DO2-Wijk-Woonplaats-Adres">DO2 Wijkgemeente Woonplaats Adres (even/oneven) (standaard)</option>
+				<option value="DO2-Woonplaats-Adres">DO2 Woonplaats Adres (even/oneven)</option>
+				<option value="DO2-Postcode-Adres">DO2 Postcode Adres (even/oneven)</option>
+				<option value="DO2-Wijk-Postcode-Adres">DO2 Wijk Postcode Adres (even/oneven)</option>
+				<option value="Eigen">Eigen sortering is gekoppeld in het fonds</option>
+                <option value="Nvt">Niet van toepassing</option>
+            </select>
+        </span>
+        <span class="Vraagteken">?</span>
+        <div id="HelpEigenSort" class="Help"><p>Als u kiest voor een eigen, aangepaste sortering, dient u deze zelf te hebben aangemaakt en gekoppeld in het fonds. Een sortering waarbij vrije gebieden een rol spelen werkt alleen bij combiformulieren, niet bij losse acceptgiro's. De betreffende vrije gebieden dienen bij de sortering te worden aangegeven. In verband met de complexiteit van een sortering op vrij gebied kan het LRP-team niet verantwoordelijk worden gehouden voor eventuele fouten op dit onderdeel. Het verdient aanbeveling uw sortering te testen in de <a href="http://www.lrp-oefen.pkn.nl">oefenomgeving</a>.</p></div>
+</div>
+
+<!-- Week van ontvangst -->
+    <div class="Question ownLine">Gewenste week van ontvangst</div>
+    <span class="Question" style="font-weight: normal">Week&nbsp;</span>
+    <span class="Answer">
+        <input type="number" min="1" max="53" name="PostWeek" id="PostWeek" title="Vul de gewenste week van ontvangst in (het weeknummer)" required />
+    </span>
+	<span class="Vraagteken">?</span>
+	<div class="Help">U moet er rekening mee houden dat uw bestelling niet eerder dan twee weken na ontvangst van uw bestelling geleverd kan worden. We streven er echter naar de gewenste afleverweek te honoreren.<br>
+    Voor een overzicht van weeknummers kunt u bijvoorbeeld <a href="https://www.kalender-365.nl">hier</a> terecht.</div>
+</fieldset>
+
+<!--=======================
+    Solidariteitskas Herinneringen
+    =======================-->
+
+<fieldset id="SK-Herinneringen" class="SK">
+<legend class="MyLegend">Herinneringen Solidariteitskas</legend>
+    <p>U kunt meteen herinneringen bestellen om later dit jaar te laten bezorgen. Wij gaan voor de herinneringen uit van een nabewerking en verzendingswijze die gelijk is aan wat voor de reguliere bestelling werd opgegeven. Indien u het anders wenst, geef dan de gewenste wijzigingen op in het tekstvak onderin. Voor het leveren van folders bij de herinneringen aan het eind van dit jaar geldt: zolang de voorraad strekt.
+    </p>
+    <script>
+        function SKherinneringenBesteld(checked){
+            if(checked){
+                $('#SK-Herinneringen-besteld').find('input').each( function(){
+                    $(this).prop('disabled', false);
+                });
+                $('#SK-Herinneringen-besteld').show();
+                $('#SK-H-Week').prop('required', true);
+            } else {
+                $('#SK-Herinneringen-besteld').hide();
+                $('#SK-Herinneringen-besteld').find('input').each( function(){
+                    $(this).prop('disabled', true);
+                });
+                $('#SK-H-Week').prop('required', false);
+            }
+        }
+    </script>
+    <div class="Answer ownLineA">
+        <input type="checkbox" name="SK-Herinneringen" value="Ja" id="SK-Herinn" onChange="SKherinneringenBesteld(this.checked)">
+        <label for="SK-Herinn">Ja, ik wil herinneringen bestellen</label>
+    </div>
+
+    <div id="SK-Herinneringen-besteld" style="display: none">
+    <div class="Question ownLine">Brieftekst herinneringen</div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="SK-Herinneringen-Brieftekst" value="Standaard" id="SK-H-st" disabled>
+        <label for="SK-H-st">Standaard brieftekst gebruiken</label>
+    </div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="SK-Herinneringen-Brieftekst" value="GemeenteSjabloon" id="SK-H-gemsjab" disabled>
+        <label for="SK-H-gemsjab">Eigen gemeentesjabloon is gekoppeld in LRP</label>
+    </div>
+        <div class="Answer ownLineA">
+        <input type="radio" name="SK-Herinneringen-Brieftekst" value="DigitaleBijlage" id="SK-H-overlay" disabled>
+        <label for="SK-H-overlay">Eigen brieftekst wordt als bijlage meegestuurd met deze bestelling</label>
+    </div>
+
+    <div class="Question ownLine">Doelgroep herinneringen</div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="SK-Herinneringen-Fonds" value="Fonds_Solidariteitskas" id="SK-H-fondsSK" disabled>
+        <label for="SK-H-fondsSK">Wij hebben één fonds in LRP</label>
+    </div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="SK-Herinneringen-Fonds" value="Fonds_Solidariteitskas-BelijdendeLeden" id="SK-H-fondsSKBL" disabled>
+        <label for="SK-H-fondsSKBL">Wij hebben twee fondsen in LRP en willen alléén de belijdende leden een herinnering sturen</label>
+    </div>
+    <div class="Answer ownLineA">
+        <input type="radio" name="SK-Herinneringen-Fonds" value="Beide_Fondsen_Solidariteitskas" id="SK-H-fondsenSK" disabled>
+        <label for="SK-H-fondsenSK">Wij hebben twee fondsen in LRP en willen voor beide herinneringen laten genereren</label>
+    </div>
+
+    <!-- Week van ontvangst -->
+    <div class="Question ownLine">Gewenste week van ontvangst</div>
+    <span class="Question" style="font-weight: normal">Week&nbsp;</span>
+    <span class="Answer">
+        <input type="number" min="1" max="53" name="PostWeek-Herinneringen" title="Vul de gewenste week van ontvangst in (het weeknummer)" id="SK-H-Week" disabled>
+    </span>
+	<span class="Vraagteken">?</span>
+	<div class="Help">U moet er rekening mee houden dat uw bestelling niet eerder dan twee weken na ontvangst van uw bestelling geleverd kan worden. We streven er echter naar de gewenste afleverweek te honoreren.<br>
+    Voor een overzicht van weeknummers kunt u bijvoorbeeld <a href="https://www.kalender-365.nl">hier</a> terecht.</div>
+
+    <div class="Question ownLine">Opmerkingen</div>
+    <p>Geef hier bijvoorbeeld wensen m.b.t. de verwerking en verzending op die afwijken van wat voor de reguliere bestelling werd opgegeven.</p>
+    <textarea name="SK-Herinneringen-Aanpassingen" id="SK-H-textarea" cols="84" rows="6"></textarea>
+    </div>
+
+
+</fieldset>
+
+<!--=======================
+    AKB Bijlagen
+========================-->
+<fieldset id="AKB-bijlagen" class="AKB VKB">
+<legend class="MyLegend">Door LRP-team bij te voegen</legend>
+<div id="Bijlagen">
+    <div class="Question ownLine">Door het LRP-team bij te voegen materialen (optioneel, meerdere opties mogelijk)</div>
+    <div class="newSection">
+        <div class="answersCat">Door LRP-team te produceren / bij te voegen:
+        </div>
+        <div class="Answer ownLineA">
+            <input type="checkbox" name="Bijlagen" value="AntwEnvUAWBUO" id="AKBAE-UAWBUO" data-product="96000157" >
+            <label for="AKBAE-UAWBUO">Antwoordenvelop met Kerkbalanslogo en tekst "Uw antwoord wordt bij u opgehaald"</label>
+        </div>
+        <div class="Answer ownLineA">
+            <input type="checkbox" name="Bijlagen" value="AntwEnvPPS" id="AntwEnvPPS" data-product="96000123">
+            <label for="AntwEnvPPS">Antwoordenvelop met specifieke bedrukking als vorig jaar</label>
+            <span class="Vraagteken">?</span>
+            <div class="Help">
+            Als u vorig jaar ons antwoordenveloppen hebt laten maken met een eigen retouradres of logo, kan dat nog steeds o.b.v. dezelfde opmaak. Het is niet meer mogelijk om ons nieuwe antwoordenveloppen te laten ontwerpen of gewijzigde opmaak door te geven.
+            </div>
+        </div>
+        <div id="AKB-antwenv" class="hidden">
+            <p>Geef hieronder uw wensen op. U kunt meerdere opties aanvinken. Niets is verplicht. Een voorbeeld inscannen of opmaken in Word en doormailen kan ook. </p>
+            <span class="SubAnswer">
+                <input type="checkbox" name="AKB-antwenv" value="AntwEnv-KBlogo" id="AKBAE-KB">
+                <label for="AKBAE-KB">Kerkbalans-logo linksboven</label>
+            </span>
+            <span class="SubAnswer">
+            <input type="checkbox" name="AKB-antwenv" value="AntwEnv-PKNlogo" id="AKBAE-PKN">
+            <label for="AKBAE-PKN">PKN-logo linksboven</label>
+            </span>
+            <span class="SubAnswer">
+            <input type="checkbox" name="AKB-antwenv" value="AntwEnv-PostzegelNietNodig" id="AKBAE-PNN">
+            <label for="AKBAE-PNN">Vignet 'Postzegel niet nodig' rechtsboven</label>
+            </span>
+            <span class="SubAnswer">
+            <input type="checkbox" name="AKB-antwenv" value="AntwEnv-UAWBUO" id="AKBAE-tekstUAWBUO">
+            <label for="AKBAE-tekstUAWBUO">Tekst: "Uw antwoord wordt bij u opgehaald"</label>
+            </span>
+            <span class="SubAnswer">
+            <input type="checkbox" name="AKB-antwenv" value="AntwEnv-Adres" id="AKBAE-Adres" onchange="connectToggleVisible(this.checked, '#AKBAE-Adresgegevens');">
+            <label for="AKBAE-Adres">Tekst: adres (hieronder invullen)</label>
+            </span>
+            <textarea type="hidden" id="AKBAE-Adresgegevens" class="SubAnswer" name="ABK-antwenv-adres" class="hidden" cols="50" rows="4" disabled>Vul hier het volledige adres in</textarea>
+            <span class="SubAnswer">
+            <input type="checkbox" name="AKB-antwenv" value="AntwEnv-Kleur" id="AKBAE-Kleur">
+            <label for="AKBAE-Kleur">Antwoordenveloppen drukken in kleur</label>
+            </span>
+            <span class="SubAnswer">
+            <input type="checkbox" name="AKB-antwenv" value="AntwEnv-Custom" id="AKBAE-Custom">
+            <label for="AKBAE-Custom">Anders. Er wordt contact opgenomen.</label>
+            </span>
+        </div>
+
+        <div class="Answer ownLineA">
+            <input type="checkbox" name="Bijlagen" value="Bijsluiter-Kopietoezegging" id="BijlaBijsluiterKopie" data-product="96000148">
+            <label for="BijlaBijsluiterKopie">Bijsluiter kopie toezegging</label>
+            <span class="Vraagteken">?</span>
+            <div class="Help">
+            Deze bijsluiter is bedoeld voor de eigen administratie van uw gemeenteleden. Zij kunnen als geheugensteun hierop hun toezegging overnemen. Ook is er ruimte voor het noteren van de IBAN van uw gemeente en het geregistreerdennummer, voor als mensen zelf hun bijdragen overmaken. Als er gekozen werd voor automatische incasso kan de incassodatum en het machtigings-ID worden ingevuld. Zie <a href="http://lrp-netwerk.pkn.nl/download/CAwdEAwUUkdGXUA=/">hier</a> voor een voorbeeld.
+            </div>
+        </div>
+        <div class="Answer ownLineA">
+            <input type="checkbox" name="Bijlagen" value="Brief-LRP-sjabloon" id="BijlaVrijeBriefLRP" onChange="connectToggleVisible(this.checked, '.briefPPS')" data-product="96000020">
+            <label for="BijlaVrijeBriefLRP">Brief o.b.v. door gemeente ingericht LRP-sjabloon</label>
+            <span class="Vraagteken">?</span>
+            <div class="Help">
+            Dit is nieuw in LRP 3.0. U kunt uw brief als sjabloon in LRP opmaken. Deze wordt voor alle geadresseerden geprint en bijgevoegd. U hoeft de brieven dan dus zelf niet te printen en op te sturen naar de drukker. U kunt op deze wijze ook voor verschillende doelgroepen verschillende brieven laten bijvoegen (d.m.v. subselecties). Klik <a href="http://lrp-netwerk.pkn.nl/dienstverlening/geldwerving/inrichting-lrp/subselecties-en-doelgroepen">hier</a> voor meer informatie over subselecties. Optioneel kunt u via de <a href="http://www.pknprintstudio.nl">PKN-printstudio</a> een logo of het briefpapier opmaken waarop de brief uit LRP wordt geprint.
+            </div>
+        </div>
+        <div class="Answer ownLineA briefPPS hidden" style="margin-left: 2em;">
+            <input type="checkbox" name="BriefOpmaakPPS" value="Printstudio" id="BriefOpmaakPPS" data-product="96000019">
+            <label for="BriefOpmaakPPS">Optioneel: buiten LRP om laten toevoegen van logo's of plaatjes</label>
+        </div>
+        <div class="Answer ownLineA">
+            <input type="checkbox" name="Bijlagen" value="Brief-Digitaal" id="BijlaBriefDigitaal" onchange="connectToggle($(this).prop('checked'), '#BriefPrintwijze')">
+            <label for="BijlaBriefDigitaal">Brief o.b.v. door gemeente digitaal aangeleverde bijlage&nbsp;</label>
+            <select size="1" name="BriefPrintwijze" id="BriefPrintwijze" disabled>
+                <option value="Zwart-wit"  data-product="96000020">Zwart-wit afdrukken</option>
+                <option value="Kleur" data-product="96000022">In kleur afdrukken</option>
+            </select>
+            <span class="Vraagteken">?</span>
+            <div class="Help">
+            Dit houdt in dat u zelf de brief opstelt en doormailt naar het LRP-team. U hoeft dus niet meer zelf te (laten) printen en de brieven via pakketpost op te sturen om te laten bijvoegen.
+            </div>
+        </div>
+        <div class="Answer ownLineA">
+            <input type="checkbox" name="Bijlagen" value="Folder-Digitaal" id="BijlaFolderDigitaal" onchange="connectToggle($(this).prop('checked'), '#FolderPrintwijze')"  data-product="96000023">
+            <label for="BijlaFolderDigitaal">Folder o.b.v. door gemeente digitaal aangeleverde bijlage&nbsp;</label>
+            <select size="1" name="FolderPrintwijze" id="FolderPrintwijze" disabled>
+                <option value="Zwart-wit">Zwart-wit afdrukken</option>
+                <option value="Kleur">In kleur afdrukken</option>
+            </select>
+            <span class="Vraagteken">?</span>
+            <div class="Help">
+            Dit houdt in dat u zelf de folder opstelt en opmaakt en het bestand doormailt naar het LRP-team. U hoeft dus niet meer zelf te (laten) printen en de folders via pakketpost op te sturen om te laten bijvoegen.
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="newSection">
+        <div class="answersCat">Door gemeente via pakbon aan te leveren:</div>
+            <span class="Vraagteken">?</span>
+            <div class="Help">
+            Producten die u hier aankruist worden door u aangeleverd. U ontvangt uiterlijk twee weken vóór de gewenste afleverweek per e-mail een pakbon. Deze dient u bij uw verzending te voegen. Vul uw e-mailadres in bij de contactgegevens.
+            </div>
+        <div class="Answer ownLineA">
+            <input type="checkbox" name="Bijlagen" id="BijlaAntwEnvGem" value="AntwEnv-gemeente" data-product="96000150">
+            <label for="BijlaAntwEnvGem">Antwoordenvelop</label>
+        </div>
+        <div class="Answer ownLineA">
+            <input type="checkbox" name="Bijlagen" id="BijlaBijsluiterGem" value="Bijsluiter-gemeente" data-product="96000140">
+            <label for="BijlaBijsluiterGem">Bijsluiter</label>
+        </div>
+        <div class="Answer ownLineA">
+            <input type="checkbox" name="Bijlagen" id="BijlaBriefGemeente" value="Brief-Gemeente" data-product="96000130">
+            <label for="BijlaBriefGemeente">Brief</label>
+            <span class="Vraagteken">?</span>
+            <div class="Help">
+            Dit houdt in dat u zelf de brieven print en met een pakbon opstuurt om te laten bijvoegen. Gezien de gemakkelijkere en goedkopere alternatieven via een LRP-sjabloon of als digitale bijlage verdient deze optie niet de voorkeur.
+            </div>
+        </div>
+        <div class="Answer ownLineA">
+            <input type="checkbox" name="Bijlagen" id="BijlaFolderGem" value="Folder-gemeente" data-product="96000150">
+            <label for="BijlaFolderGem">Folder</label>
+        </div>
+    </div>
+    <br>
+    <div class="newSection">
+        <div class="answersCat">Door VKB via pakbon aan te leveren:</div>
+            <span class="Vraagteken">?</span>
+            <div class="Help">
+            <p>Deze materialen worden door de VKB verstuurd naar de drukker. U en de VKB ontvangen beide uiterlijk twee weken vóór de gewenste afleverweek per e-mail een pakbon. De VKB zal deze bij uw verzending voegen. Als u zelf geen materialen levert, hoeft u met de pakbon niets te doen. <strong>LET OP: Aangekruiste VKB-materialen dient u zelf bij de VKB te bestellen!</strong>
+            </p></div>
+        <div class="Answer ownLineA">
+            <input type="checkbox" name="Bijlagen" id="BijlaAntwEnvVKB" value="AntwEnv-VKB" data-product="96000150">
+            <label for="BijlaAntwEnvVKB">VKB-antwoordenvelop</label>
+        </div>
+        <div class="Answer ownLineA">
+            <input type="checkbox" name="Bijlagen" id="BijlaFolderVKB" value="Folder-VKB" data-product="96000151">
+            <label for="BijlaFolderVKB">VKB-folder</label>
+        </div>
+    </div>
+</div>
+
+<!-- ID Eigen materiaal -->
+<div id="MsgEigenMat" class="Belangrijk">U ontvangt via email een pakbon met een barcode. U kunt uw materialen met die pakbon versturen naar het adres dat op de pakbon wordt aangegeven. Stuur nooit materialen op zonder pakbon. Zorg ook dat uw materialen in voldoende hoeveelheid worden aangeleverd. Als er materialen overblijven zullen die worden teruggestuurd. Als u per wijk een bestelling plaatst, dan ontvangt u voor elke wijk een pakbon.
+</div>
+</fieldset>
+
+<!--
+=====================
+EJC Bijlagen
+=====================
+-->
+<fieldset id="EJC-Bijlagen" class="EJC">
+    <legend>Door LRP-team bij te voegen materialen</legend>
+<div id="EJC-Bijlagen-div">
+    <div class="Question ownLine">Door het LRP-team bij te voegen materialen (optioneel, meerdere opties mogelijk)</div>
+
+    <div class="newSection">
+        <div class="answersCat">Door LRP-team te produceren:
+        </div>
+        <script>
+            function processVrijeBrief(check){
+                if(check){
+                    $('.briefPPS').show();
+                } else {
+                    $('.briefPPS').hide();
+                }
+            }
+        </script>
+        <div class="Answer ownLineA">
+            <input type="checkbox" name="Bijlagen" value="Brief-LRP-sjabloon" id="BijlaVrijeBriefLRPEJC" onChange="processVrijeBrief(this.checked)" data-product="96000020">
+            <label for="BijlaVrijeBriefLRPEJC">Brief o.b.v. door gemeente ingericht LRP-sjabloon</label>
+            <span class="Vraagteken">?</span>
+            <div class="Help">
+            Dit is nieuw in LRP 3.0. U kunt uw brief als sjabloon in LRP opmaken. Deze wordt voor alle geadresseerden geprint en bijgevoegd. U hoeft de brieven dan dus zelf niet te printen en op te sturen naar de drukker. U kunt op deze wijze ook voor verschillende doelgroepen verschillende brieven laten bijvoegen (d.m.v. subselecties). Klik <a href="http://lrp-netwerk.pkn.nl/dienstverlening/geldwerving/inrichting-lrp/subselecties-en-doelgroepen">hier</a> voor meer informatie over subselecties. Optioneel kunt u via de <a href="http://www.pknprintstudio.nl">PKN-printstudio</a> een logo of het briefpapier opmaken waarop de brief uit LRP wordt geprint.
+            </div>
+        </div>
+        <div class="Answer ownLineA briefPPS hidden" style="margin-left: 2em;">
+            <input type="checkbox" name="BriefOpmaakPPS" value="Printstudio" id="BriefOpmaakPPSEJC" data-product="96000005">
+            <label for="BriefOpmaakPPSEJC">Optioneel: briefpapier opmaken via PKN-Printstudio</label>
+        </div>
+        <div class="Answer ownLineA">
+            <input type="checkbox" name="Bijlagen" value="Brief-Digitaal" id="BijlaBriefDigitaalEJC" data-product="96000006">
+            <label for="BijlaBriefDigitaalEJC">Brief o.b.v. door gemeente digitaal aangeleverde bijlage</label>
+            <span class="Vraagteken">?</span>
+            <div class="Help">
+            Dit houdt in dat u zelf de brief opstelt en doormailt naar het LRP-team. U hoeft dus niet meer zelf te (laten) printen en de brieven via pakketpost op te sturen om te laten bijvoegen.
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="newSection">
+        <div class="answersCat">Door gemeente via pakbon aan te leveren:</div>
+            <span class="Vraagteken">?</span>
+            <div class="Help">
+            Producten die u hier aankruist worden door u aangeleverd. U ontvangt uiterlijk twee weken vóór de gewenste afleverweek per e-mail een pakbon. Deze dient u bij uw verzending te voegen. Vul uw e-mailadres in bij de contactgegevens.
+            </div>
+        <div class="Answer ownLineA">
+            <input type="checkbox" name="Bijlagen" id="BijlaBriefGemeenteEJC" value="Brief-Gemeente" data-product="96000130">
+            <label for="BijlaBriefGemeenteEJC">Brief</label>
+            <span class="Vraagteken">?</span>
+            <div class="Help">
+            Dit houdt in dat u zelf de brieven print en met een pakbon opstuurt om te laten bijvoegen. Gezien de gemakkelijkere en goedkopere alternatieven via een LRP-sjabloon of als digitale bijlage verdient deze optie niet de voorkeur.
+            </div>
+        </div>
+    </div>
+    <br>
+</div>
+</fieldset>
+
+
+<!--
+=====================
+AKB
+=====================
+-->
+<fieldset id="AKB-fieldset" class="AKB VKB">
+<legend>Maandelijkse verwerking (AKB)</legend>
+    <p>Als u alleen toezeggingsformulieren wilde bestellen bent u bijna klaar. Klik dan op 'Verder'. Er is nog een aantal diensten dat u af kunt nemen, zoals de maandelijkse verwerking (AKB). Als u hiervoor kiest krijgt u een aantal aanvullende vragen.</p>
+
+    <div class="Question ownLine">Invoer toezeggingen</div>
+    <p>Tot vorig jaar kon u toezeggingen door het LRP-team laten invoeren. Deze dienstverlening wordt niet meer aangeboden.
+
+    <script>
+    function toggledAKB(check){
+        if(check){
+            $('.AKBsub').show();
+        } else {
+            $('.AKBsub').hide().find('input').prop('checked', false);
+            $('.AKB-acc,.AKB-her').find('input,select').each( function(){
+                $(this).prop('disabled', true);
+            });
+            $('.AKB-her,.AKB-acc').hide();
+        }
+    }
+
+    function toggledAKBacc(check){
+        if(check){
+            $('#AKB').prop('checked', check);
+            $('#AKB-accept-env-PKN').prop('checked', check);
+            $('.AKB-acc').find('input,select').each( function(){
+                $(this).removeProp('disabled');
+            });
+            $('.AKB-acc').show();
+        } else {
+            $('.AKB-acc').hide();
+            $('.AKB-acc').find('input,select').each( function(){
+                $(this).prop('disabled', true);
+            });
+        }
+    }
+
+    function toggledAKBher(check){
+        $('#AKB-herinneringen-env-PKN').prop('checked', check);
+        if(check){
+            $('#AKB').prop('checked', check);
+            $('.AKB-her').show();
+            $('.AKB-her').find('input,select').each( function(){
+                $(this).removeProp('disabled');
+            });
+        } else {
+            $('.AKB-her').hide();
+        }
+    }
+    </script>
+	<div class="Question ownLine">Maandelijkse AKB</div>
+	<p>Als u de maandelijkse verwerking (deels) wilt uitbesteden, zoals het maandelijks aanmaken van acceptgiro's, incasso's of herinneringen, geef dat dan hieronder aan en beantwoord de vervolgvragen. Wanneer de vinkjes bij het uitbesteden van de aanmaak van acceptgiro's en incasso's zijn uitgegrijsd, betekent dat dat u deze betaalwijzen niet hebt aangeboden op het toezeggingsformulier. Ga desgewenst terug naar het onderdeel 'Toezeggingsformulier' om dit aan te passen.</p>
+    <span class="Answer">
+		<input type="checkbox" id="AKB" name="AKB" value="AKB-JA" title="Vink dit aan als u maandelijkse acceptgiro's, incasso's, herinneringen enz. wilt bestellen" onChange="toggledAKB(this.checked)" />
+		<label for="AKB">Ja, ik bestel maandelijkse verwerking (AKB), te weten:</label>
+	</span>
+	<span class="Vraagteken">?</span>
+	<div id="HelpAKB" class="Help">
+		<p>Wanneer u na de actie Kerkbalans ook de complete maandelijkse uitvoering (bekend als AKB – Automatische Kerkelijke Bijdrage) of delen daarvan door het LRP-Team wilt laten uitvoeren, vinkt u het vakje “Maandelijkse verwerking (AKB)” aan. Vervolgens geeft u middels de onderstaande vakjes aan welke diensten u aanvullend wenst af te nemen.</p>
+	</div>
+	<div class="AKBsub">
+	<span class="SubAnswer">
+		<input type="checkbox" name="AKB-acceptgiro" value="Ja" id="AkbAcceptgiro" title="Vink dit aan als u maandelijkse acceptgiro's wilt ontvangen" onChange="toggledAKBacc(this.checked)">
+		<label for="AkbAcceptgiro">Maandelijkse verzending acceptgiro's</label>
+	</span>
+	<span class="Vraagteken">?</span>
+	<div id="HelpAkbAcceptgiro" class="Help">
+		<p>Het LRP-Team kan voor u de maandelijkse verzending van acceptgiro’s uitvoeren. U dient daarvoor echter wel te beschikken over een acceptgirocontract (type A/S of C). Dit contract sluit u af met uw bank op een bepaald rekeningnummer en u machtigt daarmee een servicebureau, in dit geval het LRP-Team, om voor u de acceptgiro’s te printen en te versturen. Mocht u hiervan gebruik willen maken, dan vinkt u het vakje ”Maandelijkse verzending acceptgiro’s” aan. Wanneer u (ook) zelf acceptgiro’s uit LRP print en verstuurt, dient u een C-contract af te sluiten met uw bank. Als u het altijd uitbesteedt aan het LRP-team is een A/S-contract voldoende.</p>
+	</div>
+
+	<span class="SubAnswer">
+		<input type="checkbox" name="AKB-incasso" value="Ja" id="AkbIncasso" title="Vink dit aan als u maandelijkse incasso-opdrachten wilt laten uitvoeren" disabled>
+		<label for="AkbIncasso">Maandelijks uitvoeren van incasso-opdrachten</label>
+	</span>
+	<span class="Vraagteken">?</span>
+	<div id="HelpAkbIncasso" class="Help">
+		<p>Net als bij acceptgiro’s kunt u ook de maandelijkse incasso-opdrachten door het LRP-Team laten uitvoeren. Hiervoor dient u te beschikken over een incassocontract met uw bank. Met dit contract bevestigt u dat het LRP-Team gemachtigd is om deze incasso-opdrachten voor u te versturen. Let op: Liet u nog niet eerder door ons incasso-opdrachten uitvoeren, dan hebben wij een kopie nodig van het incassocontract waarop ook het incassant-ID staat vermeld.</p>
+        <p>Wanneer u deze optie niet kunt aanvinken, hebt u bij het onderdeel 'Toezeggingsformulier' niet aangegeven dat de optie automatische incasso moet worden aangeboden aan uw gemeenteleden. Ga desgewenst terug om dat te herstellen.</p>
+	</div>
+    <span class="SubAnswer">
+        <input type="checkbox" name="AKB-iDeal" value="Ja" id="AkbIdeal" title="Vink dit aan als u maandelijkse e-mails wilt laten klaarzetten" disabled>
+        <label for="AkbIdeal">Maandelijks klaarzetten iDeal e-mails</label>
+    </span>
+    <span class="Vraagteken">?</span>
+    <div id="HelpAkbIdeal" class="Help">
+        <p>Het LRP-team kan maandelijks de e-mails klaarzetten waarin een iDeal-link wordt gestuurd aan degenen die toegezegd hebben via iDeal te willen betalen. De e-mails worden niet verzonden. De bijdrageadministrateur kan de e-mails verzenden vanuit het verzameldocument in het fondsjaar.</p>
+        <p>Wanneer u deze optie niet kunt aanvinken, hebt u bij het onderdeel 'Toezeggingsformulier' niet aangegeven dat de optie iDeal moet worden aangeboden aan uw gemeenteleden. Ga desgewenst terug om dat te herstellen.</p>
+    </div>
+    <span class="SubAnswer">
+        <input type="checkbox" name="AKB-herinneringen" value="Ja" id="AkbHerinnering" title="Vink dit aan als u herinneringen wilt laten aanmaken." onChange="toggledAKBher(this.checked)">
+        <label for="AkbHerinnering">Versturen herinneringen</label>
+    </span>
+
+    <span class="Vraagteken">?</span>
+    <div id="HelpAkbHerinnering" class="Help">
+        <p>Door het vakje “Versturen herinneringen” aan te vinken geeft u het LRP-Team opdracht herinneringen op ontbrekende ontvangsten aan te maken en te versturen. Verderop in het bestelformulier kunt u aangeven in welke maanden u wenst te herinneren en hoe deze moeten worden verzonden.</p>
+    </div>
+    </div>
+
+    <script>
+        function processAKBaccVerzendwijze(wijze){
+            if(wijze == "AfleverAdres"){
+                $('.AKBaccAAshow').show();
+                $('#AKB-accept-env-open').removeProp('disabled');
+                $('#AKB-accept-env-GEEN').removeProp('disabled');
+            } else if(wijze == "PortBetaald"){
+                $('.AKBaccAAshow').hide();
+                $('.AKBaccAAopts').prop('disabled', true);
+            } else {
+                return false;
+            }
+        }
+    </script>
+
+    <div class="AKB-acc hidden">
+        <H3>Maandelijkse acceptgiro's</H3>
+        <div class="Question ownLine">Verzendwijze acceptgiro's</div>
+        <div class="Answer ownLineA">
+        <select size="1" name="AKB-accept-verzendwijze" id="AKB-accept-Verzendwijze" onChange="processAKBaccVerzendwijze(this.value);" >
+            <option class="blankoption" value="">Kies uw verzendwijze</option>
+            <option value="PortBetaald">Port betaald direct naar gemeenteleden</option>
+            <option value="AfleverAdres">Pakket bezorgen op afleveradres</option>
+        </select>
+        </div>
+
+        <div class="Question ownLine">Envelop acceptgiro's</div>
+        <div class="Answer ownLineA">
+            <input type="radio" name="AKB-accept-envelop" value="PKN-envelop" id="AKB-accept-env-PKN">
+            <label for="AKB-accept-env-PKN">Standaard envelop met PKN-logo (dicht)</label>
+        </div>
+        <div class="Answer ownLineA">
+            <input type="radio" name="AKB-accept-envelop" value="PKN-envelop-OPEN" id="AKB-accept-env-open" class="AKBaccAAopts">
+            <label for="AKB-accept-env-open">Standaard envelop met PKN-logo (opengelaten)</label>
+        </div>
+        <div class="Answer ownLineA">
+            <input type="radio" name="AKB-accept-envelop" value="Geen" id="AKB-accept-env-GEEN" class="AKBaccAAopts">
+            <label for="AKB-accept-env-GEEN">Geen envelop</label>
+        </div>
+
+        <script>
+            function processAKBAdresIsKB(checked){
+                if(checked == true){
+                    $('#AKB-acc-PostNaam').val($('#PostNaam').val());
+                    $('#AKB-acc-PostStraat').val($('#PostStraat').val());
+                    $('#AKB-acc-PostHuisnr').val($('#PostHuisnr').val());
+                    $('#AKB-acc-PostCode').val($('#PostCode').val());
+                    $('#AKB-acc-PostPlaats').val($('#PostPlaats').val());
+                    $('.AKB-acc-afleveradres').find('input').prop('disabled', true);
+                } else {
+                    $('.AKB-acc-afleveradres').find('input').val("").removeProp('disabled');
+                }
+            }
+        </script>
+        <div class="AKBaccAAshow Afleveradres">
+        <div class="Question ownLine">Afleveradres acceptgiro's</div>
+            <input type="checkbox" name="AKB-acceptgiros-adres" value="gelijk-aan-toezeggingsformulieren" id="AKB-adres-is-KB" onChange="processAKBAdresIsKB(this.checked)">
+            <label for="AKB-adres-is-KB">adres gelijk aan afleveradres voor toezeggingsformulieren</label>
+            <div class="AKB-acc-afleveradres">
+                <span class="Question" style="font-weight: normal">Naam</span>
+                <span class="Answer">
+                    <input size="28" type="text" name="AKB-acc-PostNaam" title="Vul naam in" placeholder="K. Rentmeester" id="AKB-acc-PostNaam">
+                </span>
+
+                <span class="Question" style="font-weight: normal">Straat + Huisnr</span>
+                <span class="Answer">
+                    <input size="26" type="text" name="AKB-acc-PostStraat" title="Vul straatnaam in" placeholder="Straatnaam" id="AKB-acc-PostStraat">
+                    <input size="4" type="text" name="AKB-acc-PostHuisnr" title="Vul huisnummer in" placeholder="Nr." id="AKB-acc-PostHuisnr">
+                </span>
+
+                <span class="Question" style="font-weight: normal">Postcode + Plaats</span>
+                <span class="Answer">
+                    <input size="6" type="text" name="AKB-acc-PostCode" title="Vul uw postcode in zonder spatie" pattern="\d{4}[A-Z]{2}" placeholder="1234AB" id="AKB-acc-PostCode" maxlength="6" onChange="this.value = this.value.toUpperCase()">
+                    <input size="22" type="text" name="AKB-acc-PostPlaats" title="Vul plaatsnaam in" placeholder="Plaatsnaam" id="AKB-acc-PostPlaats">
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function processAKBherVerzendwijze(wijze){
+            if(wijze == "AfleverAdres"){
+                $('.AKBherAAshow').show();
+                $('#AKB-herinneringen-env-open').removeProp('disabled');
+                $('#AKB-herinneringen-env-GEEN').removeProp('disabled');
+            } else if(wijze == "PortBetaald"){
+                $('.AKBherAAshow').hide();
+                $('.AKBherAAopts').prop('disabled', true);
+            } else {
+                return false;
+            }
+        }
+    </script>
+
+    <div class="AKB-her hidden">
+        <H3>Maandelijkse herinneringen</H3>
+        <div class="Question ownLine">Verzendwijze herinneringen</div>
+        <div class="Answer ownLineA">
+        <select size="1" name="AKB-herinneringen-verzendwijze" id="AKB-herinneringen-Verzendwijze" onChange="processAKBherVerzendwijze(this.value);" >
+            <option class="blankoption" value="">Kies uw verzendwijze</option>
+            <option value="PortBetaald">Port betaald direct naar gemeenteleden</option>
+            <option value="AfleverAdres">Pakket bezorgen op afleveradres</option>
+        </select>
+        </div>
+
+        <div class="Question ownLine">Envelop herinneringen</div>
+        <div class="Answer ownLineA">
+            <input type="radio" name="AKB-herinneringen-envelop" value="PKN-envelop" id="AKB-herinneringen-env-PKN">
+            <label for="AKB-herinneringen-env-PKN">Standaard envelop met PKN-logo (dicht)</label>
+        </div>
+        <div class="Answer ownLineA">
+            <input type="radio" name="AKB-herinneringen-envelop" value="PKN-envelop-OPEN" id="AKB-herinneringen-env-open" class="AKBherAAopts">
+            <label for="AKB-herinneringen-env-open">Standaard envelop met PKN-logo (opengelaten)</label>
+        </div>
+        <div class="Answer ownLineA">
+            <input type="radio" name="AKB-herinneringen-envelop" value="Geen" id="AKB-herinneringen-env-GEEN" class="AKBherAAopts">
+            <label for="AKB-herinneringen-env-GEEN">Geen envelop</label>
+        </div>
+
+        <div class="AKBherAAshow Afleveradres">
+        <div class="Question ownLine">Afleveradres herinneringen</div>
+            <script>
+                function processHerAdresIsAcc(checked){
+                    if(checked == true){
+                    //    $('.AKB-her-afleveradres').hide();
+                        $('#AKB-her-PostNaam').val($('#AKB-acc-PostNaam').val());
+                        $('#AKB-her-PostStraat').val($('#AKB-acc-PostStraat').val());
+                        $('#AKB-her-PostHuisnr').val($('#AKB-acc-PostHuisnr').val());
+                        $('#AKB-her-PostCode').val($('#AKB-acc-PostCode').val());
+                        $('#AKB-her-PostPlaats').val($('#AKB-acc-PostPlaats').val());
+                        $('.AKB-her-afleveradres').find('input').prop('disabled', true);
+                    } else {
+                        $('.AKB-her-afleveradres').find('input').val("").removeProp('disabled');
+                    }
+                }
+            </script>
+            <input type="checkbox" name="AKB-herinneringen-adres" value="gelijk-aan-acceptgiros" id="AKB-her-adres-is-acc" onChange="processHerAdresIsAcc(this.checked)">
+            <label for="AKB-her-adres-is-acc">adres gelijk aan afleveradres voor acceptgiro's</label>
+            <div class="AKB-her-afleveradres">
+            <span class="Question" style="font-weight: normal">Naam</span>
+            <span class="Answer">
+                <input size="28" type="text" name="AKB-her-PostNaam" title="Vul naam in" placeholder="K. Rentmeester" id="AKB-her-PostNaam">
+            </span>
+
+            <span class="Question" style="font-weight: normal">Straat + Huisnr</span>
+            <span class="Answer">
+                <input size="26" type="text" name="AKB-her-PostStraat" title="Vul straatnaam in" placeholder="Straatnaam" id="AKB-her-PostStraat">
+                <input size="4" type="text" name="AKB-her-PostHuisnr" title="Vul huisnummer in" placeholder="Nr." id="AKB-her-PostHuisnr">
+            </span>
+
+            <span class="Question" style="font-weight: normal">Postcode + Plaats</span>
+            <span class="Answer">
+                <input size="6" type="text" name="AKB-her-PostCode" title="Vul uw postcode in zonder spatie" placeholder="1234AB" pattern="\d{4}[A-Z]{2}" id="AKB-her-PostCode" maxlength="6" onChange="this.value = this.value.toUpperCase()">
+                <input size="22" type="text" name="AKB-her-PostPlaats" title="Vul plaatsnaam in" placeholder="Plaatsnaam" id="AKB-her-PostPlaats">
+            </span>
+            </div>
+        </div>
+
+        <div class="herinneringsmaanden">
+        <div class="Question ownLine">Herinneringsmaanden</div>
+        <span style="font-size: 0.6em;">Alle maanden</span>
+        <span class="button" id="AKB-herinneringsmaand-alle" onClick="$('div.herinneringsmaanden').find('input').prop('checked', true);">aan</span>
+        <span class="button" id="AKB-herinneringsmaand-geen" onClick="$('div.herinneringsmaanden').find('input').prop('checked', false);">uit</span>
+        <div style="float: left;">
+            <span class="Hmaand">
+            <input type="checkbox" name="AKB-herinneringsmaand" value="Maart" id="AKB-herinneringsmaand-mrt">
+            <label for="AKB-herinneringsmaand-mrt">Maart</label>
+            </span>
+            <span class="Hmaand">
+            <input type="checkbox" name="AKB-herinneringsmaand" value="April" id="AKB-herinneringsmaand-apr">
+            <label for="AKB-herinneringsmaand-apr">April</label>
+            </span>
+            <span class="Hmaand">
+            <input type="checkbox" name="AKB-herinneringsmaand" value="Mei" id="AKB-herinneringsmaand-mei">
+            <label for="AKB-herinneringsmaand-mei">Mei</label>
+            </span>
+            <span class="Hmaand">
+            <input type="checkbox" name="AKB-herinneringsmaand" value="Juni" id="AKB-herinneringsmaand-jun">
+            <label for="AKB-herinneringsmaand-jun">Juni</label>
+            </span>
+            <span class="Hmaand">
+            <input type="checkbox" name="AKB-herinneringsmaand" value="Juli" id="AKB-herinneringsmaand-jul">
+            <label for="AKB-herinneringsmaand-jul">Juli</label>
+            </span>
+            <span class="Hmaand">
+            <input type="checkbox" name="AKB-herinneringsmaand" value="Augustus" id="AKB-herinneringsmaand-aug">
+            <label for="AKB-herinneringsmaand-aug">Augustus</label>
+            </span>
+            <span class="Hmaand">
+            <input type="checkbox" name="AKB-herinneringsmaand" value="September" id="AKB-herinneringsmaand-sept">
+            <label for="AKB-herinneringsmaand-sept">September</label>
+            </span>
+            <span class="Hmaand">
+            <input type="checkbox" name="AKB-herinneringsmaand" value="Oktober" id="AKB-herinneringsmaand-okt">
+            <label for="AKB-herinneringsmaand-okt">Oktober</label>
+            </span>
+            <span class="Hmaand">
+            <input type="checkbox" name="AKB-herinneringsmaand" value="November" id="AKB-herinneringsmaand-nov">
+            <label for="AKB-herinneringsmaand-nov">November</label>
+            </span>
+            <span class="Hmaand">
+            <input type="checkbox" name="AKB-herinneringsmaand" value="December" id="AKB-herinneringsmaand-dec">
+            <label for="AKB-herinneringsmaand-dec">December</label>
+            </span>
+            <span class="Hmaand">
+            <input type="checkbox" name="AKB-herinneringsmaand" value="Januari" id="AKB-herinneringsmaand-jan">
+            <label for="AKB-herinneringsmaand-jan">Januari 2021</label>
+            </span>
+        </div>
+        </div>
+        <div class="Question ownLine">Briefsjabloon herinneringen</div>
+        <div class="Answer ownLineA">
+            <input type="radio" name="AKB-herinnering-sjabloon" value="standaard-herinnering" id="AKB-h-st">
+            <label for="AKB-h-st">Standaardherinnering</label>
+            <span class="Vraagteken">?</span>
+            <div class="Help">
+            <p>Een voorbeeld van de standaard herinneringsbrief vindt u <a href="http://lrp-netwerk.pkn.nl/download/CAwdEAwUUkdGXkY=/">hier</a></p>
+            </div>
+        </div>
+        <div class="Answer ownLineA">
+            <input type="radio" name="AKB-herinnering-sjabloon" value="gemeentesjabloon" id="AKB-h-gem">
+            <label for="AKB-h-gem">Eigen sjabloon is gekoppeld in het fonds</label>
+            <span class="Vraagteken">?</span>
+            <div class="Help" id="HelpHerinneringsSjabloon">
+                <p>U kunt een eigen gemeentesjabloon opstellen in LRP, waarin u bijvoorbeeld de contactgegevens van het kerkelijk bureau of de bijdragenadministrateur opneemt. Dat sjabloon dient de bijdragenadministrateur zelf te koppelen in het fonds, in het fondsjaar, tabblad "Herinneringen"</p>
+            </div>
+        </div>
+    </div>
+</fieldset>
+
+<!--
+=====================
+PERSONALIA
+=====================
+-->
+<fieldset id="Personalia" class="AKB EJC SK Adhoc VKB">
+<legend>Contactgegevens</legend>
+        <span class="Question">Naam</span>
+        <span class="Answer">
+            <input type="text" title="Vul uw naam in" placeholder="K. Rentmeester" name="ContactNaam" id="ContactNaam" required />
+        </span>
+        <span class="Question">Telefoon</span>
+        <span class="Answer">
+            <input title="Telefoonnummer (alleen cijfers)" type="text" name="ContactTel" placeholder="0123987654" pattern="0\d{9}" id="ContactTelefoon" data-message="Alleen cijfers invullen a.u.b." />
+        </span>
+        <span class="Question">Mobiel</span>
+        <span class="Answer">
+            <input title="Mobiel nummer (alleen cijfers)" type="text" maxlength="10" name="ContactMob" placeholder="0612345678" pattern="06\d{8}" id="ContactMobiel" data-message="Alleen cijfers invullen a.u.b.">
+        </span>
+        <span class="Question">E-mail</span>
+        <span class="Answer">
+            <input type="email" name="ContactMail" title="Vul uw mailadres in. Een eventuele pakbon wordt later naar dit mailadres verzonden." placeholder="iemand@domein.nl" required />
+        </span>
+
+    <div class="Question ownLine">Opmerkingen of aanvullingen</div>
+    <div class="Toelichting">(Verbeteringen voor dit digitale bestelformulier zijn ook welkom)</div>
+    <textarea name="ZZ-Opmerkingen" id="Opmerkingen" cols="84" rows="6"></textarea>
+</fieldset>
+
+<!--
+======================
+AFRONDING
+======================
+-->
+<fieldset id="Afronding" class="lastFieldset AKB EJC SK Adhoc VKB">
+<legend>Bestellen</legend>
+    <p> U bent bijna klaar. Hieronder wordt uw bestelinformatie getoond. U kunt deze kopiëren naar een e-mail aan  &#108;&#114;&#112;&#45;&#111;&#114;&#100;&#101;&#114;&#64;&#112;&#114;&#111;&#116;&#101;&#115;&#116;&#97;&#110;&#116;&#115;&#101;&#107;&#101;&#114;&#107;&#46;&#110;&#108;. U kunt ook de knop 'Bestelling mailen' gebruiken. In uw standaard mailprogramma wordt dan meteen een mail opgesteld. Deze functionaliteit is afhankelijk van een aantal instellingen op uw pc. Als de knop 'Bestelling mailen' niets doet, gebruik dan de knop 'Bestelling downloaden' en stel zelf de mail op met de bestelling in de bijlage.</p>
+    <span class="Vraagteken" style="float: none;">?</span>
+    <div class="Help">Om de bestelling in een mail te plakken: klik in de bestelling, zodat de tekst geselecteerd wordt. Kopieer de tekst naar het klembord (CTRL+C), stel een mail op aan &#108;&#114;&#112;&#45;&#111;&#114;&#100;&#101;&#114;&#64;&#112;&#114;&#111;&#116;&#101;&#115;&#116;&#97;&#110;&#116;&#115;&#101;&#107;&#101;&#114;&#107;&#46;&#110;&#108; en plak de bestelling in de mail (CTRL+V).</div> <br>
+    <div class="bestellingstekst"></div>
+    <span class="submitButton" onClick="showOrder('mail')">BESTELLING MAILEN</span>
+    <span class="submitButton" onclick="createOrderPdf()">BESTELLING DOWNLOADEN</span>
+    <p style="font-weight: bold">Nadat u de bestelling hebt doorgemaild ontvangt u binnen drie werkdagen een ontvangstbevestiging! Trek tijdig aan de bel als dat uitblijft, om onnodige vertraging te voorkomen.</p>
+</fieldset>
+
+<!--=========================
+    FIELDSET HELP
+==========================-->
+<fieldset id="Help" class="noNext"><legend>Help</legend>
+    <H4 class="HelpItem">Dit formulier werkt niet</H4>
+    <div class="HelpDiv">
+    <span>Als u Internet Explorer gebruikt, zorg dan dat deze up to date is en niet via de compatibiliteitsmodus werkt (de instellingen daarvoor vindt u in het menu 'Bestand'). U hebt verder twee opties:</span>
+        <ol>
+            <li>Download en installeer <a href="http://www.mozilla.org/nl/firefox/fx/">Firefox</a>, een goede en gratis webbrowser. Probeer het daarmee nog eens.
+            <li>Gebruik het papieren bestelformulier dat u is toegezonden en dat via <a href="http://lrp-netwerk.pkn.nl/home-lrp">lrp-netwerk</a> is te downloaden.
+        </ol>
+        <p>Als u ons wilt helpen het bestelformulier te verbeteren, bel dan met de orderadministratie. Dan kunnen we kijken of het probleem te identificeren en op te lossen is.
+    </p></div>
+
+    <H4 class="HelpItem">Wat is PKN-Printstudio?</H4>
+    <div class="HelpDiv"><p>De PKN printstudio levert u printproducten op maat. Hier kunt u uw brieven en enveloppen opmaken met gegevens uit uw eigen gemeente of in de huisstijl van uw gemeente.  Zo kunt u enveloppen voorzien van een logo en retouradres, eigen ontworpen briefpapier toevoegen aan een bestelling, of een door de PKN ontworpen bijsluiter voorzien van uw eigen gegevens. Zodra u aangeeft dat u een bestelling bij het LRP-team wilt combineren met een product uit de PKN-Printstudio ontvangt u van ons een link waarmee u in de PKN-Printstudio kunt inloggen om uw product op te maken. U kunt dat overigens ook het LPR-team laten doen, als u maar de logo's e.d. doormailt. U kunt ook een account aanvragen op www.pknprintstudio.nl, maar dan moet u bij uw bestelling daar er goed voor zorgen dat u het juiste ordernummer van uw bestelling bij het LRP-team opgeeft. Zie <a href="http://www.pknprintstudio.nl">www.pknprintstudio.nl</a> voor meer informatie.<p></div>
+
+    <H4 class="HelpItem">Hoe werkt dat met pakbonnen en materiaal van kerkbalans.nl / de VKB?</H4>
+    <div class="HelpDiv"><p>
+    Als u zelf producten aanlevert via de post, of de VKB dat laat doen, ontvangt u een pakbon. Deze pakbon kunt u afdrukken en bij uw producten voegen, zodat de drukker weet bij welke bestelling ze horen. De drukker kan uw producten dan combineren met de toezeggingsformulieren / acceptgiro's uit LRP. Als u wel de VKB producten laat leveren, maar zelf niets aanlevert, dan ontvangt u toch ook een pakbon. Daar hoeft u dan niets mee te doen. De VKB ontvangt ook een pakbon voor uw bestelling.
+    </p></div>
+
+    <H4 class="HelpItem">Hoe werkt dat met subselecties en doelgroepsgewijs aanschrijven en kan het LRP-team dit voor mij inrichten?</H4>
+    <div class="HelpDiv"><p>
+    Meer informatie over subselecties vindt u <a href="http://lrp-netwerk.pkn.nl/dienstverlening/geldwerving/inrichting-lrp/subselecties-en-doelgroepen">hier</a>. U kunt het maken van subselecties en het koppelen van de juiste sjablonen uitbesteden. Onder de noemer 'Inrichten fonds' kost u dat € 60,00. U moet wel zelf duidelijk de selectiecriteria van de verschillende groepen aangeven ('iedereen tussen 18 en 25 jaar', 'iedereen die vorig jaar meer dan € 500 heeft toegezegd / gegeven'). Uiteraard dient u ook zelf voor de verschillende briefteksten te zorgen. Het LRP-team zorgt dan voor een juiste inrichting en koppeling.
+    </p></div>
+
+</fieldset>
+
+<!--==========================
+    FIELDSET CONTACT
+===========================-->
+<fieldset id="Contact" class="noNext"><legend>Contact</legend>
+<H4>LRP Orderadministratie</H4>
+<p>Voor vragen omtrent het uitbesteden van het printen van acceptgiro's, uitvoeren van incasso's en inboeken van ontvangsten, persoons- en gezinsregisters, mutatielijsten, verjaardagsfondsen enz.</p>
+<p>Email: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#108;&#114;&#112;&#45;&#111;&#114;&#100;&#101;&#114;&#64;&#112;&#114;&#111;&#116;&#101;&#115;&#116;&#97;&#110;&#116;&#115;&#101;&#107;&#101;&#114;&#107;&#46;&#110;&#108;">&#108;&#114;&#112;&#45;&#111;&#114;&#100;&#101;&#114;&#64;&#112;&#114;&#111;&#116;&#101;&#115;&#116;&#97;&#110;&#116;&#115;&#101;&#107;&#101;&#114;&#107;&#46;&#110;&#108;</a><br>
+Telefoon: 030 880 1777 (optie 1 in het menu) (bereikbaar ma t/m do 9:00-16:00)</p>
+
+<H4>LRP-helpdesk</H4>
+<p>Voor vragen over LRP, mutaties in de ledenadministratie, inschrijven voor trainingen en alle vragen waarbij u niet weet bij welke afdeling u precies moet zijn.</p>
+<p>Email: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#108;&#114;&#112;&#45;&#104;&#101;&#108;&#112;&#64;&#112;&#114;&#111;&#116;&#101;&#115;&#116;&#97;&#110;&#116;&#115;&#101;&#107;&#101;&#114;&#107;&#46;&#110;&#108;">&#108;&#114;&#112;&#45;&#104;&#101;&#108;&#112;&#64;&#112;&#114;&#111;&#116;&#101;&#115;&#116;&#97;&#110;&#116;&#115;&#101;&#107;&#101;&#114;&#107;&#46;&#110;&#108;</a><br>
+Telefoon: 030 880 1777 (optie 2 in het menu) (bereikbaar ma t/m vr 9:00-17:00)</p>
+
+<H4>Afdeling KSO</H4>
+<p>Voor vragen omtrent fusies, gemeente- en wijkgrenzen. De afdeling KSO beheert de uitgifte van inlogsleutels en het openstellen van de XML-koppeling.</p>
+<p>Email: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#108;&#114;&#112;&#45;&#104;&#101;&#108;&#112;&#64;&#112;&#114;&#111;&#116;&#101;&#115;&#116;&#97;&#110;&#116;&#115;&#101;&#107;&#101;&#114;&#107;&#46;&#110;&#108;&#63;&#115;&#117;&#98;&#106;&#101;&#99;&#116;&#61;&#116;&#46;&#97;&#46;&#118;&#46;&#37;&#50;&#48;&#97;&#102;&#100;&#101;&#108;&#105;&#110;&#103;&#37;&#50;&#48;&#75;&#83;&#79;">&#108;&#114;&#112;&#45;&#104;&#101;&#108;&#112;&#64;&#112;&#114;&#111;&#116;&#101;&#115;&#116;&#97;&#110;&#116;&#115;&#101;&#107;&#101;&#114;&#107;&#46;&#110;&#108; t.a.v. KSO</a><br>
+Telefoon: de LRP-helpdesk kan u doorverbinden (bereikbaar ma t/m do 9:00-15:00)</p>
+
+<H4>Webwinkel PKN</H4>
+<p>Voor het bestellen van LRP-handleidingen, vensterenveloppen en folders Solidariteitskas</p>
+<p>Internet: <a href="https://webwinkel.pkn.nl/">https://webwinkel.pkn.nl/</a><br>
+Telefoon: 030 880 1880</p>
+
+<H4>Team Kerkbalans</H4>
+<p>Voor materiaal rondom de actie Kerkbalans (enveloppen, folders, promotiemateriaal)<p>
+<p>Internet: <a href="http://www.kerkbalans.nl">http://www.kerkbalans.nl</a><br>
+Email: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#105;&#110;&#102;&#111;&#64;&#107;&#101;&#114;&#107;&#98;&#97;&#108;&#97;&#110;&#115;&#46;&#110;&#108;">&#105;&#110;&#102;&#111;&#64;&#107;&#101;&#114;&#107;&#98;&#97;&#108;&#97;&#110;&#115;&#46;&#110;&#108;</a><br>
+Telefoon: 078 639 3669</p>
+</fieldset>
+
+<!--=====================
+    FIELDSET LINKS
+======================-->
+<fieldset id="Links" class="noNext">
+<legend>Links</legend>
+    <H4>Dienstenorganisatie</H4>
+    <ul>
+        <li><a href="http://lrp-netwerk.pkn.nl/home-lrp">LRP netwerk</a>
+        <li><a href="https://webwinkel.pkn.nl/">PKN webwinkel</a>
+        <li><a href="http://www.pknprintstudio.nl">PKN PrintStudio</a>
+    </ul>
+    <H4>Solidariteitskas</H4>
+    <ul>
+        <li><a href="http://www.protestantsekerk.nl/actief-in-de-kerk/besturen/college-van-kerkrentmeesters/solidariteitskas">Algemene informatie</a>
+        <li><a href="http://lrp-netwerk.pkn.nl/dienstverlening/geldwerving/solidariteitskas">Dienstverlening LRP-team rond Solidariteitskas</a>
+        <li><a href="https://drive.google.com/open?id=0B7PAwNkP1CyRZ3l1RWxhOS1RaWM">Standaard brief aan gemeenteleden</a>
+        <li><a href="https://drive.google.com/open?id=0B7PAwNkP1CyRRkJ6bnpfbFZ1TzQ">Folder Solidariteitskas</a>
+    </ul>
+    <H4>Kerkbalans</H4>
+    <ul>
+        <li><a href="http://www.kerkbalans.nl">Kerkbalans.nl (Team Kerkbalans / VKB)</a>
+        <li><a href="http://lrp-netwerk.pkn.nl/dienstverlening/geldwerving/kerkbalans">Actie Kerkbalans via LRP-team</a>
+        <li><a href="http://www.pknprintstudio.nl">PKN PrintStudio</a>
+    </ul>
+    <H4>Eindejaarscollecte</H4>
+    <ul>
+        <li><a href="http://lrp-netwerk.pkn.nl/dienstverlening/geldwerving/eindejaarscollecte">Eindejaarscollecte</a>
+        <li><a href="https://docs.google.com/document/d/1rOqh2g3TEvxE_fwN7Py-UF3sswYhLGUbVoJYbSVcwRY/edit?usp=sharing">Standaard brief aan gemeenteleden</a>
+    </ul>
+</fieldset>
+<!--=====================
+    FIELDSET TEST
+======================-->
+<fieldset id="Test" class="noNext">
+<legend>Test</legend>
+<p>U bent per ongeluk op een pagina voor test-doeleinden beland. Ga terug.</p>
+    <!--<button onclick="alert(showOrder('returnpdf'));">Test</button>-->
+    <p><button onclick="createOrderPdf()">Test</button></p>
+    <p><button onclick="$('.Quicklinks').toggle('800')">Toggle Shortcuts</button></p>
+
+    <script>
+        var bf = new Blowfish('LRPteamUltimateBFkey');
+    </script>
+    <div><textarea name="BF-text" id="BFtext" cols="84" rows="6"></textarea>
+    <button onclick="$(echoBFencrypted($('#BFtext').val()));">Encrypt</button>
+    <button onclick="$(echoBFdecrypted($('#BFtext').val()));">Decrypt</button>
+    <div class="encrDiv"></div>
+    <div class="decrDiv"></div>
+    </div>
+</fieldset>
+</body>
+</html>
